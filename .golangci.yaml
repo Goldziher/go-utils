@@ -1,0 +1,43 @@
+linters-settings:
+  goimports:
+    local-prefixes: github.com/StreamElements/
+  govet:
+    check-shadowing: true
+linters:
+  enable:
+    - bidichk
+    - deadcode
+    - durationcheck
+    - errcheck
+    - errorlint
+    - exportloopref
+    - goimports
+    - goconst
+    - gocritic
+    - godot
+    - godox
+    - goheader
+    - gomoddirectives
+    - gomodguard
+    - goprintffuncname
+    - gosec
+    - ineffassign
+    - gosimple
+    - govet
+    - nolintlint
+    - predeclared
+    - rowserrcheck
+    - sqlclosecheck
+    - staticcheck
+    - structcheck
+    - tenv
+    - testpackage
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - varcheck
+    - wastedassign
+    - whitespace
+issues:
+  fix: true
