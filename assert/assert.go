@@ -18,7 +18,14 @@ func Equal[T any](t tester, expected T, actual T, opts ...cmp.Option) {
 	if !cmp.Equal(expected, actual, opts...) {
 		diff := cmp.Diff(expected, actual)
 		t.Helper()
-		t.Fatalf("Not Equal (-want +got):\n%s", diff)
+		t.Fatalf("Expected values to be equal (-want +got):\n%s", diff)
+	}
+}
+
+func NotEqual[T any](t tester, expected T, actual T, opts ...cmp.Option) {
+	if cmp.Equal(expected, actual, opts...) {
+		t.Helper()
+		t.Fatal("Expected values to not be equal")
 	}
 }
 
