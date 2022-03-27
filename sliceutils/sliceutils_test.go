@@ -150,15 +150,31 @@ func TestSum(t *testing.T) {
 
 func TestRemove(t *testing.T) {
 	testSlice := []int{1, 2, 3}
-	assert.Equal(t, []int{2, 3}, sliceutils.Remove(testSlice, 0))
-	assert.Equal(t, []int{1, 3}, sliceutils.Remove(testSlice, 1))
-	assert.Equal(t, []int{1, 2}, sliceutils.Remove(testSlice, 2))
+	result := sliceutils.Remove(testSlice, 0)
+	assert.Equal(t, []int{2, 3}, result)
+	assert.Equal(t, []int{1, 2, 3}, testSlice)
+	result = sliceutils.Remove(result, 1)
+	assert.Equal(t, []int{2}, result)
+	result = sliceutils.Remove(result, 3)
+	assert.Equal(t, []int{2}, result)
+	result = sliceutils.Remove(result, 0)
+	assert.Equal(t, []int{}, result)
+	result = sliceutils.Remove(result, 1)
+	assert.Equal(t, []int{}, result)
+}
+
+func TestCopy(t *testing.T) {
+	testSlice := []int{1, 2, 3}
+	copiedSlice := sliceutils.Copy(testSlice)
+	copiedSlice[0] = 2
+	assert.NotEqual(t, testSlice, copiedSlice)
 }
 
 func TestInsert(t *testing.T) {
 	testSlice := []int{1, 2}
-
-	assert.Equal(t, []int{3, 1, 2}, sliceutils.Insert(testSlice, 0, 3))
+	result := sliceutils.Insert(testSlice, 0, 3)
+	assert.Equal(t, []int{3, 1, 2}, result)
+	assert.NotEqual(t, testSlice, result)
 	assert.Equal(t, []int{1, 3, 2}, sliceutils.Insert(testSlice, 1, 3))
 	assert.Equal(t, []int{1, 2, 3}, sliceutils.Insert(testSlice, 2, 3))
 }

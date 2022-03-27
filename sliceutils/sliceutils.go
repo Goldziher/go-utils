@@ -189,21 +189,23 @@ func Sum[T numbers](slice []T) (result T) {
 }
 
 // Remove - receives a slice of type T and an index, removing the element at the given index.
-// Note: this function returns a copy of the passed in slice and does not modify it in place.
+// Note: this function does not modify the input slice.
 func Remove[T any](slice []T, i int) []T {
-	result := make([]T, len(slice), cap(slice))
-	copy(result, slice)
-
-	if len(result) == 0 {
-		return result
-	} else if i != len(result)-1 {
-		return append(result[:i], result[i+1:]...)
+	if len(slice) == 0 || i > len(slice)-1 {
+		return slice
 	}
-	return result[:i]
+	if i == 0 {
+		return slice[1:]
+	}
+	if i != len(slice)-1 {
+		return append(slice[:i], slice[i+1:]...)
+	}
+	return slice[:i]
 }
 
 // Insert - receives a slice of type T, an index and a value.
 // The value is inserted at the given index. If there is an existing value at this index, it is shifted to the next index.
+// Note: this function does not modify the input slice.
 func Insert[T any](slice []T, i int, value T) []T {
 	if len(slice) == i {
 		return append(slice, value)
@@ -211,6 +213,13 @@ func Insert[T any](slice []T, i int, value T) []T {
 	slice = append(slice[:i+1], slice[i:]...)
 	slice[i] = value
 	return slice
+}
+
+// Copy - receives a slice of type T and copies it.
+func Copy[T any](slice []T) []T {
+	duplicate := make([]T, len(slice), cap(slice))
+	copy(duplicate, slice)
+	return duplicate
 }
 
 // Intersection - receives a slice of type T and returns a slice of type T containing any values that exist in all the a slice.
@@ -269,7 +278,7 @@ func Sort[T any](slice []T, sorter func(a T, b T) int) []T {
 }
 
 // Unique - receives a slice of type T and returns a slice of type T
-// containing all unique elements
+// containing all unique elements.
 func Unique[T comparable](slice []T) []T {
 	var unique []T
 	visited := map[T]bool{}
