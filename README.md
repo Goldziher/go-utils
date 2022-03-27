@@ -41,7 +41,7 @@ import (
 )
 
 func main() {
-	var numerals = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	numerals := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
 	oddNumbers := sliceutils.Filter(numerals, func(value int, index int, slice []int) bool {
 		return value%2 != 0
@@ -69,7 +69,7 @@ import (
 
 func main() {
 	result := 0
-	var numerals = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	numerals := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
 	sliceutils.ForEach(numerals, func(value int, index int, slice []int) {
 		result += value
@@ -96,7 +96,7 @@ import (
 )
 
 func main() {
-	var numerals = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	numerals := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
 	result := sliceutils.Map(numerals, func(value int, index int, slice []int) int {
 		return value * 2
@@ -124,7 +124,7 @@ import (
 )
 
 func main() {
-	var numerals = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	numerals := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
 	sum := sliceutils.Reduce(
 		numerals,
@@ -157,7 +157,7 @@ import (
 )
 
 func main() {
-	var days = []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
+	days := []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
 
 	result := sliceutils.Find(days, func(value string, index int, slice []string) bool {
 		return strings.Contains(value, "Wed")
@@ -186,7 +186,7 @@ import (
 )
 
 func main() {
-	var days = []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
+	days := []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
 
 	result := sliceutils.FindIndex(days, func(value string, index int, slice []string) bool {
 		return strings.Contains(value, "Wed")
@@ -214,7 +214,7 @@ import (
 )
 
 func main() {
-	var days = []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
+	days := []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
 
 	result := sliceutils.FindIndexOf(days, "Wednesday")
 
@@ -241,7 +241,7 @@ import (
 )
 
 func main() {
-	var friends = []string{"John", "Bob", "Mendy", "Suzy", "John"}
+	friends := []string{"John", "Bob", "Mendy", "Suzy", "John"}
 
 	result := sliceutils.FindLastIndex(friends, func(value string, index int, slice []string) bool {
 		return value == "John"
@@ -269,7 +269,7 @@ import (
 )
 
 func main() {
-	var friends = []string{"John", "Bob", "Mendy", "Suzy", "John"}
+	friends := []string{"John", "Bob", "Mendy", "Suzy", "John"}
 
 	result := sliceutils.FindLastIndexOf(friends, "John")
 
@@ -296,7 +296,7 @@ import (
 )
 
 func main() {
-	var friends = []string{"John", "Bob", "Mendy", "Suzy", "John"}
+	friends := []string{"John", "Bob", "Mendy", "Suzy", "John"}
 
 	result := sliceutils.FindIndexes(friends, func(value string, index int, slice []string) bool {
 		return value == "John"
@@ -324,7 +324,7 @@ import (
 )
 
 func main() {
-	var friends = []string{"John", "Bob", "Mendy", "Suzy", "John"}
+	friends := []string{"John", "Bob", "Mendy", "Suzy", "John"}
 
 	result := sliceutils.FindIndexesOf(friends, "John")
 
@@ -349,7 +349,7 @@ import (
 )
 
 func main() {
-	var friends = []string{"John", "Bob", "Mendy", "Suzy", "John"}
+	friends := []string{"John", "Bob", "Mendy", "Suzy", "John"}
 
 	result := sliceutils.Includes(friends, "John")
 
@@ -361,8 +361,8 @@ func main() {
 
 `func Some[T any](slice []T, predicate func(value T, index int, slice []T) bool) bool`
 
-Some takes a slice of type T and a predicate function, returning true if the predicate returned true for **some** elements.
-The function is passed the current element, the current index and the slice itself as function arguments.
+Some takes a slice of type T and a predicate function, returning true if the predicate returned true for **some**
+elements. The function is passed the current element, the current index and the slice itself as function arguments.
 
 ```go
 package main
@@ -374,10 +374,10 @@ import (
 )
 
 func main() {
-	var friends = []string{"John", "Bob", "Mendy", "Suzy", "John"}
+	friends := []string{"John", "Bob", "Mendy", "Suzy", "John"}
 
 	result := sliceutils.Some(friends, func(value string, index int, slice []string) bool {
-        return value == "Mandy"
+		return value == "Mandy"
 	})
 
 	fmt.Print(result) // true
@@ -388,8 +388,8 @@ func main() {
 
 `func Every[T any](slice []T, predicate func(value T, index int, slice []T) bool) bool`
 
-Every takes a slice of type T and a predicate function, returning true if the predicate returned true for **every** elements.
-The function is passed the current element, the current index and the slice itself as function arguments.
+Every takes a slice of type T and a predicate function, returning true if the predicate returned true for **every**
+elements. The function is passed the current element, the current index and the slice itself as function arguments.
 
 ```go
 package main
@@ -401,12 +401,94 @@ import (
 )
 
 func main() {
-	var friends = []string{"John", "Bob", "Mendy", "Suzy", "John"}
+	friends := []string{"John", "Bob", "Mendy", "Suzy", "John"}
 
 	result := sliceutils.Every(friends, func(value string, index int, slice []string) bool {
-        return value == "Mandy"
+		return value == "Mandy"
 	})
 
 	fmt.Print(result) // false
 }
 ```
+
+### Merge
+
+`func Merge[T any](slices ...[]T) (mergedSlice []T)`
+
+Merge takes slices of type T and merges them into a single slice of type T, preserving their order.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/sliceutils"
+)
+
+func main() {
+	first := []int{1, 2, 3}
+	second := []int{4, 5, 6}
+	third := []int{7, 8, 9}
+
+	result := sliceutils.Merge(first, second, third)
+
+	fmt.Print(result) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+```
+
+### Sum
+
+`func Sum[T numbers](slice []T) (result T)`
+
+Sum takes a slice of numbers T, which can be any of the number types, and returns a sum of their values.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/sliceutils"
+)
+
+func main() {
+	numerals := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+	result := sliceutils.Sum(numerals)
+
+	fmt.Print(result) // 45
+}
+```
+
+### Remove
+
+`func Remove[T any](slice []T, i int) []T`
+
+Remove takes a slice of type T and an index, returning **a copy** of the slice with the element removed.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/sliceutils"
+)
+
+func main() {
+	numerals := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+	result := sliceutils.Remove(numerals, 3)
+
+	fmt.Print(result)   // [0, 1, 2, 4, 5, 6, 7, 8, 9]
+	fmt.Print(numerals) // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+```
+
+### Insert
+
+`func Insert[T any](slice []T, i int, value T) []T`
+
+Insert takes a slice of type T, an index and a value of type T, inserting the value at the given index and shifting any
+existing elements to the right.

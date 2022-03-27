@@ -154,16 +154,15 @@ func Some[T any](slice []T, predicate func(value T, index int, slice []T) bool) 
 // If the predicate returns true for all elements, it returns true, otherwise it returns false.
 // The function is passed the current element, the current index and the slice itself as function arguments.
 func Every[T any](slice []T, predicate func(value T, index int, slice []T) bool) bool {
-	all := true
 	for i, el := range slice {
 		if ok := predicate(el, i, slice); !ok {
-			all = false
+			return false
 		}
 	}
-	return all
+	return true
 }
 
-// Merge - receives a slice of type T and merges them into a single slice of type T.
+// Merge - receives slices of type T and merges them into a single slice of type T.
 // Note: The elements are merged in their order in the a slice,
 // i.e. first the elements of the first slice, then that of the second and so forth.
 func Merge[T any](slices ...[]T) (mergedSlice []T) {
