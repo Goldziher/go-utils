@@ -199,3 +199,11 @@ func TestReverse(t *testing.T) {
 	// ensure does not modify the original
 	assert.Equal(t, expectedResult, sliceutils.Reverse(numerals))
 }
+
+func TestUnique(t *testing.T) {
+	duplicates := []int{6, 6, 6, 9, 0, 0, 0}
+	expectedResult := []int{6, 9, 0}
+	assert.Equal(t, expectedResult, sliceutils.Unique(duplicates))
+	// Ensure original is unaltered
+	assert.NotEqual(t, expectedResult, duplicates)
+}
