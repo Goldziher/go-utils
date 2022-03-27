@@ -1,4 +1,4 @@
-// This package includes utility functions for handling and manipulating slices.
+// This package includes utility functions for handling and manipulating sliceutils.
 // It draws inspiration from JavaScript and Python and uses Go generics as a basis.
 
 package sliceutils
@@ -164,8 +164,8 @@ func All[T any](slice []T, predicate func(value T, index int, slice []T) bool) b
 	return all
 }
 
-// Merge - receives slices of type T and merges them into a single slice of type T.
-// Note: The elements are merged in their order in the slices,
+// Merge - receives sliceutils of type T and merges them into a single slice of type T.
+// Note: The elements are merged in their order in the sliceutils,
 // i.e. first the elements of the first slice, then that of the second and so forth.
 func Merge[T any](slices ...[]T) (mergedSlice []T) {
 	for _, slice := range slices {
@@ -215,7 +215,7 @@ func Insert[T any](slice []T, i int, value T) []T {
 	return slice
 }
 
-// Intersection - receives slices of type T and returns a slice of type T containing any values that exist in all the slices.
+// Intersection - receives sliceutils of type T and returns a slice of type T containing any values that exist in all the sliceutils.
 // For example, given []int{1, 2, 3}, []{1, 7, 3}, the intersection would be []int{1, 3}.
 func Intersection[T comparable](slices ...[]T) []T {
 	return Filter(Merge(slices...), func(value T, i int, slice []T) bool {
@@ -224,7 +224,7 @@ func Intersection[T comparable](slices ...[]T) []T {
 	})
 }
 
-// Difference - receives slices of type T, and returns the difference between the slices.
+// Difference - receives sliceutils of type T, and returns the difference between the sliceutils.
 // For example, given []int{1, 2, 3}, []{2, 3, 4}, []{3, 4, 5}, the difference would be []int{1, 5}.
 func Difference[T comparable](slices ...[]T) []T {
 	return Filter(Merge(slices...), func(value T, _ int, slice []T) bool {
@@ -233,7 +233,7 @@ func Difference[T comparable](slices ...[]T) []T {
 	})
 }
 
-// Union - receives slices of type T, and returns a slice composed of the unique elements of the slices.
+// Union - receives sliceutils of type T, and returns a slice composed of the unique elements of the sliceutils.
 // For example, given []int{1, 2, 3}, []{2, 3, 4}, []{3, 4, 5}, the difference would be []int{1, 2, 3, 4, 5}.
 func Union[T comparable](slices ...[]T) []T {
 	return Filter(Merge(slices...), func(value T, i int, slice []T) bool {
@@ -253,7 +253,7 @@ func Reverse[T any](slice []T) []T {
 	return copied
 }
 
-// Sort - receives slices of type T and a sorter function.
+// Sort - receives sliceutils of type T and a sorter function.
 func Sort[T any](slice []T, sorter func(a T, b T) int) []T {
 	result := make([]T, len(slice), cap(slice))
 	for i, a := range slice {

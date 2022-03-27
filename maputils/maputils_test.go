@@ -1,10 +1,9 @@
 package maputils_test
 
 import (
-	"go-utils/assert"
+	"go-utils/asserts"
 	"go-utils/maputils"
 	"sort"
-	"strconv"
 	"testing"
 )
 
@@ -22,7 +21,7 @@ func TestKeys(t *testing.T) {
 	days := []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
 	sort.Strings(days)
 	sort.Strings(keys)
-	assert.Equal(t, days, keys)
+	asserts.Equal(t, days, keys)
 }
 
 func TestValues(t *testing.T) {
@@ -37,7 +36,7 @@ func TestValues(t *testing.T) {
 	}
 	values := maputils.Values(daysMap)
 	sort.Ints(values)
-	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7}, values)
+	asserts.Equal(t, []int{1, 2, 3, 4, 5, 6, 7}, values)
 }
 
 func TestMerge(t *testing.T) {
@@ -50,7 +49,7 @@ func TestMerge(t *testing.T) {
 		"Betty":  "Stewart",
 	}
 
-	assert.Equal(t,
+	asserts.Equal(t,
 		map[string]string{
 			"George": "Harrison",
 			"Betty":  "Stewart",
@@ -75,39 +74,7 @@ func TestForEach(t *testing.T) {
 		sum += day
 	})
 
-	assert.Equal(t, 28, sum)
-}
-
-func TestReMap(t *testing.T) {
-	var daysMap = map[string]int{
-		"Sunday":    1,
-		"Monday":    2,
-		"Tuesday":   3,
-		"Wednesday": 4,
-		"Thursday":  5,
-		"Friday":    6,
-		"Saturday":  7,
-	}
-
-	expectedResult := map[string]int{
-		"Sunday":   1,
-		"2":        2,
-		"Tuesday":  3,
-		"4":        4,
-		"Thursday": 5,
-		"6":        6,
-		"Saturday": 7,
-	}
-
-	remappedDays := maputils.ReMap(daysMap, func(key string, value int) string {
-		if value%2 == 0 {
-			return strconv.Itoa(value)
-		}
-		return key
-	})
-
-	assert.Equal(t, expectedResult, remappedDays)
-	assert.Equal(t, expectedResult, daysMap)
+	asserts.Equal(t, 28, sum)
 }
 
 func TestDrop(t *testing.T) {
@@ -125,9 +92,9 @@ func TestDrop(t *testing.T) {
 		"Sunday": 1,
 		"Friday": 6,
 	}
-	assert.Equal(t, expectedResult, maputils.Drop(daysMap, []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"}))
+	asserts.Equal(t, expectedResult, maputils.Drop(daysMap, []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"}))
 	// ensure we do not modify the original value
-	assert.Equal(t, expectedResult, daysMap)
+	asserts.Equal(t, expectedResult, daysMap)
 }
 
 func TestCopy(t *testing.T) {
@@ -141,7 +108,31 @@ func TestCopy(t *testing.T) {
 		"Saturday":  7,
 	}
 	daysCopy := maputils.Copy(daysMap)
-	assert.Equal(t, daysMap, daysCopy)
+	asserts.Equal(t, daysMap, daysCopy)
 	delete(daysCopy, "Sunday")
-	assert.NotEqual(t, daysMap, daysCopy)
+	asserts.NotEqual(t, daysMap, daysCopy)
+}
+
+func TestFilter(t *testing.T) {
+	var daysMap = map[string]int{
+		"Sunday":    1,
+		"Monday":    2,
+		"Tuesday":   3,
+		"Wednesday": 4,
+		"Thursday":  5,
+		"Friday":    6,
+		"Saturday":  7,
+	}
+
+	var expectedResult = map[string]int{
+		"Monday":    2,
+		"Wednesday": 4,
+		"Friday":    6,
+	}
+
+	filteredDays := maputils.Filter(daysMap, func(_ string, value int) bool {
+		return value%2 == 0
+	})
+
+	asserts.Equal(t, expectedResult, filteredDays)
 }
