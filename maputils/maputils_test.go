@@ -1,10 +1,11 @@
 package maputils_test
 
 import (
-	"go-utils/asserts"
-	"go-utils/maputils"
 	"sort"
 	"testing"
+
+	"github.com/Goldziher/go-utils/maputils"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestKeys(t *testing.T) {
@@ -21,7 +22,7 @@ func TestKeys(t *testing.T) {
 	days := []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
 	sort.Strings(days)
 	sort.Strings(keys)
-	asserts.Equal(t, days, keys)
+	assert.Equal(t, days, keys)
 }
 
 func TestValues(t *testing.T) {
@@ -36,7 +37,7 @@ func TestValues(t *testing.T) {
 	}
 	values := maputils.Values(daysMap)
 	sort.Ints(values)
-	asserts.Equal(t, []int{1, 2, 3, 4, 5, 6, 7}, values)
+	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7}, values)
 }
 
 func TestMerge(t *testing.T) {
@@ -49,7 +50,7 @@ func TestMerge(t *testing.T) {
 		"Betty":  "Stewart",
 	}
 
-	asserts.Equal(t,
+	assert.Equal(t,
 		map[string]string{
 			"George": "Harrison",
 			"Betty":  "Stewart",
@@ -74,7 +75,7 @@ func TestForEach(t *testing.T) {
 		sum += day
 	})
 
-	asserts.Equal(t, 28, sum)
+	assert.Equal(t, 28, sum)
 }
 
 func TestDrop(t *testing.T) {
@@ -92,9 +93,9 @@ func TestDrop(t *testing.T) {
 		"Sunday": 1,
 		"Friday": 6,
 	}
-	asserts.Equal(t, expectedResult, maputils.Drop(daysMap, []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"}))
+	assert.Equal(t, expectedResult, maputils.Drop(daysMap, []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"}))
 	// ensure we do not modify the original value
-	asserts.Equal(t, expectedResult, daysMap)
+	assert.Equal(t, expectedResult, daysMap)
 }
 
 func TestCopy(t *testing.T) {
@@ -108,9 +109,9 @@ func TestCopy(t *testing.T) {
 		"Saturday":  7,
 	}
 	daysCopy := maputils.Copy(daysMap)
-	asserts.Equal(t, daysMap, daysCopy)
+	assert.Equal(t, daysMap, daysCopy)
 	delete(daysCopy, "Sunday")
-	asserts.NotEqual(t, daysMap, daysCopy)
+	assert.NotEqual(t, daysMap, daysCopy)
 }
 
 func TestFilter(t *testing.T) {
@@ -134,5 +135,5 @@ func TestFilter(t *testing.T) {
 		return value%2 == 0
 	})
 
-	asserts.Equal(t, expectedResult, filteredDays)
+	assert.Equal(t, expectedResult, filteredDays)
 }
