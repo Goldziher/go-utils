@@ -1,0 +1,110 @@
+name: ci
+on:
+  pull_request:
+    branches:
+      - "**"
+  push:
+    branches:
+      - main
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+      - name: Load cached dependencies
+        id: cached-go-dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: go-${{ inputs.go_version }}-v1.0-${{ hashFiles('**/go.sum') }}
+      - name: Install dependencies
+        if: steps.cached-go-dependencies.outputs.cache-hit != 'true'
+        shell: bash
+        run: go get -v -t ./...
+  analyze:
+    needs: setup
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+      - name: Load cached dependencies
+        id: cached-go-dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: go-${{ inputs.go_version }}-v1.0-${{ hashFiles('**/go.sum') }}
+      - name: Install dependencies
+        if: steps.cached-go-dependencies.outputs.cache-hit != 'true'
+        shell: bash
+        run: go get -v -t ./...
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: go
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+  lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+      - name: Load cached dependencies
+        id: cached-go-dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: go-${{ inputs.go_version }}-v1.0-${{ hashFiles('**/go.sum') }}
+      - name: Install dependencies
+        if: steps.cached-go-dependencies.outputs.cache-hit != 'true'
+        shell: bash
+        run: go get -v -t ./...
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        continue-on-error: true
+        with:
+          version: v1.45
+          skip-go-installation: true
+          skip-pkg-cache: true
+          skip-build-cache: true
+  test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+      - name: Load cached dependencies
+        id: cached-go-dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: go-${{ inputs.go_version }}-v1.0-${{ hashFiles('**/go.sum') }}
+      - name: Install dependencies
+        if: steps.cached-go-dependencies.outputs.cache-hit != 'true'
+        shell: bash
+        run: go get -v -t ./...
+      - name: Run Tests
+        run: go test -v ./...

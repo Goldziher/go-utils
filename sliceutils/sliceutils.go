@@ -216,7 +216,7 @@ func Insert[T any](slice []T, i int, value T) []T {
 }
 
 // Intersection - receives slices of type T and returns a slice of type T containing any values that exist in all the slices.
-// For example, given []int{1, 2, 3}, []{1, 7, 3}, the intersection would be []int{1, 3}
+// For example, given []int{1, 2, 3}, []{1, 7, 3}, the intersection would be []int{1, 3}.
 func Intersection[T comparable](slices ...[]T) []T {
 	return Filter(Merge(slices...), func(value T, i int, slice []T) bool {
 		indexes := FindIndexesOf(slice, value)
@@ -225,7 +225,7 @@ func Intersection[T comparable](slices ...[]T) []T {
 }
 
 // Difference - receives slices of type T, and returns the difference between the slices.
-// For example, given []int{1, 2, 3}, []{2, 3, 4}, []{3, 4, 5}, the difference would be []int{1, 5}
+// For example, given []int{1, 2, 3}, []{2, 3, 4}, []{3, 4, 5}, the difference would be []int{1, 5}.
 func Difference[T comparable](slices ...[]T) []T {
 	return Filter(Merge(slices...), func(value T, _ int, slice []T) bool {
 		indexes := FindIndexesOf(slice, value)
@@ -234,7 +234,7 @@ func Difference[T comparable](slices ...[]T) []T {
 }
 
 // Union - receives slices of type T, and returns a slice composed of the unique elements of the slices.
-// For example, given []int{1, 2, 3}, []{2, 3, 4}, []{3, 4, 5}, the difference would be []int{1, 2, 3, 4, 5}
+// For example, given []int{1, 2, 3}, []{2, 3, 4}, []{3, 4, 5}, the difference would be []int{1, 2, 3, 4, 5}.
 func Union[T comparable](slices ...[]T) []T {
 	return Filter(Merge(slices...), func(value T, i int, slice []T) bool {
 		indexes := FindIndexesOf(slice, value)
