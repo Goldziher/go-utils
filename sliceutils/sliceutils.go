@@ -243,8 +243,12 @@ func Union[T comparable](slices ...[]T) []T {
 // Reverse - receives a slice of type T and reverses it, returning a slice of type T with a reverse order of elements.
 func Reverse[T any](slice []T) []T {
 	result := make([]T, len(slice))
-	for i, j := 0, len(result); i < j/2; i++ {
-		result[i], result[j-i-1] = slice[j-i-1], slice[i]
+	itemCount := len(slice)
+	middle := itemCount / 2
+	result[middle] = slice[middle]
+	for i := 0; i < middle; i++ {
+		mirrorIdx := itemCount - i - 1
+		result[i], result[mirrorIdx] = slice[mirrorIdx], slice[i]
 	}
 	return result
 }

@@ -198,6 +198,10 @@ func TestReverse(t *testing.T) {
 	assert.Equal(t, expectedResult, sliceutils.Reverse(numerals))
 	// ensure does not modify the original
 	assert.Equal(t, expectedResult, sliceutils.Reverse(numerals))
+
+	// test basic odd length case
+	expectedResult = []int{9, 8, 7, 6, 5, 4, 3, 2, 1}
+	assert.Equal(t, expectedResult, sliceutils.Reverse(numerals[1:]))
 }
 
 func TestUnique(t *testing.T) {
