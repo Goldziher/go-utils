@@ -1,3 +1,18 @@
+# Go Utils
+
+<div align="center">
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
+
+</div>
+
 ### Filter
 
 `func Filter[T any](slice []T, predicate func(value T, index int, slice []T) bool) []T`
