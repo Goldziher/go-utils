@@ -121,19 +121,19 @@ func TestIncludes(t *testing.T) {
 }
 
 func TestAny(t *testing.T) {
-	assert.True(t, sliceutils.Any(numerals, func(value int, _ int, _ []int) bool {
+	assert.True(t, sliceutils.Some(numerals, func(value int, _ int, _ []int) bool {
 		return value%5 == 0
 	}))
-	assert.False(t, sliceutils.Any(numerals, func(value int, _ int, _ []int) bool {
+	assert.False(t, sliceutils.Some(numerals, func(value int, _ int, _ []int) bool {
 		return value == 11
 	}))
 }
 
 func TestAll(t *testing.T) {
-	assert.True(t, sliceutils.All([]int{1, 1, 1}, func(value int, _ int, _ []int) bool {
+	assert.True(t, sliceutils.Every([]int{1, 1, 1}, func(value int, _ int, _ []int) bool {
 		return value == 1
 	}))
-	assert.False(t, sliceutils.All([]int{1, 1, 1, 2}, func(value int, _ int, _ []int) bool {
+	assert.False(t, sliceutils.Every([]int{1, 1, 1, 2}, func(value int, _ int, _ []int) bool {
 		return value == 1
 	}))
 }
