@@ -242,13 +242,11 @@ func Union[T comparable](slices ...[]T) []T {
 
 // Reverse - receives a slice of type T and reverses it, returning a slice of type T with a reverse order of elements.
 func Reverse[T any](slice []T) []T {
-	copied := make([]T, len(slice))
-	copy(copied, slice)
-
-	for i, j := 0, len(copied)-1; i < j; i, j = i+1, j-1 {
-		copied[i], copied[j] = copied[j], copied[i]
+	result := make([]T, len(slice))
+	for i, j := 0, len(result); i < j/2; i++ {
+		result[i], result[j-i-1] = slice[j-i-1], slice[i]
 	}
-	return copied
+	return result
 }
 
 // Sort - receives a slice of type T and a sorter function.
@@ -268,4 +266,19 @@ func Sort[T any](slice []T, sorter func(a T, b T) int) []T {
 		}
 	}
 	return result
+}
+
+// Unique - receives a slice of type T and returns a slice of type T
+// containing all unique elements
+func Unique[T comparable](slice []T) []T {
+	var unique []T
+	visited := map[T]bool{}
+
+	for _, value := range slice {
+		if exists := visited[value]; !exists {
+			unique = append(unique, value)
+			visited[value] = true
+		}
+	}
+	return unique
 }
