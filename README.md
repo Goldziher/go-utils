@@ -336,7 +336,8 @@ func main() {
 
 `func Includes[T comparable](slice []T, value T) bool`
 
-Includes takes a slice of type T and a value of type T, determining whether or not the value is included in the slice.
+Includes receives a slice of type T and a value of type T, determining whether or not the value is included in the
+slice.
 
 ```go
 package main
@@ -481,7 +482,7 @@ func main() {
 
 	numerals = sliceutils.Remove(numerals, 3)
 
-	fmt.Print(numerals)   // [0, 1, 2, 4, 5, 6, 7, 8, 9]
+	fmt.Print(numerals) // [0, 1, 2, 4, 5, 6, 7, 8, 9]
 }
 ```
 
@@ -506,7 +507,7 @@ func main() {
 
 	numerals = sliceutils.Insert(numerals, 1, 1)
 
-	fmt.Print(numerals)   // [0, 1, 2]
+	fmt.Print(numerals) // [0, 1, 2]
 }
 ```
 
@@ -531,8 +532,8 @@ func main() {
 	numeralsCopy := sliceutils.Copy(numerals)
 	numeralsCopy[0] = 1
 
-	fmt.Print(numerals)   // [0, 1]
-	fmt.Print(numeralsCopy)   // [1, 1]
+	fmt.Print(numerals)     // [0, 1]
+	fmt.Print(numeralsCopy) // [1, 1]
 }
 ```
 
@@ -540,7 +541,8 @@ func main() {
 
 `func Intersection[T comparable](slices ...[]T) []T`
 
-Intersection takes a variadic number of slices of type T and returns a slice of type T containing any values that are common to all slices.
+Intersection takes a variadic number of slices of type T and returns a slice of type T containing any values that are
+common to all slices.
 
 ```go
 package main
@@ -556,7 +558,7 @@ func main() {
 
 	result := sliceutils.Intersection(first, second)
 
-	fmt.Print(result)   // [1, 3]
+	fmt.Print(result) // [1, 3]
 }
 ```
 
@@ -564,7 +566,8 @@ func main() {
 
 `func Difference[T comparable](slices ...[]T) []T`
 
-Difference takes a variadic number of slices of type T and returns a slice of type T containing the elements that are different between the slices.
+Difference takes a variadic number of slices of type T and returns a slice of type T containing the elements that are
+different between the slices.
 
 ```go
 package main
@@ -580,7 +583,7 @@ func main() {
 
 	result := sliceutils.Difference(first, second)
 
-	fmt.Print(result)   // [2, 7]
+	fmt.Print(result) // [2, 7]
 }
 ```
 
@@ -588,7 +591,8 @@ func main() {
 
 `func Union[T comparable](slices ...[]T) []T`
 
-Union takes a variadic number of slices of type T and returns a slice of type T containing the unique elements in the different slices.
+Union takes a variadic number of slices of type T and returns a slice of type T containing the unique elements in the
+different slices.
 
 ```go
 package main
@@ -604,7 +608,7 @@ func main() {
 
 	result := sliceutils.Union(first, second)
 
-	fmt.Print(result)   // [1, 2, 3, 7]
+	fmt.Print(result) // [1, 2, 3, 7]
 }
 ```
 
@@ -628,7 +632,7 @@ func main() {
 
 	reversed := sliceutils.Reverse(numerals)
 
-	fmt.Print(reversed)   // [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+	fmt.Print(reversed) // [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 }
 ```
 
@@ -652,6 +656,187 @@ func main() {
 
 	result := sliceutils.Unique(numerals)
 
-	fmt.Print(result)   // [0, 1, 2, 3]
+	fmt.Print(result) // [0, 1, 2, 3]
 }
 ```
+
+## Map Utilities
+
+### Keys
+
+`func Keys[K comparable, V any](mapInstance map[K]V) []K`
+
+Keys takes a map with keys K and values V and returns a slice of type K with the map's keys.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/maputils"
+)
+
+func main() {
+	vegetables := map[string]int{
+		"potatoes": 5,
+		"carrots":  10,
+	}
+
+	result := maputils.Keys(vegetables)
+
+	fmt.Print(result) // ["potatoes", "carrots"]
+}
+```
+
+### Values
+
+`func Values[K comparable, V any](mapInstance map[K]V) []V`
+
+Values takes a map with keys K and values V and returns a slice of type V with the map's values.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/maputils"
+)
+
+func main() {
+	vegetables := map[string]int{
+		"potatoes": 5,
+		"carrots":  10,
+	}
+
+	result := maputils.Values(vegetables)
+
+	fmt.Print(result) // [5, 10]
+}
+```
+
+### Merge
+
+`func Merge[K comparable, V any](mapInstances ...map[K]V) map[K]V`
+
+Merge takes a variadic numbers of maps with keys K and values V and returns a merged map. Merging is done from left to
+right. If a key already exists in a previous map, its value is over-written.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/maputils"
+)
+
+func main() {
+	vegetables := map[string]int{
+		"potatoes": 5,
+		"carrots":  10,
+		"tomatoes": 3,
+	}
+
+	fruits := map[string]int{
+		"bananas":  3,
+		"tomatoes": 5,
+	}
+
+	result := maputils.Merge(vegetables, fruits)
+
+	fmt.Print(result) //{ "potatoes": 5, "carrots":  10, "tomatoes": 5, "bananas": 3 }
+}
+```
+
+### ForEach
+
+`func ForEach[K comparable, V any](mapInstance map[K]V, function func(key K, value V))`
+
+ForEach given a map with keys K and values V, executes the passed in function for each key-value pair.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/maputils"
+)
+
+func main() {
+	vegetables := map[string]int{
+		"potatoes": 5,
+		"carrots":  10,
+	}
+
+	maputils.ForEach(vegetables, func(key string, value int) {
+		fmt.Printf("Buy %d Kg of %s", value, key) //  "Buy 5 Kg of potatoes", "Buy 10 Kg of carrots"
+	})
+}
+```
+
+### Copy
+
+`func Copy[K comparable, V any](mapInstance map[K]V) map[K]V`
+
+Copy takes a map with keys K and values V and returns a copy.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/maputils"
+)
+
+func main() {
+	vegetables := map[string]int{
+		"potatoes": 5,
+		"carrots":  10,
+	}
+
+	copiedVegetables := maputils.Copy(vegetables)
+
+	copiedVegetables["potatoes"] = 3
+
+	fmt.Print(vegetables["potatoes"])       // 5
+	fmt.Print(copiedVegetables["potatoes"]) // 3
+}
+```
+
+### Filter
+
+`func Filter[K comparable, V any](mapInstance map[K]V, function func(key K, value V) bool) map[K]V`
+
+Filter takes a map with keys K and values V, and executes the passed in function for each key-value pair. If the filter
+function returns true, the key-value pair will be included in the output, otherwise it is filtered out.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/maputils"
+)
+
+func main() {
+	vegetables := map[string]int{
+		"potatoes": 5,
+		"carrots":  10,
+	}
+
+	result := maputils.Filter(vegetables, func(key string, value int) bool {
+        return value == 5
+	})
+
+	fmt.Print(result) // { "potatoes": 5 }
+}
+```
+
+## Contribution
+
+This library is open to contributions. Please consult the [Contribution Guide](CONTRIBUTING.md).
