@@ -150,13 +150,13 @@ func TestSum(t *testing.T) {
 
 func TestRemove(t *testing.T) {
 	testSlice := []int{1, 2, 3}
-	result := sliceutils.Remove(testSlice, 0)
-	assert.Equal(t, []int{2, 3}, result)
+	result := sliceutils.Remove(testSlice, 1)
+	assert.Equal(t, []int{1, 3}, result)
 	assert.Equal(t, []int{1, 2, 3}, testSlice)
 	result = sliceutils.Remove(result, 1)
-	assert.Equal(t, []int{2}, result)
+	assert.Equal(t, []int{1}, result)
 	result = sliceutils.Remove(result, 3)
-	assert.Equal(t, []int{2}, result)
+	assert.Equal(t, []int{1}, result)
 	result = sliceutils.Remove(result, 0)
 	assert.Equal(t, []int{}, result)
 	result = sliceutils.Remove(result, 1)

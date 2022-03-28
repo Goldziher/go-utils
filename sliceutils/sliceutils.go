@@ -194,13 +194,14 @@ func Remove[T any](slice []T, i int) []T {
 	if len(slice) == 0 || i > len(slice)-1 {
 		return slice
 	}
+	copied := Copy(slice)
 	if i == 0 {
-		return slice[1:]
+		return copied[1:]
 	}
-	if i != len(slice)-1 {
-		return append(slice[:i], slice[i+1:]...)
+	if i != len(copied)-1 {
+		return append(copied[:i], copied[i+1:]...)
 	}
-	return slice[:i]
+	return copied[:i]
 }
 
 // Insert - receives a slice of type T, an index and a value.
