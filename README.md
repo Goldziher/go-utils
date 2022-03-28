@@ -16,6 +16,8 @@
 Go Utils is a utility library inspired by JavaScript and Python. It makes extensive use of Go 1.18+ generics to offer a
 straightforward API.
 
+Read more in the [Documentation](https://goldziher.github.io/go-utils/).
+
 ## Installation
 
 ```shell
