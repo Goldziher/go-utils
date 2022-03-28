@@ -19,7 +19,7 @@ straightforward API.
 ## Installation
 
 ```shell
-go get github.com/Goldziher/go-utils
+go get -u github.com/Goldziher/go-utils
 ```
 
 ## Slice Utilities
@@ -465,7 +465,7 @@ func main() {
 
 `func Remove[T any](slice []T, i int) []T`
 
-Remove takes a slice of type T and an index, returning **a copy** of the slice with the element removed.
+Remove takes a slice of type T and an index, removing the element at the given index.
 
 ```go
 package main
@@ -479,10 +479,9 @@ import (
 func main() {
 	numerals := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
-	result := sliceutils.Remove(numerals, 3)
+	numerals = sliceutils.Remove(numerals, 3)
 
-	fmt.Print(result)   // [0, 1, 2, 4, 5, 6, 7, 8, 9]
-	fmt.Print(numerals) // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+	fmt.Print(numerals)   // [0, 1, 2, 4, 5, 6, 7, 8, 9]
 }
 ```
 
@@ -492,3 +491,167 @@ func main() {
 
 Insert takes a slice of type T, an index and a value of type T, inserting the value at the given index and shifting any
 existing elements to the right.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/sliceutils"
+)
+
+func main() {
+	numerals := []int{0, 2}
+
+	numerals = sliceutils.Insert(numerals, 1, 1)
+
+	fmt.Print(numerals)   // [0, 1, 2]
+}
+```
+
+### Copy
+
+`func Copy[T any](slice []T) []T`
+
+Copy receives a slice of type T and returns a copy.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/sliceutils"
+)
+
+func main() {
+	numerals := []int{0, 1}
+
+	numeralsCopy := sliceutils.Copy(numerals)
+	numeralsCopy[0] = 1
+
+	fmt.Print(numerals)   // [0, 1]
+	fmt.Print(numeralsCopy)   // [1, 1]
+}
+```
+
+### Intersection
+
+`func Intersection[T comparable](slices ...[]T) []T`
+
+Intersection takes a variadic number of slices of type T and returns a slice of type T containing any values that are common to all slices.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/sliceutils"
+)
+
+func main() {
+	first, second := []int{1, 2, 3}, []int{1, 7, 3}
+
+	result := sliceutils.Intersection(first, second)
+
+	fmt.Print(result)   // [1, 3]
+}
+```
+
+### Difference
+
+`func Difference[T comparable](slices ...[]T) []T`
+
+Difference takes a variadic number of slices of type T and returns a slice of type T containing the elements that are different between the slices.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/sliceutils"
+)
+
+func main() {
+	first, second := []int{1, 2, 3}, []int{1, 7, 3}
+
+	result := sliceutils.Difference(first, second)
+
+	fmt.Print(result)   // [2, 7]
+}
+```
+
+### Union
+
+`func Union[T comparable](slices ...[]T) []T`
+
+Union takes a variadic number of slices of type T and returns a slice of type T containing the unique elements in the different slices.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/sliceutils"
+)
+
+func main() {
+	first, second := []int{1, 2, 3}, []int{1, 7, 3}
+
+	result := sliceutils.Union(first, second)
+
+	fmt.Print(result)   // [1, 2, 3, 7]
+}
+```
+
+### Reverse
+
+`func Reverse[T any](slice []T) []T`
+
+Reverse takes a slice of type T and returns a slice of type T with a reverse order of elements.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/sliceutils"
+)
+
+func main() {
+	numerals := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+	reversed := sliceutils.Reverse(numerals)
+
+	fmt.Print(reversed)   // [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+```
+
+### Unique
+
+`func Unique[T comparable](slice []T) []T`
+
+Unique tales a slice of type T and returns a slice of type T containing all unique elements.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/Goldziher/go-utils/sliceutils"
+)
+
+func main() {
+	numerals := []int{0, 1, 2, 3, 3, 1}
+
+	result := sliceutils.Unique(numerals)
+
+	fmt.Print(result)   // [0, 1, 2, 3]
+}
+```

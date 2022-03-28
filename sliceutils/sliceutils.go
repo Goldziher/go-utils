@@ -222,39 +222,74 @@ func Copy[T any](slice []T) []T {
 	return duplicate
 }
 
-// Intersection - receives a slice of type T and returns a slice of type T containing any values that exist in all the a slice.
-// For example, given []int{1, 2, 3}, []{1, 7, 3}, the intersection would be []int{1, 3}.
+// Intersection - takes a variadic number of slices of type T and returns a slice of type T containing any values that exist in all the slices.
+// For example, given []int{1, 2, 3}, []int{1, 7, 3}, the intersection would be []int{1, 3}.
 func Intersection[T comparable](slices ...[]T) []T {
-	return Filter(Merge(slices...), func(value T, i int, slice []T) bool {
-		indexes := FindIndexesOf(slice, value)
-		return len(indexes) == len(slices) && indexes[0] == i
-	})
+	possibleIntersections := map[T]int{}
+	for i, slice := range slices {
+		for _, el := range slice {
+			if i == 0 {
+				possibleIntersections[el] = 0
+			} else if _, elementExists := possibleIntersections[el]; elementExists {
+				possibleIntersections[el] = i
+			}
+		}
+	}
+
+	intersected := make([]T, 0)
+	for _, el := range slices[0] {
+		if lastVisitorIndex, exists := possibleIntersections[el]; exists && lastVisitorIndex == len(slices)-1 {
+			intersected = append(intersected, el)
+			delete(possibleIntersections, el)
+		}
+	}
+
+	return intersected
 }
 
-// Difference - receives a slice of type T, and returns the difference between the a slice.
-// For example, given []int{1, 2, 3}, []{2, 3, 4}, []{3, 4, 5}, the difference would be []int{1, 5}.
+// Difference - takes a variadic number of slices of type T and returns a slice of type T containing the elements that are different between the slices.
+// For example, given []int{1, 2, 3}, []int{2, 3, 4}, []{3, 4, 5}, the difference would be []int{1, 5}.
 func Difference[T comparable](slices ...[]T) []T {
-	return Filter(Merge(slices...), func(value T, _ int, slice []T) bool {
-		indexes := FindIndexesOf(slice, value)
-		return len(indexes) == 1
-	})
+	possibleDifferences := map[T]int{}
+	nonDifferentElements := map[T]int{}
+
+	for i, slice := range slices {
+		for _, el := range slice {
+			if lastVisitorIndex, elementExists := possibleDifferences[el]; elementExists && lastVisitorIndex != i {
+				nonDifferentElements[el] = i
+			} else if !elementExists {
+				possibleDifferences[el] = i
+			}
+		}
+	}
+
+	differentElements := make([]T, 0)
+
+	for _, slice := range slices {
+		for _, el := range slice {
+			if _, exists := nonDifferentElements[el]; !exists {
+				differentElements = append(differentElements, el)
+			}
+		}
+	}
+
+	return differentElements
 }
 
-// Union - receives slices of type T, and returns a slice composed of the unique elements of the slices.
-// For example, given []int{1, 2, 3}, []{2, 3, 4}, []{3, 4, 5}, the difference would be []int{1, 2, 3, 4, 5}.
+// Union - takes a variadic number of slices of type T and returns a slice of type T containing the unique elements in the different slices
+// For example, given []int{1, 2, 3}, []int{2, 3, 4}, []int{3, 4, 5}, the difference would be []int{1, 2, 3, 4, 5}.
 func Union[T comparable](slices ...[]T) []T {
-	return Filter(Merge(slices...), func(value T, i int, slice []T) bool {
-		indexes := FindIndexesOf(slice, value)
-		return indexes[0] == i
-	})
+	return Unique(Merge(slices...))
 }
 
-// Reverse - receives a slice of type T and reverses it, returning a slice of type T with a reverse order of elements.
+// Reverse - takes a slice of type T and returns a slice of type T with a reverse order of elements.
 func Reverse[T any](slice []T) []T {
 	result := make([]T, len(slice))
+
 	itemCount := len(slice)
 	middle := itemCount / 2
 	result[middle] = slice[middle]
+
 	for i := 0; i < middle; i++ {
 		mirrorIdx := itemCount - i - 1
 		result[i], result[mirrorIdx] = slice[mirrorIdx], slice[i]
@@ -262,29 +297,9 @@ func Reverse[T any](slice []T) []T {
 	return result
 }
 
-// Sort - receives a slice of type T and a sorter function.
-func Sort[T any](slice []T, sorter func(a T, b T) int) []T {
-	result := make([]T, len(slice), cap(slice))
-	for i, a := range slice {
-		if i <= len(slice)-2 {
-			b := slice[i+1]
-			priority := sorter(a, b)
-			if priority <= 0 {
-				result[i] = a
-				result[i+1] = b
-			} else {
-				result[i] = b
-				result[i+1] = a
-			}
-		}
-	}
-	return result
-}
-
-// Unique - receives a slice of type T and returns a slice of type T
-// containing all unique elements.
+// Unique - receives a slice of type T and returns a slice of type T containing all unique elements.
 func Unique[T comparable](slice []T) []T {
-	var unique []T
+	unique := make([]T, 0)
 	visited := map[T]bool{}
 
 	for _, value := range slice {
