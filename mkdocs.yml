@@ -36,6 +36,8 @@ nav:
       - maputils/keys.md
       - maputils/merge.md
       - maputils/values.md
+  - String Utils:
+      - stringutils/stringify.md
   - contributing.md
   - license.md
 theme:
