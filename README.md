@@ -13,8 +13,8 @@
 
 </div>
 
-Go Utils is a utility library inspired by JavaScript and Python. It makes extensive use of Go 1.18+ generics to offer a
-straightforward API.
+Go Utils is a comprehensive utility library inspired by JavaScript and Python. It makes extensive use of Go 1.18+
+generics to offer a simple API.
 
 Read more in the [documentation](https://goldziher.github.io/go-utils/).
 
