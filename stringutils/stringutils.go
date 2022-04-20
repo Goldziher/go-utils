@@ -85,7 +85,7 @@ func Stringify(value any, opts ...Options) string {
 	case string:
 		return assigned
 	case bool:
-		strconv.FormatBool(assigned)
+		return strconv.FormatBool(assigned)
 	case nil:
 		return options.NilFormat
 	case []byte:
