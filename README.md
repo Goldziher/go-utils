@@ -2,6 +2,8 @@
 
 <div align="center">
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/Goldziher/go-utils)](https://goreportcard.com/report/github.com/Goldziher/go-utils)
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
