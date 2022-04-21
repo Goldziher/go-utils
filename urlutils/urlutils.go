@@ -30,17 +30,6 @@ func QueryStringifyMap[K comparable, V any](values map[K]V) string {
 	return query.Encode()
 }
 
-func getStructFieldKey(fieldTag reflect.StructTag, structTags ...string) string {
-	if fieldTag != "" {
-		for _, tag := range structTags {
-			if value, isPresent := fieldTag.Lookup(tag); isPresent && value != "" {
-				return value
-			}
-		}
-	}
-	return ""
-}
-
 // QueryStringifyStruct creates a query string from a given struct instance. Takes struct tag names as optional parameters.
 func QueryStringifyStruct[T interface{}](values T, structTags ...string) string {
 	query := url.Values{}
@@ -51,10 +40,18 @@ func QueryStringifyStruct[T interface{}](values T, structTags ...string) string 
 
 	for _, field := range fields {
 		key := field.Name
-		if tagValue := getStructFieldKey(field.Tag, structTags...); tagValue == "-" {
+
+		if field.Tag != "" {
+			for _, s := range structTags {
+				if tagValue, isPresent := field.Tag.Lookup(s); isPresent && tagValue != "" {
+					key = tagValue
+					break
+				}
+			}
+		}
+
+		if key == "-" {
 			continue
-		} else if tagValue != "" {
-			key = tagValue
 		}
 
 		value := valueOf.FieldByName(field.Name)

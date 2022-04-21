@@ -38,9 +38,12 @@ nav:
       - maputils/values.md
   - String Utils:
       - stringutils/stringify.md
+  - Struct Utils:
+      - structutils/forEach.md
+      - structutils/toMap.md
   - URL Utils:
-      - urlutils/querystringifymap.md
-      - urlutils/querystringifystruct.md
+      - urlutils/queryStringifyMap.md
+      - urlutils/queryStringifyStruct.md
   - contributing.md
   - license.md
 theme:
