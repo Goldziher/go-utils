@@ -176,14 +176,9 @@ func Merge[T any](slices ...[]T) (mergedSlice []T) {
 	return mergedSlice
 }
 
-// numbers - an interface for all number types.
-type numbers interface {
-	constraints.Complex | constraints.Integer | constraints.Float
-}
-
 // Sum - receives a slice of type T and returns a value T that is the sum of the numbers.
 // Note: T is constrained to be a number type.
-func Sum[T numbers](slice []T) (result T) {
+func Sum[T constraints.Complex | constraints.Integer | constraints.Float](slice []T) (result T) {
 	for _, el := range slice {
 		result += el
 	}
