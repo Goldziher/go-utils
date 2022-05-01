@@ -3,6 +3,8 @@
 
 package sliceutils
 
+import "golang.org/x/exp/constraints"
+
 // Filter - given a slice of type T, executes the given predicate function on each element in the slice.
 // The predicate is passed the current element, the current index and the slice itself as function arguments.
 // If the predicate returns true, the value is included in the result, otherwise it is filtered out.
@@ -176,7 +178,7 @@ func Merge[T any](slices ...[]T) (mergedSlice []T) {
 
 // numbers - an interface for all number types.
 type numbers interface {
-	int | uint | uint8 | uint16 | uint32 | uint64 | int8 | int16 | int32 | int64 | float32 | float64 | complex64 | complex128
+	constraints.Complex | constraints.Integer | constraints.Float
 }
 
 // Sum - receives a slice of type T and returns a value T that is the sum of the numbers.

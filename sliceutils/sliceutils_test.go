@@ -9,7 +9,10 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+type MyInt int
+
 var numerals = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+var numeralsWithUserDefinedType = []MyInt{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 var days = []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
 var lastNames = []string{"Jacobs", "Vin", "Jacobs", "Smith"}
 
@@ -146,6 +149,11 @@ func TestMerge(t *testing.T) {
 func TestSum(t *testing.T) {
 	result := sliceutils.Sum(numerals)
 	assert.Equal(t, 45, result)
+}
+
+func TestSum2(t *testing.T) {
+	result := sliceutils.Sum(numeralsWithUserDefinedType)
+	assert.Equal(t, MyInt(45), result)
 }
 
 func TestRemove(t *testing.T) {
