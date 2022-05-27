@@ -308,3 +308,17 @@ func Unique[T comparable](slice []T) []T {
 	}
 	return unique
 }
+
+// Chunk - receives a slice of type T and size N and returns a slice of slices T of size N.
+func Chunk[T any](input []T, size int) [][]T {
+	var chunks [][]T
+
+	for i := 0; i < len(input); i += size {
+		end := i + size
+		if end > len(input) {
+			end = len(input)
+		}
+		chunks = append(chunks, input[i:end])
+	}
+	return chunks
+}

@@ -235,3 +235,10 @@ func TestUnique(t *testing.T) {
 	// Ensure original is unaltered
 	assert.NotEqual(t, expectedResult, duplicates)
 }
+
+func TestChunk(t *testing.T) {
+	numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	assert.Equal(t, [][]int{{1, 2}, {3, 4}, {5, 6}, {7, 8}, {9, 10}}, sliceutils.Chunk(numbers, 2))
+	assert.Equal(t, [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10}}, sliceutils.Chunk(numbers, 3))
+}

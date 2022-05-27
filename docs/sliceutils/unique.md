@@ -2,7 +2,7 @@
 
 `func Unique[T comparable](slice []T) []T`
 
-Unique tales a slice of type T and returns a slice of type T containing all unique elements.
+Unique takes a slice of type T and returns a slice of type T containing all unique elements.
 
 ```go
 package main
