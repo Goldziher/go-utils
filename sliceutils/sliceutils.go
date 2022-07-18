@@ -169,9 +169,7 @@ func Every[T any](slice []T, predicate func(value T, index int, slice []T) bool)
 // i.e. first the elements of the first slice, then that of the second and so forth.
 func Merge[T any](slices ...[]T) (mergedSlice []T) {
 	for _, slice := range slices {
-		for _, el := range slice {
-			mergedSlice = append(mergedSlice, el)
-		}
+		mergedSlice = append(mergedSlice, slice...)
 	}
 	return mergedSlice
 }

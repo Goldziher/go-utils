@@ -56,9 +56,7 @@ func ForEach[K comparable, V any](mapInstance map[K]V, function func(key K, valu
 // Note: this function will modify the passed in map. To get a different object, use the Copy function to pass a copy to this function.
 func Drop[K comparable, V any](mapInstance map[K]V, keys []K) map[K]V {
 	for _, key := range keys {
-		if _, keyExists := mapInstance[key]; keyExists {
-			delete(mapInstance, key)
-		}
+		delete(mapInstance, key)
 	}
 
 	return mapInstance
