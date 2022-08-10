@@ -24,7 +24,6 @@ linters:
     - govet
     - nolintlint
     - predeclared
-    - rowserrcheck
     - sqlclosecheck
     - staticcheck
     - structcheck

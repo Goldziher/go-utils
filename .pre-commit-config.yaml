@@ -11,6 +11,6 @@ repos:
     hooks:
       - id: prettier
   - repo: https://github.com/golangci/golangci-lint
-    rev: "v1.47.0"
+    rev: "v1.48.0"
     hooks:
       - id: golangci-lint

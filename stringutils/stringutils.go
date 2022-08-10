@@ -63,20 +63,21 @@ func parseOptions(opts ...Options) Options {
 
 // Stringify receives an arbitrary value and converts it into a string.
 // Stringify also accepts an options object with the following properties:
-// 	Options.NilFormat: the string format for nil values, defaults to "<nil>".
-// 	Options.NilMapFormat: the string format for nil map objects, defaults to "{}".
-// 	Options.NilSliceFormat: the string format for nil slice objects, defaults to "[]".
+//
+//	Options.NilFormat: the string format for nil values, defaults to "<nil>".
+//	Options.NilMapFormat: the string format for nil map objects, defaults to "{}".
+//	Options.NilSliceFormat: the string format for nil slice objects, defaults to "[]".
 //	Options.Base: a number between 2-36 ad the base when converting ints and uints to strings, defaults to Base 10.
-// 	Options.Precision: number of digits to include when converting floats and complex numbers to strings, defaults to 2.
-// 	Options.Format: the number notation format, using the stlib ftoa functionalities, defaults to 'f':
-// 		'b' (-ddddp±ddd, a binary exponent),
-// 		'e' (-d.dddde±dd, a decimal exponent),
-// 		'E' (-d.ddddE±dd, a decimal exponent),
-// 		'f' (-ddd.dddd, no exponent),
-// 		'g' ('e' for large exponents, 'f' otherwise),
-// 		'G' ('E' for large exponents, 'f' otherwise),
-// 		'x' (-0xd.ddddp±ddd, a hexadecimal fraction and binary exponent), or
-// 		'X' (-0Xd.ddddP±ddd, a hexadecimal fraction and binary exponent).
+//	Options.Precision: number of digits to include when converting floats and complex numbers to strings, defaults to 2.
+//	Options.Format: the number notation format, using the stlib ftoa functionalities, defaults to 'f':
+//		'b' (-ddddp±ddd, a binary exponent),
+//		'e' (-d.dddde±dd, a decimal exponent),
+//		'E' (-d.ddddE±dd, a decimal exponent),
+//		'f' (-ddd.dddd, no exponent),
+//		'g' ('e' for large exponents, 'f' otherwise),
+//		'G' ('E' for large exponents, 'f' otherwise),
+//		'x' (-0xd.ddddp±ddd, a hexadecimal fraction and binary exponent), or
+//		'X' (-0Xd.ddddP±ddd, a hexadecimal fraction and binary exponent).
 func Stringify(value any, opts ...Options) string {
 	options := parseOptions(opts...)
 
