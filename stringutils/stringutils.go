@@ -157,3 +157,25 @@ func Stringify(value any, opts ...Options) string {
 	// finally, we use the least performant solution, which is to fmt.Sprintf the value
 	return fmt.Sprintf("%v", value)
 }
+
+// PadLeft - Pad a string to a certain length with another string on the left side.
+func PadLeft(str string, padWith string, padTo int) string {
+	padding := ""
+	strLen := len(str)
+	for i := 0; i < padTo-strLen; i++ {
+		padding += padWith
+	}
+
+	return padding + str
+}
+
+// PadRight - Pad a string to a certain length with another string on the right side.
+func PadRight(str string, padWith string, padTo int) string {
+	padding := ""
+	strLen := len(str)
+	for i := 0; i < padTo-strLen; i++ {
+		padding += padWith
+	}
+
+	return str + padding
+}
