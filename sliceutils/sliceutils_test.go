@@ -11,6 +11,11 @@ import (
 
 type MyInt int
 
+type Pluckable struct {
+	Code  string
+	Value string
+}
+
 var numerals = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 var numeralsWithUserDefinedType = []MyInt{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 var days = []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
@@ -241,4 +246,24 @@ func TestChunk(t *testing.T) {
 
 	assert.Equal(t, [][]int{{1, 2}, {3, 4}, {5, 6}, {7, 8}, {9, 10}}, sliceutils.Chunk(numbers, 2))
 	assert.Equal(t, [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10}}, sliceutils.Chunk(numbers, 3))
+}
+
+func TestPluck(t *testing.T) {
+	items := []Pluckable{
+		{
+			Code:  "azer",
+			Value: "Azer",
+		},
+		{
+			Code:  "tyuio",
+			Value: "Tyuio",
+		},
+	}
+
+	assert.Equal(t, []string{"azer", "tyuio"}, sliceutils.Pluck(items, func(item Pluckable) *string {
+		return &item.Code
+	}))
+	assert.Equal(t, []string{"Azer", "Tyuio"}, sliceutils.Pluck(items, func(item Pluckable) *string {
+		return &item.Value
+	}))
 }

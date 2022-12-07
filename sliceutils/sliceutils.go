@@ -3,7 +3,9 @@
 
 package sliceutils
 
-import "golang.org/x/exp/constraints"
+import (
+	"golang.org/x/exp/constraints"
+)
 
 // Filter - given a slice of type T, executes the given predicate function on each element in the slice.
 // The predicate is passed the current element, the current index and the slice itself as function arguments.
@@ -319,4 +321,20 @@ func Chunk[T any](input []T, size int) [][]T {
 		chunks = append(chunks, input[i:end])
 	}
 	return chunks
+}
+
+// Pluck - receives a slice of type I and a getter func to a field
+// and returns a slice containing the requested field's value from each item in the slice.
+func Pluck[I any, O any](input []I, getter func(I) *O) []O {
+	var output []O
+
+	for _, item := range input {
+		field := getter(item)
+
+		if field != nil {
+			output = append(output, *field)
+		}
+	}
+
+	return output
 }
