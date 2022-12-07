@@ -323,8 +323,8 @@ func Chunk[T any](input []T, size int) [][]T {
 	return chunks
 }
 
-// PLuck - receives a slice of type I and a getter func to a field
-// and returns an array containing requested field from each slice's item.
+// Pluck - receives a slice of type I and a getter func to a field
+// and returns a slice containing the requested field's value from each item in the slice.
 func Pluck[I any, O any](input []I, getter func(I) *O) []O {
 	var output []O
 
