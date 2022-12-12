@@ -338,3 +338,13 @@ func Pluck[I any, O any](input []I, getter func(I) *O) []O {
 
 	return output
 }
+
+// InSlice - receives a slice of type T and an item of type T and returns true if item is in slice, false otherwise
+// It's a shortcut around Find for the case where it's more convenient to manipulate a bool instead of the requested items.
+func InSlice[T comparable](input []T, item T) bool {
+	foundItem := Find(input, func(elem T, key int, slice []T) bool {
+		return elem == item
+	})
+
+	return foundItem != nil
+}

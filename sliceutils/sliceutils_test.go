@@ -267,3 +267,13 @@ func TestPluck(t *testing.T) {
 		return &item.Value
 	}))
 }
+
+func TestInSlice(t *testing.T) {
+	items := []string{
+		"Item 1",
+		"Item 2",
+	}
+
+	assert.Equal(t, true, sliceutils.InSlice(items, "Item 1"))
+	assert.Equal(t, false, sliceutils.InSlice(items, "Item 3"))
+}
