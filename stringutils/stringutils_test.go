@@ -200,3 +200,11 @@ func TestStringify(t *testing.T) {
 		})
 	}
 }
+
+func TestPadLeft(t *testing.T) {
+	assert.Equal(t, "___Azer", stringutils.PadLeft("Azer", "_", 7))
+}
+
+func TestPadRight(t *testing.T) {
+	assert.Equal(t, "Azer___", stringutils.PadRight("Azer", "_", 7))
+}
