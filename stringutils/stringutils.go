@@ -160,22 +160,23 @@ func Stringify(value any, opts ...Options) string {
 
 // PadLeft - Pad a string to a certain length with another string on the left side.
 func PadLeft(str string, padWith string, padTo int) string {
-	padding := ""
 	strLen := len(str)
-	for i := 0; i < padTo-strLen; i++ {
-		padding += padWith
-	}
 
-	return padding + str
+	return getPaddingString(padWith, padTo-strLen) + str
 }
 
 // PadRight - Pad a string to a certain length with another string on the right side.
 func PadRight(str string, padWith string, padTo int) string {
-	padding := ""
 	strLen := len(str)
-	for i := 0; i < padTo-strLen; i++ {
+
+	return str + getPaddingString(padWith, padTo-strLen)
+}
+
+func getPaddingString(padWith string, padLength int) string {
+	padding := ""
+	for i := 0; i <= padLength; i++ {
 		padding += padWith
 	}
 
-	return str + padding
+	return padding[:padLength]
 }

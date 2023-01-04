@@ -202,9 +202,9 @@ func TestStringify(t *testing.T) {
 }
 
 func TestPadLeft(t *testing.T) {
-	assert.Equal(t, "___Azer", stringutils.PadLeft("Azer", "_", 7))
+	assert.Equal(t, "_-_Azer", stringutils.PadLeft("Azer", "_-", 7))
 }
 
 func TestPadRight(t *testing.T) {
-	assert.Equal(t, "Azer___", stringutils.PadRight("Azer", "_", 7))
+	assert.Equal(t, "Azer-_-", stringutils.PadRight("Azer", "-_", 7))
 }
