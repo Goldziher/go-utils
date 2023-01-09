@@ -75,14 +75,17 @@ theme:
     - search.highlight
     - search.share
   plugins:
-    - search
+    - search:
+        lang: en
     - social:
         cards_color:
           fill: "#1d2433"
           text: "#d6dbe1"
         cards_font: Tahoma
 extra_css:
-  - css/extra.css
+  - css/typo.css
+  - css/color.css
+  - css/theme.css
 extra:
   social:
     - icon: fontawesome/brands/github
