@@ -44,6 +44,9 @@ nav:
   - URL Utils:
       - urlutils/queryStringifyMap.md
       - urlutils/queryStringifyStruct.md
+  - Date Utils:
+      - dateutils/floor.md
+      - dateutils/ceil.md
   - contributing.md
   - license.md
 theme:
