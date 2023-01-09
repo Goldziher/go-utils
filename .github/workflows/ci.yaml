@@ -82,10 +82,7 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         continue-on-error: true
         with:
-          version: v1.45
-          skip-go-installation: true
-          skip-pkg-cache: true
-          skip-build-cache: true
+          version: v1.50
   test:
     needs: setup
     runs-on: ubuntu-latest
