@@ -22,6 +22,7 @@ nav:
       - sliceutils/intersection.md
       - sliceutils/map.md
       - sliceutils/merge.md
+      - sliceutils/pluck.md
       - sliceutils/reduce.md
       - sliceutils/remove.md
       - sliceutils/reverse.md
@@ -38,6 +39,8 @@ nav:
       - maputils/values.md
   - String Utils:
       - stringutils/stringify.md
+      - stringutils/padLeft.md
+      - stringutils/padRight.md
   - Struct Utils:
       - structutils/forEach.md
       - structutils/toMap.md
