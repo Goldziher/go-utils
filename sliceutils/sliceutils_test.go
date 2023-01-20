@@ -267,3 +267,16 @@ func TestPluck(t *testing.T) {
 		return &item.Value
 	}))
 }
+
+func TestFlatten(t *testing.T) {
+	items := [][]int{
+		{1, 2, 3, 4},
+		{5, 6},
+		{7, 8},
+		{9, 10, 11},
+	}
+
+	flattened := sliceutils.Flatten(items)
+
+	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, flattened)
+}

@@ -16,6 +16,7 @@ nav:
       - sliceutils/findIndexesOf.md
       - sliceutils/findLastIndex.md
       - sliceutils/findLastIndexOf.md
+      - sliceutils/flatten.md
       - sliceutils/forEach.md
       - sliceutils/includes.md
       - sliceutils/insert.md
