@@ -338,3 +338,14 @@ func Pluck[I any, O any](input []I, getter func(I) *O) []O {
 
 	return output
 }
+
+// Flatten - receives a slice of slice of type I and flattens it to a slice of type I.
+func Flatten[I any](input [][]I) []I {
+	var output []I
+
+	ForEach(input, func(item []I, index int, slice [][]I) {
+		output = append(output, item...)
+	})
+
+	return output
+}
