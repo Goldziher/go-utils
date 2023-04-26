@@ -20,7 +20,7 @@ func (s goStringerType) GoString() string {
 	return "GoStringer"
 }
 
-var nilMap map[string]interface{}
+var nilMap map[string]any
 var nilSlice []string
 
 func TestStringify(t *testing.T) {

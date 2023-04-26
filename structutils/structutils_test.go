@@ -20,7 +20,7 @@ func TestForEach(t *testing.T) {
 		22,
 		true,
 	}
-	structutils.ForEach(instance, func(key string, value interface{}, tag reflect.StructTag) {
+	structutils.ForEach(instance, func(key string, value any, tag reflect.StructTag) {
 		switch key {
 		case "First":
 			assert.Equal(t, "moishe", value.(string))

@@ -1,6 +1,6 @@
 # ToMap
 
-`func ToMap[T interface{}](structInstance T, structTags ...string) map[string]any`
+`func ToMap[T any](structInstance T, structTags ...string) map[string]any`
 
 ToMap takes a struct and converts it to into an instance of `map[string]any`.
 

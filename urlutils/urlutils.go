@@ -31,7 +31,7 @@ func QueryStringifyMap[K comparable, V any](values map[K]V) string {
 }
 
 // QueryStringifyStruct creates a query string from a given struct instance. Takes struct tag names as optional parameters.
-func QueryStringifyStruct[T interface{}](values T, structTags ...string) string {
+func QueryStringifyStruct[T any](values T, structTags ...string) string {
 	query := url.Values{}
 
 	typeOf := reflect.TypeOf(values)

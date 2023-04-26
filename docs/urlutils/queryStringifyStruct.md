@@ -1,6 +1,6 @@
 # QueryStringifyStruct
 
-`func QueryStringifyStruct[T interface{}](values T, structTags ...string) string`
+`func QueryStringifyStruct[T any](values T, structTags ...string) string`
 
 Creates a query string from a given struct instance. Takes struct tag names as optional parameters.
 
