@@ -290,4 +290,12 @@ func TestFlatten(t *testing.T) {
 	flattened := sliceutils.Flatten(items)
 
 	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, flattened)
+
+	assert.Nil(t, sliceutils.Flatten([][]int{}))
+	assert.Nil(t, sliceutils.Flatten([][]int(nil)))
+
+	assert.Nil(t, sliceutils.Flatten([][]int{{}, {}}))
+	assert.Nil(t, sliceutils.Flatten([][]int{nil, nil}))
+
+	assert.Nil(t, sliceutils.Flatten([][]int{{}, nil}))
 }
