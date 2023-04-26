@@ -290,7 +290,7 @@ func Difference[T comparable](slices ...[]T) []T {
 }
 
 // Union - takes a variadic number of slices of type T and returns a slice of type T containing the unique elements in the different slices
-// For example, given []int{1, 2, 3}, []int{2, 3, 4}, []int{3, 4, 5}, the difference would be []int{1, 2, 3, 4, 5}.
+// For example, given []int{1, 2, 3}, []int{2, 3, 4}, []int{3, 4, 5}, the union would be []int{1, 2, 3, 4, 5}.
 func Union[T comparable](slices ...[]T) []T {
 	return Unique(Merge(slices...))
 }

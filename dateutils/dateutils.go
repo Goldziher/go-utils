@@ -2,12 +2,12 @@ package dateutils
 
 import "time"
 
-// Floor - takes a datetime and return a datetime from the same day at 00:00:00.
+// Floor - takes a datetime and return a datetime from the same day at 00:00:00 (UTC).
 func Floor(t time.Time) time.Time {
 	return t.UTC().Truncate(time.Hour * 24)
 }
 
-// Ceil - takes a datetime and return a datetime from the same day at 23:59:59.
+// Ceil - takes a datetime and return a datetime from the same day at 23:59:59 (UTC).
 func Ceil(t time.Time) time.Time {
 	// add 24 hours so that we are dealing with tomorrow's datetime
 	// Floor
