@@ -157,6 +157,9 @@ func TestAll(t *testing.T) {
 func TestMerge(t *testing.T) {
 	result := sliceutils.Merge(numerals[:5], numerals[5:])
 	assert.Equal(t, numerals, result)
+
+	assert.Nil(t, sliceutils.Merge([]int(nil), []int(nil)))
+	assert.Nil(t, sliceutils.Merge([]int{}, []int{}))
 }
 
 func TestSum(t *testing.T) {

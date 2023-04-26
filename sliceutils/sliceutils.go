@@ -170,11 +170,23 @@ func Every[T any](slice []T, predicate func(value T, index int, slice []T) bool)
 }
 
 // Merge - receives slices of type T and merges them into a single slice of type T.
-// Note: The elements are merged in their order in the a slice,
+// Note: The elements are merged in their order in a slice,
 // i.e. first the elements of the first slice, then that of the second and so forth.
 func Merge[T any](slices ...[]T) (mergedSlice []T) {
-	for _, slice := range slices {
-		mergedSlice = append(mergedSlice, slice...)
+	if len(slices) > 0 {
+		mergedSliceCap := 0
+
+		for _, slice := range slices {
+			mergedSliceCap += len(slice)
+		}
+
+		if mergedSliceCap > 0 {
+			mergedSlice = make([]T, 0, mergedSliceCap)
+
+			for _, slice := range slices {
+				mergedSlice = append(mergedSlice, slice...)
+			}
+		}
 	}
 	return mergedSlice
 }
