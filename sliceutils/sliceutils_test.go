@@ -43,6 +43,14 @@ func TestMap(t *testing.T) {
 		return strconv.Itoa(value)
 	})
 	assert.Equal(t, expectedResult, actualResult)
+
+	assert.Nil(t, sliceutils.Map([]int{}, func(_ int, _ int, _ []int) string {
+		return ""
+	}))
+
+	assert.Nil(t, sliceutils.Map([]int(nil), func(_ int, _ int, _ []int) string {
+		return ""
+	}))
 }
 
 func TestReduce(t *testing.T) {

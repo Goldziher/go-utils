@@ -30,8 +30,11 @@ func ForEach[T any](slice []T, function func(value T, index int, slice []T)) {
 // Map - given a slice of type T, executes the passed in mapper function for each element in the slice, returning a slice of type R.
 // The function is passed the current element, the current index and the slice itself as function arguments.
 func Map[T any, R any](slice []T, mapper func(value T, index int, slice []T) R) (mapped []R) {
-	for i, el := range slice {
-		mapped = append(mapped, mapper(el, i, slice))
+	if len(slice) > 0 {
+		mapped = make([]R, len(slice))
+		for i, el := range slice {
+			mapped[i] = mapper(el, i, slice)
+		}
 	}
 	return mapped
 }
