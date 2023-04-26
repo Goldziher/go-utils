@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// Default options.
 const (
 	DefaultPrecision      = 2
 	DefaultBase           = 10
@@ -44,7 +45,7 @@ func parseOptions(opts ...Options) Options {
 		if opt.Precision != 0 {
 			options.Precision = opt.Precision
 		}
-		if opt.Format != uint8(0) {
+		if opt.Format != 0 {
 			options.Format = opt.Format
 		}
 		if opt.NilFormat != "" {
@@ -67,9 +68,9 @@ func parseOptions(opts ...Options) Options {
 //	Options.NilFormat: the string format for nil values, defaults to "<nil>".
 //	Options.NilMapFormat: the string format for nil map objects, defaults to "{}".
 //	Options.NilSliceFormat: the string format for nil slice objects, defaults to "[]".
-//	Options.Base: a number between 2-36 ad the base when converting ints and uints to strings, defaults to Base 10.
+//	Options.Base: a number between 2-36 as the base when converting ints and uints to strings, defaults to Base 10.
 //	Options.Precision: number of digits to include when converting floats and complex numbers to strings, defaults to 2.
-//	Options.Format: the number notation format, using the stlib ftoa functionalities, defaults to 'f':
+//	Options.Format: the number notation format, using the stdlib ftoa functionalities, defaults to 'f':
 //		'b' (-ddddp±ddd, a binary exponent),
 //		'e' (-d.dddde±dd, a decimal exponent),
 //		'E' (-d.ddddE±dd, a decimal exponent),
@@ -158,14 +159,14 @@ func Stringify(value any, opts ...Options) string {
 	return fmt.Sprintf("%v", value)
 }
 
-// PadLeft - Pad a string to a certain length with another string on the left side.
+// PadLeft - Pad a string to a certain length (in bytes) with another string on the left side.
 func PadLeft(str string, padWith string, padTo int) string {
 	strLen := len(str)
 
 	return getPaddingString(padWith, padTo-strLen) + str
 }
 
-// PadRight - Pad a string to a certain length with another string on the right side.
+// PadRight - Pad a string to a certain length (in bytes) with another string on the right side.
 func PadRight(str string, padWith string, padTo int) string {
 	strLen := len(str)
 
@@ -173,10 +174,15 @@ func PadRight(str string, padWith string, padTo int) string {
 }
 
 func getPaddingString(padWith string, padLength int) string {
-	padding := ""
-	for i := 0; i <= padLength; i++ {
-		padding += padWith
+	if padWith == "" || padLength <= 0 {
+		return ""
 	}
 
-	return padding[:padLength]
+	var builder strings.Builder
+
+	for builder.Len() < padLength {
+		builder.WriteString(padWith)
+	}
+
+	return builder.String()[:padLength]
 }
