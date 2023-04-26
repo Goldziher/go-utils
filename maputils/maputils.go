@@ -34,7 +34,13 @@ func Values[K comparable, V any](mapInstance map[K]V) []V {
 // Merge - takes an arbitrary number of map instances with keys K and values V and merges them into a single map.
 // Note: merge works from left to right. If a key already exists in a previous map, its value is over-written.
 func Merge[K comparable, V any](mapInstances ...map[K]V) map[K]V {
-	mergedMap := make(map[K]V, 0)
+	var mergedMapSize int
+
+	for _, mapInstance := range mapInstances {
+		mergedMapSize += len(mapInstance)
+	}
+
+	mergedMap := make(map[K]V, mergedMapSize)
 
 	for _, mapInstance := range mapInstances {
 		for k, v := range mapInstance {
