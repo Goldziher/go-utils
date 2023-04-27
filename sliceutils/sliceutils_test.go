@@ -43,6 +43,14 @@ func TestMap(t *testing.T) {
 		return strconv.Itoa(value)
 	})
 	assert.Equal(t, expectedResult, actualResult)
+
+	assert.Nil(t, sliceutils.Map([]int{}, func(_ int, _ int, _ []int) string {
+		return ""
+	}))
+
+	assert.Nil(t, sliceutils.Map([]int(nil), func(_ int, _ int, _ []int) string {
+		return ""
+	}))
 }
 
 func TestReduce(t *testing.T) {
@@ -149,6 +157,9 @@ func TestAll(t *testing.T) {
 func TestMerge(t *testing.T) {
 	result := sliceutils.Merge(numerals[:5], numerals[5:])
 	assert.Equal(t, numerals, result)
+
+	assert.Nil(t, sliceutils.Merge([]int(nil), []int(nil)))
+	assert.Nil(t, sliceutils.Merge([]int{}, []int{}))
 }
 
 func TestSum(t *testing.T) {
@@ -279,4 +290,12 @@ func TestFlatten(t *testing.T) {
 	flattened := sliceutils.Flatten(items)
 
 	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, flattened)
+
+	assert.Nil(t, sliceutils.Flatten([][]int{}))
+	assert.Nil(t, sliceutils.Flatten([][]int(nil)))
+
+	assert.Nil(t, sliceutils.Flatten([][]int{{}, {}}))
+	assert.Nil(t, sliceutils.Flatten([][]int{nil, nil}))
+
+	assert.Nil(t, sliceutils.Flatten([][]int{{}, nil}))
 }

@@ -51,7 +51,7 @@ func TestQueryStringifyMap(t *testing.T) {
 
 func TestQueryStringifyStruct(t *testing.T) {
 	testCases := []struct {
-		input          interface{}
+		input          any
 		expectedOutput string
 		structTag      string
 	}{

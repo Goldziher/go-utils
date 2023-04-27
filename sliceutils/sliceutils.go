@@ -30,8 +30,11 @@ func ForEach[T any](slice []T, function func(value T, index int, slice []T)) {
 // Map - given a slice of type T, executes the passed in mapper function for each element in the slice, returning a slice of type R.
 // The function is passed the current element, the current index and the slice itself as function arguments.
 func Map[T any, R any](slice []T, mapper func(value T, index int, slice []T) R) (mapped []R) {
-	for i, el := range slice {
-		mapped = append(mapped, mapper(el, i, slice))
+	if len(slice) > 0 {
+		mapped = make([]R, len(slice))
+		for i, el := range slice {
+			mapped[i] = mapper(el, i, slice)
+		}
 	}
 	return mapped
 }
@@ -167,11 +170,23 @@ func Every[T any](slice []T, predicate func(value T, index int, slice []T) bool)
 }
 
 // Merge - receives slices of type T and merges them into a single slice of type T.
-// Note: The elements are merged in their order in the a slice,
+// Note: The elements are merged in their order in a slice,
 // i.e. first the elements of the first slice, then that of the second and so forth.
 func Merge[T any](slices ...[]T) (mergedSlice []T) {
-	for _, slice := range slices {
-		mergedSlice = append(mergedSlice, slice...)
+	if len(slices) > 0 {
+		mergedSliceCap := 0
+
+		for _, slice := range slices {
+			mergedSliceCap += len(slice)
+		}
+
+		if mergedSliceCap > 0 {
+			mergedSlice = make([]T, 0, mergedSliceCap)
+
+			for _, slice := range slices {
+				mergedSlice = append(mergedSlice, slice...)
+			}
+		}
 	}
 	return mergedSlice
 }
@@ -275,7 +290,7 @@ func Difference[T comparable](slices ...[]T) []T {
 }
 
 // Union - takes a variadic number of slices of type T and returns a slice of type T containing the unique elements in the different slices
-// For example, given []int{1, 2, 3}, []int{2, 3, 4}, []int{3, 4, 5}, the difference would be []int{1, 2, 3, 4, 5}.
+// For example, given []int{1, 2, 3}, []int{2, 3, 4}, []int{3, 4, 5}, the union would be []int{1, 2, 3, 4, 5}.
 func Union[T comparable](slices ...[]T) []T {
 	return Unique(Merge(slices...))
 }
@@ -339,13 +354,22 @@ func Pluck[I any, O any](input []I, getter func(I) *O) []O {
 	return output
 }
 
-// Flatten - receives a slice of slice of type I and flattens it to a slice of type I.
-func Flatten[I any](input [][]I) []I {
-	var output []I
+// Flatten - receives a slice of slices of type I and flattens it to a slice of type I.
+func Flatten[I any](input [][]I) (output []I) {
+	if len(input) > 0 {
+		var outputSize int
 
-	ForEach(input, func(item []I, index int, slice [][]I) {
-		output = append(output, item...)
-	})
+		for _, item := range input {
+			outputSize += len(item)
+		}
 
+		if outputSize > 0 {
+			output = make([]I, 0, outputSize)
+
+			for _, item := range input {
+				output = append(output, item...)
+			}
+		}
+	}
 	return output
 }

@@ -20,7 +20,7 @@ func (s goStringerType) GoString() string {
 	return "GoStringer"
 }
 
-var nilMap map[string]interface{}
+var nilMap map[string]any
 var nilSlice []string
 
 func TestStringify(t *testing.T) {
@@ -203,8 +203,22 @@ func TestStringify(t *testing.T) {
 
 func TestPadLeft(t *testing.T) {
 	assert.Equal(t, "_-_Azer", stringutils.PadLeft("Azer", "_-", 7))
+	assert.Equal(t, "Test", stringutils.PadLeft("Test", "Großmeister", 0))
+	assert.Equal(t, "Test", stringutils.PadLeft("Test", "Großmeister", -1))
+	assert.Equal(t, "Test", stringutils.PadLeft("Test", "", 7))
+	assert.Equal(t, "GroTest", stringutils.PadLeft("Test", "Großmeister", 7))
+	assert.Equal(t, "Gro\xc3Test", stringutils.PadLeft("Test", "Großmeister", 8))
+	assert.Equal(t, "GroßTest", stringutils.PadLeft("Test", "Großmeister", 9))
+	assert.Equal(t, "GroßmeisterGroßTest", stringutils.PadLeft("Test", "Großmeister", 21))
 }
 
 func TestPadRight(t *testing.T) {
 	assert.Equal(t, "Azer-_-", stringutils.PadRight("Azer", "-_", 7))
+	assert.Equal(t, "Test", stringutils.PadRight("Test", "Großmeister", 0))
+	assert.Equal(t, "Test", stringutils.PadRight("Test", "Großmeister", -1))
+	assert.Equal(t, "Test", stringutils.PadRight("Test", "", 7))
+	assert.Equal(t, "TestGro", stringutils.PadRight("Test", "Großmeister", 7))
+	assert.Equal(t, "TestGro\xc3", stringutils.PadRight("Test", "Großmeister", 8))
+	assert.Equal(t, "TestGroß", stringutils.PadRight("Test", "Großmeister", 9))
+	assert.Equal(t, "TestGroßmeisterGroß", stringutils.PadRight("Test", "Großmeister", 21))
 }
