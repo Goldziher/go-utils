@@ -51,6 +51,8 @@ nav:
   - Date Utils:
       - dateutils/floor.md
       - dateutils/ceil.md
+      - dateutils/beforeorequal.md
+      - dateutils/afterorequal.md
   - contributing.md
   - license.md
 theme:
