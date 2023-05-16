@@ -1,4 +1,4 @@
-# Ceil
+# AfterOrEqual
 
 `func AfterOrEqual(milestone time.Time, date time.Time) bool`
 
