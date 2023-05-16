@@ -14,3 +14,11 @@ func Ceil(t time.Time) time.Time {
 	// Substract one second and we have today at 23:59:59
 	return Floor(t.Add(time.Hour * 24)).Add(time.Second * -1)
 }
+
+func BeforeOrEqual(milestone time.Time, date time.Time) bool {
+	return date.UTC().Before(milestone) || date.UTC().Equal(milestone)
+}
+
+func AfterOrEqual(milestone time.Time, date time.Time) bool {
+	return date.UTC().After(milestone) || date.UTC().Equal(milestone)
+}
