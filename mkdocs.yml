@@ -53,6 +53,7 @@ nav:
       - dateutils/ceil.md
       - dateutils/beforeorequal.md
       - dateutils/afterorequal.md
+      - dateutils/overlap.md
   - contributing.md
   - license.md
 theme:

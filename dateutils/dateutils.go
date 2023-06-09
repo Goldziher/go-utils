@@ -22,3 +22,9 @@ func BeforeOrEqual(milestone time.Time, date time.Time) bool {
 func AfterOrEqual(milestone time.Time, date time.Time) bool {
 	return date.UTC().After(milestone) || date.UTC().Equal(milestone)
 }
+
+// Overlap - returns true if two date intervals overlap.
+func Overlap(start1 time.Time, end1 time.Time, start2 time.Time, end2 time.Time) bool {
+	return (AfterOrEqual(start1, start2) && BeforeOrEqual(end1, start2)) ||
+		(AfterOrEqual(start1, end2) && BeforeOrEqual(end1, end2))
+}
