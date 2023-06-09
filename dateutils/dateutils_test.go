@@ -41,3 +41,17 @@ func TestAfterOrEqual(t *testing.T) {
 	assert.Equal(t, true, dateutils.AfterOrEqual(milestone, dEqual))
 	assert.Equal(t, true, dateutils.AfterOrEqual(milestone, dAfter))
 }
+
+func TestOverlap(t *testing.T) {
+	s1, _ := time.Parse("2006-01-02", "2022-12-28")
+	e1, _ := time.Parse("2006-01-02", "2022-12-31")
+
+	s2, _ := time.Parse("2006-01-02", "2022-12-30")
+	e2, _ := time.Parse("2006-01-02", "2023-01-01")
+
+	s3, _ := time.Parse("2006-01-02", "2023-01-02")
+	e3, _ := time.Parse("2006-01-02", "2023-01-04")
+
+	assert.Equal(t, true, dateutils.Overlap(s1, e1, s2, e2))
+	assert.Equal(t, false, dateutils.Overlap(s1, e1, s3, e3))
+}
