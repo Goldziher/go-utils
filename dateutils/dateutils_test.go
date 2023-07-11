@@ -54,4 +54,12 @@ func TestOverlap(t *testing.T) {
 
 	assert.Equal(t, true, dateutils.Overlap(s1, e1, s2, e2))
 	assert.Equal(t, false, dateutils.Overlap(s1, e1, s3, e3))
+
+	s4, _ := time.Parse("2006-01-02", "2023-07-13")
+	e4, _ := time.Parse("2006-01-02", "2023-07-14")
+
+	s5, _ := time.Parse("2006-01-02", "2023-07-10")
+	e5, _ := time.Parse("2006-01-02", "2023-07-17")
+
+	assert.Equal(t, true, dateutils.Overlap(s4, e4, s5, e5))
 }
