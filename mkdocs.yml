@@ -42,6 +42,7 @@ nav:
       - stringutils/stringify.md
       - stringutils/padLeft.md
       - stringutils/padRight.md
+      - stringutils/capitalize.md
   - Struct Utils:
       - structutils/forEach.md
       - structutils/toMap.md
