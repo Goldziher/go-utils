@@ -222,3 +222,33 @@ func TestPadRight(t *testing.T) {
 	assert.Equal(t, "TestGroß", stringutils.PadRight("Test", "Großmeister", 9))
 	assert.Equal(t, "TestGroßmeisterGroß", stringutils.PadRight("Test", "Großmeister", 21))
 }
+
+func TestCapitalize(t *testing.T) {
+	testCases := []struct {
+		input    string
+		expected string
+	}{
+		{
+			input:    "store",
+			expected: "Store",
+		},
+		{
+			input:    "batman",
+			expected: "Batman",
+		},
+		{
+			input:    "",
+			expected: "",
+		},
+		{
+			input:    "rusty",
+			expected: "Rusty",
+		},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(fmt.Sprintf("TestCase: input: %v, expected: %v", testCase.input, testCase.expected), func(t *testing.T) {
+			assert.Equal(t, testCase.expected, stringutils.Capitalize(testCase.input))
+		})
+	}
+}
