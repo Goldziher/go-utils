@@ -6,6 +6,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"unicode"
 )
 
 // Default options.
@@ -185,4 +186,12 @@ func getPaddingString(padWith string, padLength int) string {
 	}
 
 	return builder.String()[:padLength]
+}
+
+func Capitalize(str string) string {
+	if str == "" {
+		return str
+	}
+	firstLetter := rune(str[0])
+	return string(unicode.ToUpper(firstLetter)) + str[1:]
 }
