@@ -39,10 +39,10 @@ nav:
       - maputils/merge.md
       - maputils/values.md
   - String Utils:
-      - stringutils/stringify.md
+      - stringutils/capitalize.md
       - stringutils/padLeft.md
       - stringutils/padRight.md
-      - stringutils/capitalize.md
+      - stringutils/stringify.md
   - Struct Utils:
       - structutils/forEach.md
       - structutils/toMap.md
@@ -50,10 +50,10 @@ nav:
       - urlutils/queryStringifyMap.md
       - urlutils/queryStringifyStruct.md
   - Date Utils:
-      - dateutils/floor.md
-      - dateutils/ceil.md
-      - dateutils/beforeorequal.md
       - dateutils/afterorequal.md
+      - dateutils/beforeorequal.md
+      - dateutils/ceil.md
+      - dateutils/floor.md
       - dateutils/overlap.md
   - contributing.md
   - license.md
