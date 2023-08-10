@@ -11,6 +11,7 @@ nav:
       - sliceutils/filter.md
       - sliceutils/find.md
       - sliceutils/findIndex.md
+      - sliceutils/findIndexBy.md
       - sliceutils/findIndexOf.md
       - sliceutils/findIndexes.md
       - sliceutils/findIndexesOf.md

@@ -373,3 +373,14 @@ func Flatten[I any](input [][]I) (output []I) {
 	}
 	return output
 }
+
+// FindIndexBy - receives a slice of type T and a predicate and returns the index of the
+// first element that satisfies the predicate, and -1 otherwise
+func FindIndexBy[T comparable](input []T, predicate func(value T) bool) int {
+	for idx := range input {
+		if predicate(input[idx]) {
+			return idx
+		}
+	}
+	return -1
+}

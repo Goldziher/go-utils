@@ -299,3 +299,10 @@ func TestFlatten(t *testing.T) {
 
 	assert.Nil(t, sliceutils.Flatten([][]int{{}, nil}))
 }
+
+func TestFindIndexBy(t *testing.T) {
+	expectedResult := 2
+	actualResult := sliceutils.FindIndexBy(numerals, func(val int) bool { return val%2 == 0 && val > 1 })
+	assert.Equal(t, expectedResult, actualResult)
+	assert.Equal(t, -1, sliceutils.FindIndexBy(numerals, func(val int) bool { return val > 100 }))
+}
