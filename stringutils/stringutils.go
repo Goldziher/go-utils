@@ -138,7 +138,16 @@ func Stringify(value any, opts ...Options) string {
 		elements := make([]string, 0)
 		for _, mapKey := range v.MapKeys() {
 			mapValue := v.MapIndex(mapKey)
-			elements = append(elements, Stringify(mapKey.Interface(), options)+": "+Stringify(mapValue.Interface(), options))
+			elements = append(
+				elements,
+				Stringify(
+					mapKey.Interface(),
+					options,
+				)+": "+Stringify(
+					mapValue.Interface(),
+					options,
+				),
+			)
 		}
 		// we sort to ensure deterministic results, given that map keys are arbitrarily ordered
 		sort.Strings(elements)

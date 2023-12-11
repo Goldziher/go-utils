@@ -83,9 +83,13 @@ func TestFindIndex(t *testing.T) {
 		return strings.Contains(value, "Wed")
 	})
 	assert.Equal(t, expectedResult, actualResult)
-	assert.Equal(t, -1, sliceutils.FindIndex(days, func(value string, index int, slice []string) bool {
-		return strings.Contains(value, "Rishon")
-	}))
+	assert.Equal(
+		t,
+		-1,
+		sliceutils.FindIndex(days, func(value string, index int, slice []string) bool {
+			return strings.Contains(value, "Rishon")
+		}),
+	)
 }
 
 func TestFindIndexOf(t *testing.T) {
@@ -97,13 +101,20 @@ func TestFindIndexOf(t *testing.T) {
 
 func TestFindLastIndex(t *testing.T) {
 	expectedResult := 2
-	actualResult := sliceutils.FindLastIndex(lastNames, func(value string, index int, slice []string) bool {
-		return value == "Jacobs"
-	})
+	actualResult := sliceutils.FindLastIndex(
+		lastNames,
+		func(value string, index int, slice []string) bool {
+			return value == "Jacobs"
+		},
+	)
 	assert.Equal(t, expectedResult, actualResult)
-	assert.Equal(t, -1, sliceutils.FindLastIndex(lastNames, func(value string, index int, slice []string) bool {
-		return value == "Hamudi"
-	}))
+	assert.Equal(
+		t,
+		-1,
+		sliceutils.FindLastIndex(lastNames, func(value string, index int, slice []string) bool {
+			return value == "Hamudi"
+		}),
+	)
 }
 
 func TestFindLastIndexOf(t *testing.T) {
@@ -115,13 +126,19 @@ func TestFindLastIndexOf(t *testing.T) {
 
 func TestFindIndexes(t *testing.T) {
 	expectedResult := []int{0, 2}
-	actualResult := sliceutils.FindIndexes(lastNames, func(value string, index int, slice []string) bool {
-		return value == "Jacobs"
-	})
+	actualResult := sliceutils.FindIndexes(
+		lastNames,
+		func(value string, index int, slice []string) bool {
+			return value == "Jacobs"
+		},
+	)
 	assert.Equal(t, expectedResult, actualResult)
-	assert.Nil(t, sliceutils.FindIndexes(lastNames, func(value string, index int, slice []string) bool {
-		return value == "Hamudi"
-	}))
+	assert.Nil(
+		t,
+		sliceutils.FindIndexes(lastNames, func(value string, index int, slice []string) bool {
+			return value == "Hamudi"
+		}),
+	)
 }
 
 func TestFindIndexesOf(t *testing.T) {
@@ -271,12 +288,20 @@ func TestPluck(t *testing.T) {
 		},
 	}
 
-	assert.Equal(t, []string{"azer", "tyuio"}, sliceutils.Pluck(items, func(item Pluckable) *string {
-		return &item.Code
-	}))
-	assert.Equal(t, []string{"Azer", "Tyuio"}, sliceutils.Pluck(items, func(item Pluckable) *string {
-		return &item.Value
-	}))
+	assert.Equal(
+		t,
+		[]string{"azer", "tyuio"},
+		sliceutils.Pluck(items, func(item Pluckable) *string {
+			return &item.Code
+		}),
+	)
+	assert.Equal(
+		t,
+		[]string{"Azer", "Tyuio"},
+		sliceutils.Pluck(items, func(item Pluckable) *string {
+			return &item.Value
+		}),
+	)
 }
 
 func TestFlatten(t *testing.T) {

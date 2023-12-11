@@ -195,9 +195,20 @@ func TestStringify(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		t.Run(fmt.Sprintf("TestCase: input: %v, expected: %v", testCase.input, testCase.expectedOutput), func(t *testing.T) {
-			assert.Equal(t, testCase.expectedOutput, stringutils.Stringify(testCase.input, testCase.options))
-		})
+		t.Run(
+			fmt.Sprintf(
+				"TestCase: input: %v, expected: %v",
+				testCase.input,
+				testCase.expectedOutput,
+			),
+			func(t *testing.T) {
+				assert.Equal(
+					t,
+					testCase.expectedOutput,
+					stringutils.Stringify(testCase.input, testCase.options),
+				)
+			},
+		)
 	}
 }
 
@@ -247,8 +258,11 @@ func TestCapitalize(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		t.Run(fmt.Sprintf("TestCase: input: %v, expected: %v", testCase.input, testCase.expected), func(t *testing.T) {
-			assert.Equal(t, testCase.expected, stringutils.Capitalize(testCase.input))
-		})
+		t.Run(
+			fmt.Sprintf("TestCase: input: %v, expected: %v", testCase.input, testCase.expected),
+			func(t *testing.T) {
+				assert.Equal(t, testCase.expected, stringutils.Capitalize(testCase.input))
+			},
+		)
 	}
 }

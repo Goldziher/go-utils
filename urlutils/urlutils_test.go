@@ -24,7 +24,11 @@ func TestQueryStringifyMap(t *testing.T) {
 			"age":     100,
 			"friends": []int{1, 2, 3, 4, 5, 6},
 		})
-		assert.Equal(t, "active=true&age=100&friends=1&friends=2&friends=3&friends=4&friends=5&friends=6&user=moishe", actualOutput)
+		assert.Equal(
+			t,
+			"active=true&age=100&friends=1&friends=2&friends=3&friends=4&friends=5&friends=6&user=moishe",
+			actualOutput,
+		)
 	})
 	t.Run("Test string any map with nil slice", func(t *testing.T) {
 		actualOutput := urlutils.QueryStringifyMap(map[string]any{
@@ -119,7 +123,11 @@ func TestQueryStringifyStruct(t *testing.T) {
 
 	for _, testCase := range testCases {
 		t.Run(fmt.Sprintf("Test: %s", testCase.expectedOutput), func(t *testing.T) {
-			assert.Equal(t, testCase.expectedOutput, urlutils.QueryStringifyStruct(testCase.input, testCase.structTag))
+			assert.Equal(
+				t,
+				testCase.expectedOutput,
+				urlutils.QueryStringifyStruct(testCase.input, testCase.structTag),
+			)
 		})
 	}
 }

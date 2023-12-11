@@ -42,7 +42,11 @@ func Map[T any, R any](slice []T, mapper func(value T, index int, slice []T) R) 
 // Reduce - given a slice of type T, executes the passed in reducer function for each element in the slice, returning a result of type R.
 // The function is passed the accumulator, current element, current index and the slice itself as function arguments.
 // The third argument to reduce is the initial value of type R to use.
-func Reduce[T any, R any](slice []T, reducer func(acc R, value T, index int, slice []T) R, initial R) R {
+func Reduce[T any, R any](
+	slice []T,
+	reducer func(acc R, value T, index int, slice []T) R,
+	initial R,
+) R {
 	acc := initial
 	for i, el := range slice {
 		acc = reducer(acc, el, i, slice)
@@ -251,7 +255,8 @@ func Intersection[T comparable](slices ...[]T) []T {
 
 	intersected := make([]T, 0)
 	for _, el := range slices[0] {
-		if lastVisitorIndex, exists := possibleIntersections[el]; exists && lastVisitorIndex == len(slices)-1 {
+		if lastVisitorIndex, exists := possibleIntersections[el]; exists &&
+			lastVisitorIndex == len(slices)-1 {
 			intersected = append(intersected, el)
 			delete(possibleIntersections, el)
 		}
@@ -268,7 +273,8 @@ func Difference[T comparable](slices ...[]T) []T {
 
 	for i, slice := range slices {
 		for _, el := range slice {
-			if lastVisitorIndex, elementExists := possibleDifferences[el]; elementExists && lastVisitorIndex != i {
+			if lastVisitorIndex, elementExists := possibleDifferences[el]; elementExists &&
+				lastVisitorIndex != i {
 				nonDifferentElements[el] = i
 			} else if !elementExists {
 				possibleDifferences[el] = i

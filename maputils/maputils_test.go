@@ -93,7 +93,11 @@ func TestDrop(t *testing.T) {
 		"Sunday": 1,
 		"Friday": 6,
 	}
-	assert.Equal(t, expectedResult, maputils.Drop(daysMap, []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"}))
+	assert.Equal(
+		t,
+		expectedResult,
+		maputils.Drop(daysMap, []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"}),
+	)
 	// ensure we do not modify the original value
 	assert.Equal(t, expectedResult, daysMap)
 }
