@@ -7,6 +7,7 @@ nav:
   - Slice Utils:
       - sliceutils/copy.md
       - sliceutils/difference.md
+      - sliceutils/ensureUniqueAndAppend.md
       - sliceutils/every.md
       - sliceutils/filter.md
       - sliceutils/find.md
