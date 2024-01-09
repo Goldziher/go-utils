@@ -373,3 +373,13 @@ func Flatten[I any](input [][]I) (output []I) {
 	}
 	return output
 }
+
+// EnsureUniqueAndAppend - Appends an item to a slice if it does not already exists.
+func EnsureUniqueAndAppend[T comparable](slice []T, item T) []T {
+	if Includes(slice, item) {
+		return slice
+	}
+
+	// Item doesn't exist, append it
+	return append(slice, item)
+}

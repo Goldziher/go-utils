@@ -299,3 +299,14 @@ func TestFlatten(t *testing.T) {
 
 	assert.Nil(t, sliceutils.Flatten([][]int{{}, nil}))
 }
+
+func TestEnsureUniqueAndAppend(t *testing.T) {
+	slice := []string{}
+	item := "go-utils"
+
+	slice = sliceutils.EnsureUniqueAndAppend(slice, item)
+	assert.Equal(t, 1, len(slice))
+
+	slice = sliceutils.EnsureUniqueAndAppend(slice, item)
+	assert.Equal(t, 1, len(slice))
+}
