@@ -79,7 +79,7 @@ jobs:
         shell: bash
         run: go get -v -t ./...
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v3
+        uses: golangci/golangci-lint-action@v4
         continue-on-error: true
         with:
           version: v1.53
