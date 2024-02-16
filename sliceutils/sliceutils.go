@@ -380,7 +380,7 @@ func Flatten[I any](input [][]I) (output []I) {
 	return output
 }
 
-// EnsureUniqueAndAppend - Appends an item to a slice if it does not already exists.
+// EnsureUniqueAndAppend - Appends an item to a slice if it does not already exist.
 func EnsureUniqueAndAppend[T comparable](slice []T, item T) []T {
 	if Includes(slice, item) {
 		return slice
@@ -388,4 +388,11 @@ func EnsureUniqueAndAppend[T comparable](slice []T, item T) []T {
 
 	// Item doesn't exist, append it
 	return append(slice, item)
+}
+
+// FlatMap - given a slice of type T, executes the passed in slice-mapper function for each element in the slice, and
+// returns a flattened slice containing all the elements from all the mapped slices
+// The function is passed the current element, the current index and the slice itself as function arguments.
+func FlatMap[T any, R any](slice []T, mapper func(value T, index int, slice []T) []R) []R {
+	return Flatten(Map(slice, mapper))
 }
