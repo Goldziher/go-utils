@@ -4,7 +4,7 @@ To contribute code changes or update the documentation, please follow these step
 
 1. Fork the upstream repository and clone the fork locally.
 2. Install [pre-commit](https://pre-commit.com/)
-3. Navigate toe the cloned repository's directory and install the hooks by running:
+3. Navigate to the cloned repository's directory and install the hooks by running:
 
 ```shell
 pre-commit install \
