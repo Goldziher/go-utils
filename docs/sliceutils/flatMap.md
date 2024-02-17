@@ -6,7 +6,6 @@ FlatMap receives a slice of type T, executes the passed in slice-mapper function
 returns a flattened slice containing all the elements from all the mapped slices.
 The function is passed the current element, the current index and the slice itself as function arguments.
 
-This is equivalent to Java streams' flatMap method / C#'s LINQ's SelectMany method.
 
 ```go
 package main
