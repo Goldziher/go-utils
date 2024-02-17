@@ -1,10 +1,10 @@
 module github.com/Goldziher/go-utils
 
-go 1.21
+go 1.22
 
 require (
 	github.com/stretchr/testify v1.7.1
-	golang.org/x/exp v0.0.0-20231206192017-f3f8817b8deb
+	golang.org/x/exp v0.0.0-20240213143201-ec583247a57a
 )
 
 require (
