@@ -335,3 +335,13 @@ func TestEnsureUniqueAndAppend(t *testing.T) {
 	slice = sliceutils.EnsureUniqueAndAppend(slice, item)
 	assert.Equal(t, 1, len(slice))
 }
+
+func TestFlatMap(t *testing.T) {
+	items := []int{1, 2, 3, 4}
+
+	flatMapped := sliceutils.FlatMap(items, func(value int, index int, slice []int) []int {
+		return []int{value, value * 2}
+	})
+
+	assert.Equal(t, []int{1, 2, 2, 4, 3, 6, 4, 8}, flatMapped)
+}
