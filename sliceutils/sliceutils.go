@@ -92,7 +92,7 @@ func FindIndexOf[T comparable](slice []T, value T) int {
 // FindLastIndex - given a slice of type T, executes the passed in predicate function for each element in the slice starting from its end.
 // If no element is found, -1 is returned. The function is passed the current element, the current index and the slice itself as function arguments.
 func FindLastIndex[T any](slice []T, predicate func(value T, index int, slice []T) bool) int {
-	for i := len(slice) - 1; i > 0; i-- {
+	for i := len(slice) - 1; i >= 0; i-- {
 		el := slice[i]
 		if ok := predicate(el, i, slice); ok {
 			return i

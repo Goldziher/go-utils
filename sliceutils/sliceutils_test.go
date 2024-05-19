@@ -115,6 +115,10 @@ func TestFindLastIndex(t *testing.T) {
 			return value == "Hamudi"
 		}),
 	)
+
+	assert.Equal(t, 0, sliceutils.FindLastIndex(days, func(value string, index int, slice []string) bool {
+		return value == "Sunday"
+	}))
 }
 
 func TestFindLastIndexOf(t *testing.T) {
