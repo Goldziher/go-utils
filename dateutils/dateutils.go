@@ -101,3 +101,113 @@ func MustParseDateWithLayout(date string, layout string) time.Time {
 	}
 	return parsedDate
 }
+
+// StartOfDay returns the start of the day (00:00:00) for the given time in its timezone.
+func StartOfDay(t time.Time) time.Time {
+	year, month, day := t.Date()
+	return time.Date(year, month, day, 0, 0, 0, 0, t.Location())
+}
+
+// EndOfDay returns the end of the day (23:59:59.999999999) for the given time in its timezone.
+func EndOfDay(t time.Time) time.Time {
+	year, month, day := t.Date()
+	return time.Date(year, month, day, 23, 59, 59, 999999999, t.Location())
+}
+
+// StartOfWeek returns the start of the week (Sunday at 00:00:00) for the given time.
+func StartOfWeek(t time.Time) time.Time {
+	weekday := int(t.Weekday())
+	return StartOfDay(t.AddDate(0, 0, -weekday))
+}
+
+// EndOfWeek returns the end of the week (Saturday at 23:59:59.999999999) for the given time.
+func EndOfWeek(t time.Time) time.Time {
+	weekday := int(t.Weekday())
+	daysUntilSaturday := 6 - weekday
+	return EndOfDay(t.AddDate(0, 0, daysUntilSaturday))
+}
+
+// DaysBetween returns the number of days between two dates.
+// The result is negative if end is before start.
+func DaysBetween(start, end time.Time) int {
+	duration := end.Sub(start)
+	return int(duration.Hours() / 24)
+}
+
+// IsWeekend returns true if the given time is on a weekend (Saturday or Sunday).
+func IsWeekend(t time.Time) bool {
+	weekday := t.Weekday()
+	return weekday == time.Saturday || weekday == time.Sunday
+}
+
+// IsWeekday returns true if the given time is on a weekday (Monday through Friday).
+func IsWeekday(t time.Time) bool {
+	return !IsWeekend(t)
+}
+
+// AddBusinessDays adds the specified number of business days to the given time.
+// Business days are Monday through Friday, skipping weekends.
+// Negative values subtract business days.
+func AddBusinessDays(t time.Time, days int) time.Time {
+	if days == 0 {
+		return t
+	}
+
+	direction := 1
+	if days < 0 {
+		direction = -1
+		days = -days
+	}
+
+	result := t
+	for i := 0; i < days; {
+		result = result.AddDate(0, 0, direction)
+		if IsWeekday(result) {
+			i++
+		}
+	}
+	return result
+}
+
+// Age calculates the age in years from the given birthdate to now.
+func Age(birthdate time.Time) int {
+	return AgeAt(birthdate, time.Now())
+}
+
+// AgeAt calculates the age in years from the given birthdate to the specified date.
+func AgeAt(birthdate, at time.Time) int {
+	age := at.Year() - birthdate.Year()
+	if at.Month() < birthdate.Month() ||
+		(at.Month() == birthdate.Month() && at.Day() < birthdate.Day()) {
+		age--
+	}
+	return age
+}
+
+// DaysInMonth returns the number of days in the month of the given time.
+func DaysInMonth(t time.Time) int {
+	// Get the first day of next month, then subtract one day
+	year, month, _ := t.Date()
+	firstOfNextMonth := time.Date(year, month+1, 1, 0, 0, 0, 0, t.Location())
+	lastOfThisMonth := firstOfNextMonth.AddDate(0, 0, -1)
+	return lastOfThisMonth.Day()
+}
+
+// IsSameDay returns true if both times are on the same day (same year, month, and day).
+func IsSameDay(a, b time.Time) bool {
+	aYear, aMonth, aDay := a.Date()
+	bYear, bMonth, bDay := b.Date()
+	return aYear == bYear && aMonth == bMonth && aDay == bDay
+}
+
+// IsSameMonth returns true if both times are in the same month (same year and month).
+func IsSameMonth(a, b time.Time) bool {
+	aYear, aMonth, _ := a.Date()
+	bYear, bMonth, _ := b.Date()
+	return aYear == bYear && aMonth == bMonth
+}
+
+// IsSameYear returns true if both times are in the same year.
+func IsSameYear(a, b time.Time) bool {
+	return a.Year() == b.Year()
+}
