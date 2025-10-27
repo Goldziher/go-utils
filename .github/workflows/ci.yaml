@@ -2,89 +2,42 @@ name: ci
 on:
   pull_request:
     branches:
-      - "**"
+      - "main"
   push:
     branches:
       - main
 jobs:
-  setup:
+  validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-go@v6
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+      - name: Setup Golang
+        uses: actions/setup-go@v6
         with:
           go-version: "1.25"
-      - name: Load cached dependencies
-        id: cached-go-dependencies
+      - name: Install prek
+        run: |
+          uv tool install prek
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Load Cached Prek Dependencies
+        id: cached-prek-dependencies
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: go-${{ inputs.go_version }}-v1.0-${{ hashFiles('**/go.sum') }}
-      - name: Install dependencies
-        if: steps.cached-go-dependencies.outputs.cache-hit != 'true'
-        shell: bash
-        run: go get -v -t ./...
-  analyze:
-    needs: setup
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-go@v6
-        with:
-          go-version: "1.25"
-      - name: Load cached dependencies
-        id: cached-go-dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: go-${{ inputs.go_version }}-v1.0-${{ hashFiles('**/go.sum') }}
-      - name: Install dependencies
-        if: steps.cached-go-dependencies.outputs.cache-hit != 'true'
-        shell: bash
-        run: go get -v -t ./...
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
-        with:
-          languages: go
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4
-  lint:
-    needs: setup
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-go@v6
-        with:
-          go-version: "1.25"
-      - name: Load cached dependencies
-        id: cached-go-dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: go-${{ inputs.go_version }}-v1.0-${{ hashFiles('**/go.sum') }}
-      - name: Install dependencies
-        if: steps.cached-go-dependencies.outputs.cache-hit != 'true'
-        shell: bash
-        run: go get -v -t ./...
-      - name: golangci-lint
-        uses: golangci/golangci-lint-action@v8
-        continue-on-error: true
-        with:
-          version: v1.53
+          path: ~/.cache/prek/
+          key: prek|${{ env.pythonLocation }}|${{ hashFiles('.pre-commit-config.yaml') }}
+      - name: Execute Prek
+        run: prek run --show-diff-on-failure --color=always --all-files
   test:
-    needs: setup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
