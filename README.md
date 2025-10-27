@@ -3,50 +3,156 @@
 <div align="center">
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/Goldziher/go-utils)](https://goreportcard.com/report/github.com/Goldziher/go-utils)
-
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
-
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Goldziher_go-utils&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Goldziher_go-utils)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Goldziher/go-utils.svg)](https://pkg.go.dev/github.com/Goldziher/go-utils)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 </div>
 
-Go Utils is a comprehensive utility library for **Go 1.21+** that provides functional programming patterns and utilities inspired by JavaScript and Python. Built with generics for type safety, it's designed to be **complementary** with modern standard library packages like `slices`, `maps`, and `cmp`.
+Functional programming utilities for **Go 1.21+** designed to complement stdlib's `slices`, `maps`, and `cmp` packages.
 
-## Design Philosophy
+## Why Go Utils?
 
-- **Go 1.21+ required**: Requires Go 1.21 or later for generics and modern stdlib integration
-- **Complementary to stdlib**: Works alongside modern Go stdlib packages (`slices`, `maps`, `cmp`)
-  - Use `slices.Index`, `slices.Contains`, `slices.Clone`, `slices.Concat` for basic operations
-  - Use this library for functional patterns (Map, Filter, Reduce), LINQ-style operations (GroupBy, Partition), and high-value utilities not in stdlib
-- **Zero-value focused**: Functions accept zero values and handle nil slices/maps gracefully
-- **Immutability by default**: Functions don't mutate inputs unless explicitly named (e.g., Remove creates new slices)
-- **100% test coverage**: Every function has comprehensive test coverage
+**Complementary to stdlib**: Use `slices.Index`, `slices.Contains`, `slices.Clone` for basic operations. Use go-utils for functional patterns (Map, Filter, Reduce), LINQ-style operations (GroupBy, Partition), and utilities not in stdlib.
 
-## Packages
+**Type-safe with generics**: All functions use Go 1.21+ generics with appropriate constraints for compile-time type safety.
 
-- **sliceutils**: Functional operations (Map, Filter, Reduce, Find) and LINQ-style utilities (GroupBy, Partition, DistinctBy)
-- **maputils**: Map transformations (Keys, Values, Filter, Merge, Invert)
-- **structutils**: Reflection-based struct utilities (ToMap, ForEach, FieldNames with tag support)
-- **stringutils**: String manipulation (Stringify with options, case conversion, padding, truncation)
-- **dateutils**: Time/date helpers (overlap detection, business days, month boundaries, age calculation)
-- **urlutils**: URL parsing and query string builders from maps/structs
-- **mathutils**: Generic math operations (Clamp, InRange, Gcd, Lcm, IsPrime)
-- **ptrutils**: Pointer utilities (ToPtr, Deref with defaults)
-- **excutils**: Exception-style error handling (Panic, Try, Must)
+**Immutable by default**: Functions don't mutate inputs. Operations return new values.
 
-Read more in the [documentation](https://goldziher.github.io/go-utils/).
+**100% test coverage**: Every function is comprehensively tested.
 
 ## Installation
 
-```shell
+```bash
 go get -u github.com/Goldziher/go-utils
 ```
 
-## Contribution
+## Quick Examples
 
-This library is open to contributions. Please consult the [Contribution Guide](CONTRIBUTING.md).
+### Functional Slice Operations
+
+```go
+import "github.com/Goldziher/go-utils/sliceutils"
+
+numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+// Chain functional operations
+evens := sliceutils.Filter(numbers, func(v, i int, s []int) bool {
+    return v%2 == 0
+})
+
+doubled := sliceutils.Map(evens, func(v, i int, s []int) int {
+    return v * 2
+})
+
+sum := sliceutils.Reduce(doubled, func(acc, v, i int, s []int) int {
+    return acc + v
+}, 0)
+// Result: sum = 60 (2+4+6+8+10 doubled = 4+8+12+16+20 = 60)
+```
+
+### LINQ-Style Operations
+
+```go
+type User struct {
+    Name string
+    Age  int
+    Role string
+}
+
+users := []User{
+    {"Alice", 30, "admin"},
+    {"Bob", 25, "user"},
+    {"Charlie", 30, "user"},
+}
+
+// Group by age
+byAge := sliceutils.GroupBy(users, func(u User) int { return u.Age })
+// Result: map[int][]User{25: [{Bob 25 user}], 30: [{Alice 30 admin}, {Charlie 30 user}]}
+
+// Partition by predicate
+admins, regularUsers := sliceutils.Partition(users, func(u User) bool {
+    return u.Role == "admin"
+})
+
+// Get distinct ages
+ages := sliceutils.DistinctBy(users, func(u User) int { return u.Age })
+```
+
+### Map Transformations
+
+```go
+import "github.com/Goldziher/go-utils/maputils"
+
+data := map[string]int{"apple": 5, "banana": 3, "cherry": 8}
+
+// Extract keys and values
+keys := maputils.Keys(data)     // []string{"apple", "banana", "cherry"}
+values := maputils.Values(data) // []int{5, 3, 8}
+
+// Filter map entries
+filtered := maputils.Filter(data, func(k string, v int) bool {
+    return v > 4
+})
+// Result: map[string]int{"apple": 5, "cherry": 8}
+```
+
+### Type-Safe String Conversion
+
+```go
+import "github.com/Goldziher/go-utils/stringutils"
+
+// Stringify any type with options
+hex := stringutils.Stringify(42, stringutils.Options{Base: 16})  // "2a"
+float := stringutils.Stringify(3.14159, stringutils.Options{Precision: 2})  // "3.14"
+
+// Stringify complex types
+m := map[string]int{"a": 1, "b": 2}
+str := stringutils.Stringify(m)  // "{a: 1, b: 2}"
+```
+
+### Business Date Calculations
+
+```go
+import "github.com/Goldziher/go-utils/dateutils"
+
+// Add business days (skips weekends)
+future := dateutils.AddBusinessDays(time.Now(), 5)
+
+// Check date range overlap
+overlaps := dateutils.Overlap(start1, end1, start2, end2)
+
+// Calculate age
+age := dateutils.Age(birthdate)
+```
+
+## Packages
+
+| Package | Description | Key Functions |
+|---------|-------------|---------------|
+| **[sliceutils](https://pkg.go.dev/github.com/Goldziher/go-utils/sliceutils)** | Functional and LINQ-style slice operations | Map, Filter, Reduce, GroupBy, Partition, Find |
+| **[maputils](https://pkg.go.dev/github.com/Goldziher/go-utils/maputils)** | Map transformations | Keys, Values, Filter, Merge, Invert |
+| **[stringutils](https://pkg.go.dev/github.com/Goldziher/go-utils/stringutils)** | String manipulation | Stringify, ToCamelCase, ToSnakeCase, Truncate |
+| **[structutils](https://pkg.go.dev/github.com/Goldziher/go-utils/structutils)** | Struct reflection utilities | ToMap, ForEach, FieldNames (tag-aware) |
+| **[dateutils](https://pkg.go.dev/github.com/Goldziher/go-utils/dateutils)** | Date/time utilities | AddBusinessDays, Overlap, Age, StartOfWeek |
+| **[urlutils](https://pkg.go.dev/github.com/Goldziher/go-utils/urlutils)** | URL and query string builders | QueryStringifyMap, QueryStringifyStruct |
+| **[mathutils](https://pkg.go.dev/github.com/Goldziher/go-utils/mathutils)** | Generic math operations | Clamp, InRange, Gcd, Lcm, IsPrime |
+| **[ptrutils](https://pkg.go.dev/github.com/Goldziher/go-utils/ptrutils)** | Pointer utilities | ToPtr, Deref |
+| **[excutils](https://pkg.go.dev/github.com/Goldziher/go-utils/excutils)** | Exception-style error handling | Panic, Try, Must |
+
+## Documentation
+
+Full documentation available at [goldziher.github.io/go-utils](https://goldziher.github.io/go-utils/)
+
+API reference at [pkg.go.dev/github.com/Goldziher/go-utils](https://pkg.go.dev/github.com/Goldziher/go-utils)
+
+## Contributing
+
+Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md) before submitting PRs.
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+## Author
+
+[Na'aman Hirschfeld](https://github.com/Goldziher)
