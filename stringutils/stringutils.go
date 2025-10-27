@@ -209,3 +209,187 @@ func Capitalize(str string) string {
 	firstLetter := rune(str[0])
 	return string(unicode.ToUpper(firstLetter)) + str[1:]
 }
+
+// Reverse reverses a string (UTF-8 safe).
+func Reverse(str string) string {
+	runes := []rune(str)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
+}
+
+// Truncate truncates a string to maxLength with optional suffix.
+// If the string is longer than maxLength, it's cut and suffix is appended.
+func Truncate(str string, maxLength int, suffix string) string {
+	if len(str) <= maxLength {
+		return str
+	}
+	return str[:maxLength] + suffix
+}
+
+// Contains checks if string contains substring with optional case-insensitive matching.
+func Contains(str, substr string, caseInsensitive bool) bool {
+	if caseInsensitive {
+		return strings.Contains(strings.ToLower(str), strings.ToLower(substr))
+	}
+	return strings.Contains(str, substr)
+}
+
+// SplitAndTrim splits a string by separator and trims whitespace from each part.
+// Empty parts are removed from the result.
+func SplitAndTrim(str, sep string) []string {
+	parts := strings.Split(str, sep)
+	result := make([]string, 0, len(parts))
+	for _, part := range parts {
+		trimmed := strings.TrimSpace(part)
+		if trimmed != "" {
+			result = append(result, trimmed)
+		}
+	}
+	return result
+}
+
+// JoinNonEmpty joins strings with a separator, skipping empty strings.
+func JoinNonEmpty(strs []string, sep string) string {
+	nonEmpty := make([]string, 0, len(strs))
+	for _, s := range strs {
+		if s != "" {
+			nonEmpty = append(nonEmpty, s)
+		}
+	}
+	return strings.Join(nonEmpty, sep)
+}
+
+// IsEmpty checks if string is empty or only whitespace.
+func IsEmpty(str string) bool {
+	return strings.TrimSpace(str) == ""
+}
+
+// DefaultIfEmpty returns default if string is empty or only whitespace.
+// Returns the trimmed string if not empty.
+func DefaultIfEmpty(str, def string) string {
+	trimmed := strings.TrimSpace(str)
+	if trimmed == "" {
+		return def
+	}
+	return trimmed
+}
+
+// ToTitle converts string to Title Case.
+func ToTitle(str string) string {
+	return strings.Title(str) //nolint:staticcheck // Title is deprecated but simple for basic use
+}
+
+// ToCamelCase converts string to camelCase.
+// Splits on spaces, hyphens, and underscores.
+func ToCamelCase(str string) string {
+	str = strings.TrimSpace(str)
+	if str == "" {
+		return ""
+	}
+
+	// Split on space, hyphen, underscore
+	words := strings.FieldsFunc(str, func(r rune) bool {
+		return r == ' ' || r == '-' || r == '_'
+	})
+
+	if len(words) == 0 {
+		return ""
+	}
+
+	// First word lowercase, rest capitalized
+	result := strings.ToLower(words[0])
+	for i := 1; i < len(words); i++ {
+		result += Capitalize(strings.ToLower(words[i]))
+	}
+
+	return result
+}
+
+// ToSnakeCase converts string to snake_case.
+func ToSnakeCase(str string) string {
+	var result strings.Builder
+	str = strings.TrimSpace(str)
+	runes := []rune(str)
+
+	for i, r := range runes {
+		if unicode.IsUpper(r) && i > 0 {
+			prevChar := runes[i-1]
+			// Add underscore if:
+			// 1. Previous char is not uppercase/separator, OR
+			// 2. Next char exists and is lowercase (handles acronyms like HTTPResponse)
+			if (!unicode.IsUpper(prevChar) && prevChar != '_' && prevChar != ' ' && prevChar != '-') ||
+				(i+1 < len(runes) && unicode.IsLower(runes[i+1])) {
+				result.WriteRune('_')
+			}
+		}
+
+		if r == ' ' || r == '-' {
+			result.WriteRune('_')
+		} else {
+			result.WriteRune(unicode.ToLower(r))
+		}
+	}
+
+	return result.String()
+}
+
+// ToKebabCase converts string to kebab-case.
+func ToKebabCase(str string) string {
+	var result strings.Builder
+	str = strings.TrimSpace(str)
+	runes := []rune(str)
+
+	for i, r := range runes {
+		if unicode.IsUpper(r) && i > 0 {
+			prevChar := runes[i-1]
+			// Add hyphen if:
+			// 1. Previous char is not uppercase/separator, OR
+			// 2. Next char exists and is lowercase (handles acronyms like HTTPResponse)
+			if (!unicode.IsUpper(prevChar) && prevChar != '-' && prevChar != ' ' && prevChar != '_') ||
+				(i+1 < len(runes) && unicode.IsLower(runes[i+1])) {
+				result.WriteRune('-')
+			}
+		}
+
+		if r == ' ' || r == '_' {
+			result.WriteRune('-')
+		} else {
+			result.WriteRune(unicode.ToLower(r))
+		}
+	}
+
+	return result.String()
+}
+
+// Repeat repeats a string n times.
+func Repeat(str string, n int) string {
+	return strings.Repeat(str, n)
+}
+
+// RemoveWhitespace removes all whitespace from string.
+func RemoveWhitespace(str string) string {
+	return strings.Map(func(r rune) rune {
+		if unicode.IsSpace(r) {
+			return -1
+		}
+		return r
+	}, str)
+}
+
+// EllipsisMiddle truncates middle of string with ellipsis if longer than maxLength.
+// Keeps approximately equal parts from start and end.
+func EllipsisMiddle(str string, maxLength int) string {
+	if len(str) <= maxLength {
+		return str
+	}
+
+	ellipsis := "..."
+	if maxLength < len(ellipsis) {
+		return ellipsis[:maxLength]
+	}
+
+	sideLength := (maxLength - len(ellipsis)) / 2
+	return str[:sideLength] + ellipsis + str[len(str)-sideLength:]
+}
