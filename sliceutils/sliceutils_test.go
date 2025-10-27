@@ -542,3 +542,173 @@ func TestCountBy(t *testing.T) {
 		assert.Empty(t, counts)
 	})
 }
+
+func TestTake(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 3}, sliceutils.Take([]int{1, 2, 3, 4, 5}, 3))
+	assert.Equal(t, []int{1, 2, 3, 4, 5}, sliceutils.Take([]int{1, 2, 3, 4, 5}, 10))
+	assert.Equal(t, []int{}, sliceutils.Take([]int{1, 2, 3}, 0))
+	assert.Equal(t, []int{}, sliceutils.Take([]int{1, 2, 3}, -1))
+	assert.Equal(t, []int{}, sliceutils.Take([]int{}, 5))
+}
+
+func TestSkip(t *testing.T) {
+	assert.Equal(t, []int{4, 5}, sliceutils.Skip([]int{1, 2, 3, 4, 5}, 3))
+	assert.Equal(t, []int{}, sliceutils.Skip([]int{1, 2, 3, 4, 5}, 10))
+	assert.Equal(t, []int{1, 2, 3}, sliceutils.Skip([]int{1, 2, 3}, 0))
+	assert.Equal(t, []int{1, 2, 3}, sliceutils.Skip([]int{1, 2, 3}, -1))
+	assert.Equal(t, []int{}, sliceutils.Skip([]int{}, 5))
+}
+
+func TestTakeLast(t *testing.T) {
+	assert.Equal(t, []int{4, 5}, sliceutils.TakeLast([]int{1, 2, 3, 4, 5}, 2))
+	assert.Equal(t, []int{1, 2, 3, 4, 5}, sliceutils.TakeLast([]int{1, 2, 3, 4, 5}, 10))
+	assert.Equal(t, []int{}, sliceutils.TakeLast([]int{1, 2, 3}, 0))
+	assert.Equal(t, []int{}, sliceutils.TakeLast([]int{1, 2, 3}, -1))
+	assert.Equal(t, []int{}, sliceutils.TakeLast([]int{}, 5))
+}
+
+func TestSkipLast(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 3}, sliceutils.SkipLast([]int{1, 2, 3, 4, 5}, 2))
+	assert.Equal(t, []int{}, sliceutils.SkipLast([]int{1, 2, 3, 4, 5}, 10))
+	assert.Equal(t, []int{1, 2, 3}, sliceutils.SkipLast([]int{1, 2, 3}, 0))
+	assert.Equal(t, []int{1, 2, 3}, sliceutils.SkipLast([]int{1, 2, 3}, -1))
+	assert.Equal(t, []int{}, sliceutils.SkipLast([]int{}, 5))
+}
+
+func TestTakeWhile(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 3}, sliceutils.TakeWhile([]int{1, 2, 3, 4, 5}, func(n int) bool {
+		return n < 4
+	}))
+	assert.Equal(t, []int{}, sliceutils.TakeWhile([]int{1, 2, 3, 4, 5}, func(n int) bool {
+		return n > 10
+	}))
+	assert.Equal(
+		t,
+		[]int{1, 2, 3, 4, 5},
+		sliceutils.TakeWhile([]int{1, 2, 3, 4, 5}, func(n int) bool {
+			return n < 10
+		}),
+	)
+}
+
+func TestSkipWhile(t *testing.T) {
+	assert.Equal(t, []int{4, 5}, sliceutils.SkipWhile([]int{1, 2, 3, 4, 5}, func(n int) bool {
+		return n < 4
+	}))
+	assert.Equal(t, []int{}, sliceutils.SkipWhile([]int{1, 2, 3, 4, 5}, func(n int) bool {
+		return n < 10
+	}))
+	assert.Equal(
+		t,
+		[]int{1, 2, 3, 4, 5},
+		sliceutils.SkipWhile([]int{1, 2, 3, 4, 5}, func(n int) bool {
+			return n > 10
+		}),
+	)
+}
+
+func TestMinBy(t *testing.T) {
+	type Person struct {
+		Name string
+		Age  int
+	}
+
+	people := []Person{
+		{Name: "Alice", Age: 30},
+		{Name: "Bob", Age: 25},
+		{Name: "Charlie", Age: 35},
+	}
+
+	min := sliceutils.MinBy(people, func(p Person) int {
+		return p.Age
+	})
+
+	assert.NotNil(t, min)
+	assert.Equal(t, "Bob", min.Name)
+	assert.Equal(t, 25, min.Age)
+
+	var emptyPeople []Person
+	assert.Nil(t, sliceutils.MinBy(emptyPeople, func(p Person) int {
+		return p.Age
+	}))
+}
+
+func TestMaxBy(t *testing.T) {
+	type Person struct {
+		Name string
+		Age  int
+	}
+
+	people := []Person{
+		{Name: "Alice", Age: 30},
+		{Name: "Bob", Age: 25},
+		{Name: "Charlie", Age: 35},
+	}
+
+	max := sliceutils.MaxBy(people, func(p Person) int {
+		return p.Age
+	})
+
+	assert.NotNil(t, max)
+	assert.Equal(t, "Charlie", max.Name)
+	assert.Equal(t, 35, max.Age)
+
+	var emptyPeople []Person
+	assert.Nil(t, sliceutils.MaxBy(emptyPeople, func(p Person) int {
+		return p.Age
+	}))
+}
+
+func TestHead(t *testing.T) {
+	head := sliceutils.Head([]int{1, 2, 3, 4, 5})
+	assert.NotNil(t, head)
+	assert.Equal(t, 1, *head)
+
+	assert.Nil(t, sliceutils.Head([]int{}))
+}
+
+func TestTail(t *testing.T) {
+	assert.Equal(t, []int{2, 3, 4, 5}, sliceutils.Tail([]int{1, 2, 3, 4, 5}))
+	assert.Equal(t, []int{}, sliceutils.Tail([]int{1}))
+	assert.Equal(t, []int{}, sliceutils.Tail([]int{}))
+}
+
+func TestLast(t *testing.T) {
+	last := sliceutils.Last([]int{1, 2, 3, 4, 5})
+	assert.NotNil(t, last)
+	assert.Equal(t, 5, *last)
+
+	assert.Nil(t, sliceutils.Last([]int{}))
+}
+
+func TestInitial(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 3, 4}, sliceutils.Initial([]int{1, 2, 3, 4, 5}))
+	assert.Equal(t, []int{}, sliceutils.Initial([]int{1}))
+	assert.Equal(t, []int{}, sliceutils.Initial([]int{}))
+}
+
+func TestCompact(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 3}, sliceutils.Compact([]int{0, 1, 0, 2, 0, 3, 0}))
+	assert.Equal(t, []string{"a", "b"}, sliceutils.Compact([]string{"", "a", "", "b", ""}))
+	assert.Equal(t, []int{}, sliceutils.Compact([]int{0, 0, 0}))
+	assert.Equal(t, []int{1, 2, 3}, sliceutils.Compact([]int{1, 2, 3}))
+}
+
+func TestWindows(t *testing.T) {
+	windows := sliceutils.Windows([]int{1, 2, 3, 4, 5}, 3)
+	assert.Equal(t, [][]int{
+		{1, 2, 3},
+		{2, 3, 4},
+		{3, 4, 5},
+	}, windows)
+
+	windows2 := sliceutils.Windows([]int{1, 2, 3}, 2)
+	assert.Equal(t, [][]int{
+		{1, 2},
+		{2, 3},
+	}, windows2)
+
+	assert.Equal(t, [][]int{}, sliceutils.Windows([]int{1, 2, 3}, 5))
+	assert.Equal(t, [][]int{}, sliceutils.Windows([]int{1, 2, 3}, 0))
+	assert.Equal(t, [][]int{}, sliceutils.Windows([]int{1, 2, 3}, -1))
+}

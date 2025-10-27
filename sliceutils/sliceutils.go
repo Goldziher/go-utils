@@ -485,3 +485,178 @@ func CountBy[T any, K comparable](slice []T, keySelector func(T) K) map[K]int {
 	}
 	return result
 }
+
+// Take returns the first n elements from the slice.
+// If n is greater than the slice length, returns the entire slice.
+func Take[T any](slice []T, n int) []T {
+	if n >= len(slice) {
+		return slice
+	}
+	if n <= 0 {
+		return []T{}
+	}
+	return slice[:n]
+}
+
+// Skip returns the slice with the first n elements removed.
+// If n is greater than or equal to the slice length, returns an empty slice.
+func Skip[T any](slice []T, n int) []T {
+	if n >= len(slice) {
+		return []T{}
+	}
+	if n <= 0 {
+		return slice
+	}
+	return slice[n:]
+}
+
+// TakeLast returns the last n elements from the slice.
+// If n is greater than the slice length, returns the entire slice.
+func TakeLast[T any](slice []T, n int) []T {
+	if n >= len(slice) {
+		return slice
+	}
+	if n <= 0 {
+		return []T{}
+	}
+	return slice[len(slice)-n:]
+}
+
+// SkipLast returns the slice with the last n elements removed.
+// If n is greater than or equal to the slice length, returns an empty slice.
+func SkipLast[T any](slice []T, n int) []T {
+	if n >= len(slice) {
+		return []T{}
+	}
+	if n <= 0 {
+		return slice
+	}
+	return slice[:len(slice)-n]
+}
+
+// TakeWhile returns elements from the beginning of the slice while the predicate returns true.
+// Stops at the first element where the predicate returns false.
+func TakeWhile[T any](slice []T, predicate func(T) bool) []T {
+	for i, item := range slice {
+		if !predicate(item) {
+			return slice[:i]
+		}
+	}
+	return slice
+}
+
+// SkipWhile skips elements from the beginning of the slice while the predicate returns true.
+// Returns the remaining elements starting from the first element where the predicate returns false.
+func SkipWhile[T any](slice []T, predicate func(T) bool) []T {
+	for i, item := range slice {
+		if !predicate(item) {
+			return slice[i:]
+		}
+	}
+	return []T{}
+}
+
+// MinBy returns a pointer to the element with the minimum value as determined by the selector function.
+// Returns nil if the slice is empty.
+func MinBy[T any, O constraints.Ordered](slice []T, selector func(T) O) *T {
+	if len(slice) == 0 {
+		return nil
+	}
+
+	minItem := &slice[0]
+	minValue := selector(slice[0])
+
+	for i := 1; i < len(slice); i++ {
+		value := selector(slice[i])
+		if value < minValue {
+			minValue = value
+			minItem = &slice[i]
+		}
+	}
+	return minItem
+}
+
+// MaxBy returns a pointer to the element with the maximum value as determined by the selector function.
+// Returns nil if the slice is empty.
+func MaxBy[T any, O constraints.Ordered](slice []T, selector func(T) O) *T {
+	if len(slice) == 0 {
+		return nil
+	}
+
+	maxItem := &slice[0]
+	maxValue := selector(slice[0])
+
+	for i := 1; i < len(slice); i++ {
+		value := selector(slice[i])
+		if value > maxValue {
+			maxValue = value
+			maxItem = &slice[i]
+		}
+	}
+	return maxItem
+}
+
+// Head returns a pointer to the first element of the slice.
+// Returns nil if the slice is empty.
+func Head[T any](slice []T) *T {
+	if len(slice) == 0 {
+		return nil
+	}
+	return &slice[0]
+}
+
+// Tail returns all elements of the slice except the first.
+// Returns an empty slice if the slice has 0 or 1 elements.
+func Tail[T any](slice []T) []T {
+	if len(slice) <= 1 {
+		return []T{}
+	}
+	return slice[1:]
+}
+
+// Last returns a pointer to the last element of the slice.
+// Returns nil if the slice is empty.
+func Last[T any](slice []T) *T {
+	if len(slice) == 0 {
+		return nil
+	}
+	return &slice[len(slice)-1]
+}
+
+// Initial returns all elements of the slice except the last.
+// Returns an empty slice if the slice has 0 or 1 elements.
+func Initial[T any](slice []T) []T {
+	if len(slice) <= 1 {
+		return []T{}
+	}
+	return slice[:len(slice)-1]
+}
+
+// Compact removes all zero values from the slice.
+// A zero value is determined by the zero value of type T.
+func Compact[T comparable](slice []T) []T {
+	var zero T
+	result := make([]T, 0)
+
+	for _, item := range slice {
+		if item != zero {
+			result = append(result, item)
+		}
+	}
+	return result
+}
+
+// Windows returns a slice of sliding windows of the specified size.
+// Each window is a slice of consecutive elements.
+// If size is greater than the slice length, returns an empty slice.
+func Windows[T any](slice []T, size int) [][]T {
+	if size <= 0 || size > len(slice) {
+		return [][]T{}
+	}
+
+	windows := make([][]T, 0, len(slice)-size+1)
+	for i := 0; i <= len(slice)-size; i++ {
+		windows = append(windows, slice[i:i+size])
+	}
+	return windows
+}
