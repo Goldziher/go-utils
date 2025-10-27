@@ -4,6 +4,7 @@
 package sliceutils
 
 import (
+	"cmp"
 	"slices"
 
 	"golang.org/x/exp/constraints"
@@ -461,7 +462,7 @@ func SkipWhile[T any](slice []T, predicate func(T) bool) []T {
 
 // MinBy returns a pointer to the element with the minimum value as determined by the selector function.
 // Returns nil if the slice is empty.
-func MinBy[T any, O constraints.Ordered](slice []T, selector func(T) O) *T {
+func MinBy[T any, O cmp.Ordered](slice []T, selector func(T) O) *T {
 	if len(slice) == 0 {
 		return nil
 	}
@@ -481,7 +482,7 @@ func MinBy[T any, O constraints.Ordered](slice []T, selector func(T) O) *T {
 
 // MaxBy returns a pointer to the element with the maximum value as determined by the selector function.
 // Returns nil if the slice is empty.
-func MaxBy[T any, O constraints.Ordered](slice []T, selector func(T) O) *T {
+func MaxBy[T any, O cmp.Ordered](slice []T, selector func(T) O) *T {
 	if len(slice) == 0 {
 		return nil
 	}

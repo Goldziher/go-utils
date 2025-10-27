@@ -3,7 +3,11 @@
 
 package mathutils
 
-import "golang.org/x/exp/constraints"
+import (
+	"cmp"
+
+	"golang.org/x/exp/constraints"
+)
 
 // Number is a constraint for numeric types.
 type Number interface {
@@ -12,7 +16,7 @@ type Number interface {
 
 // Clamp restricts a value to be within a specified range.
 // If value < min, returns min. If value > max, returns max. Otherwise returns value.
-func Clamp[T constraints.Ordered](value, min, max T) T {
+func Clamp[T cmp.Ordered](value, min, max T) T {
 	if value < min {
 		return min
 	}
@@ -32,7 +36,7 @@ func Abs[T Number](value T) T {
 }
 
 // InRange checks if a value is within a range [min, max] (inclusive).
-func InRange[T constraints.Ordered](value, min, max T) bool {
+func InRange[T cmp.Ordered](value, min, max T) bool {
 	return value >= min && value <= max
 }
 
