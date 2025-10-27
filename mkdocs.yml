@@ -127,6 +127,26 @@ nav:
               - Intersection: sliceutils/intersection.md
               - Difference: sliceutils/difference.md
               - Unique: sliceutils/unique.md
+          - Grouping & Analysis:
+              - GroupBy: sliceutils/groupBy.md
+              - Partition: sliceutils/partition.md
+              - DistinctBy: sliceutils/distinctBy.md
+              - CountBy: sliceutils/countBy.md
+          - Selection:
+              - Take: sliceutils/take.md
+              - Skip: sliceutils/skip.md
+              - TakeLast: sliceutils/takeLast.md
+              - SkipLast: sliceutils/skipLast.md
+              - TakeWhile: sliceutils/takeWhile.md
+              - SkipWhile: sliceutils/skipWhile.md
+          - Aggregation:
+              - MinBy: sliceutils/minBy.md
+              - MaxBy: sliceutils/maxBy.md
+          - Accessors:
+              - Head: sliceutils/head.md
+              - Tail: sliceutils/tail.md
+              - Last: sliceutils/last.md
+              - Initial: sliceutils/initial.md
           - Transformations:
               - Reverse: sliceutils/reverse.md
               - Flatten: sliceutils/flatten.md
@@ -137,14 +157,76 @@ nav:
               - Remove: sliceutils/remove.md
               - EnsureUniqueAndAppend: sliceutils/ensureUniqueAndAppend.md
               - Sum: sliceutils/sum.md
+              - Compact: sliceutils/compact.md
+              - Windows: sliceutils/windows.md
       - maputils:
           - Overview: maputils/index.md
-          - Keys: maputils/keys.md
-          - Values: maputils/values.md
-          - Filter: maputils/filter.md
-          - ForEach: maputils/forEach.md
-          - Merge: maputils/merge.md
-          - Drop: maputils/drop.md
+          - Basic Operations:
+              - Keys: maputils/keys.md
+              - Values: maputils/values.md
+              - Filter: maputils/filter.md
+              - ForEach: maputils/forEach.md
+              - Merge: maputils/merge.md
+              - Drop: maputils/drop.md
+          - Transformations:
+              - Map: maputils/map.md
+              - MapKeys: maputils/mapKeys.md
+              - Invert: maputils/invert.md
+          - Selection:
+              - Pick: maputils/pick.md
+              - Omit: maputils/omit.md
+              - Has: maputils/has.md
+              - Get: maputils/get.md
+          - Conversions:
+              - ToEntries: maputils/toEntries.md
+              - FromEntries: maputils/fromEntries.md
+          - Grouping:
+              - GroupBy: maputils/groupBy.md
+      - mathutils:
+          - Overview: mathutils/index.md
+          - Comparison:
+              - Clamp: mathutils/clamp.md
+              - InRange: mathutils/inRange.md
+          - Arithmetic:
+              - Abs: mathutils/abs.md
+              - Average: mathutils/average.md
+              - Gcd: mathutils/gcd.md
+              - Lcm: mathutils/lcm.md
+          - Number Theory:
+              - IsPrime: mathutils/isPrime.md
+      - ptrutils:
+          - Overview: ptrutils/index.md
+          - Creation:
+              - To: ptrutils/to.md
+              - ToSlice: ptrutils/toSlice.md
+              - ToPointerSlice: ptrutils/toPointerSlice.md
+          - Dereferencing:
+              - Deref: ptrutils/deref.md
+              - DerefSlice: ptrutils/derefSlice.md
+          - Utilities:
+              - Equal: ptrutils/equal.md
+              - Coalesce: ptrutils/coalesce.md
+              - IsNil: ptrutils/isNil.md
+              - NonNilSlice: ptrutils/nonNilSlice.md
+      - excutils:
+          - Overview: excutils/index.md
+          - Panic Handling:
+              - Must: excutils/must.md
+              - MustResult: excutils/mustResult.md
+              - Try: excutils/try.md
+              - Catch: excutils/catch.md
+              - RecoverWithValue: excutils/recoverWithValue.md
+          - Error Handling:
+              - IgnoreErr: excutils/ignoreErr.md
+              - FirstErr: excutils/firstErr.md
+              - AllErr: excutils/allErr.md
+              - ReturnAnyErr: excutils/returnAnyErr.md
+          - Validation:
+              - ReturnNotNil: excutils/returnNotNil.md
+              - MustNotNil: excutils/mustNotNil.md
+          - Retry Logic:
+              - Retry: excutils/retry.md
+              - RetryWithResult: excutils/retryWithResult.md
       - stringutils:
           - Overview: stringutils/index.md
           - Stringify: stringutils/stringify.md
