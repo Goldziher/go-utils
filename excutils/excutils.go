@@ -150,3 +150,45 @@ func formatMessages(messages []string) string {
 	}
 	return result
 }
+
+// Retry executes a function up to maxAttempts times, returning the first successful result.
+// Returns the last error if all attempts fail.
+// Returns an error if maxAttempts is less than 1.
+func Retry(fn func() error, maxAttempts int) error {
+	if maxAttempts < 1 {
+		return errors.New("maxAttempts must be at least 1")
+	}
+	var lastErr error
+	for i := 0; i < maxAttempts; i++ {
+		lastErr = fn()
+		if lastErr == nil {
+			return nil
+		}
+	}
+	return lastErr
+}
+
+// RetryWithResult executes a function up to maxAttempts times, returning the first successful result.
+// Returns the result and error from the last attempt if all fail.
+func RetryWithResult[T any](fn func() (T, error), maxAttempts int) (T, error) {
+	var result T
+	var lastErr error
+	for i := 0; i < maxAttempts; i++ {
+		result, lastErr = fn()
+		if lastErr == nil {
+			return result, nil
+		}
+	}
+	return result, lastErr
+}
+
+// RecoverWithValue recovers from a panic and returns the specified default value.
+func RecoverWithValue[T any](fn func() T, defaultValue T) (result T) {
+	defer func() {
+		if r := recover(); r != nil {
+			result = defaultValue
+		}
+	}()
+	result = fn()
+	return result
+}

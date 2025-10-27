@@ -291,3 +291,120 @@ func TestAllErr(t *testing.T) {
 		assert.Contains(t, result.Error(), "single error")
 	})
 }
+
+func TestRetry(t *testing.T) {
+	t.Run("should succeed on first attempt", func(t *testing.T) {
+		attempts := 0
+		err := Retry(func() error {
+			attempts++
+			return nil
+		}, 3)
+		assert.NoError(t, err)
+		assert.Equal(t, 1, attempts)
+	})
+
+	t.Run("should succeed on second attempt", func(t *testing.T) {
+		attempts := 0
+		err := Retry(func() error {
+			attempts++
+			if attempts < 2 {
+				return errors.New("temporary error")
+			}
+			return nil
+		}, 3)
+		assert.NoError(t, err)
+		assert.Equal(t, 2, attempts)
+	})
+
+	t.Run("should fail after all attempts", func(t *testing.T) {
+		attempts := 0
+		err := Retry(func() error {
+			attempts++
+			return errors.New("permanent error")
+		}, 3)
+		assert.Error(t, err)
+		assert.Equal(t, 3, attempts)
+		assert.Contains(t, err.Error(), "permanent error")
+	})
+
+	t.Run("should handle zero attempts", func(t *testing.T) {
+		attempts := 0
+		err := Retry(func() error {
+			attempts++
+			return nil
+		}, 0)
+		assert.Error(t, err)
+		assert.Equal(t, 0, attempts)
+	})
+}
+
+func TestRetryWithResult(t *testing.T) {
+	t.Run("should return result on success", func(t *testing.T) {
+		attempts := 0
+		result, err := RetryWithResult(func() (int, error) {
+			attempts++
+			return 42, nil
+		}, 3)
+		assert.NoError(t, err)
+		assert.Equal(t, 42, result)
+		assert.Equal(t, 1, attempts)
+	})
+
+	t.Run("should retry and succeed", func(t *testing.T) {
+		attempts := 0
+		result, err := RetryWithResult(func() (string, error) {
+			attempts++
+			if attempts < 2 {
+				return "", errors.New("temporary error")
+			}
+			return "success", nil
+		}, 3)
+		assert.NoError(t, err)
+		assert.Equal(t, "success", result)
+		assert.Equal(t, 2, attempts)
+	})
+
+	t.Run("should fail after all attempts", func(t *testing.T) {
+		attempts := 0
+		result, err := RetryWithResult(func() (int, error) {
+			attempts++
+			return 0, errors.New("permanent error")
+		}, 3)
+		assert.Error(t, err)
+		assert.Equal(t, 0, result)
+		assert.Equal(t, 3, attempts)
+	})
+}
+
+func TestRecoverWithValue(t *testing.T) {
+	t.Run("should return value when no panic", func(t *testing.T) {
+		result := RecoverWithValue(func() int {
+			return 42
+		}, 0)
+		assert.Equal(t, 42, result)
+	})
+
+	t.Run("should return default value on panic", func(t *testing.T) {
+		result := RecoverWithValue(func() int {
+			panic("something went wrong")
+		}, 99)
+		assert.Equal(t, 99, result)
+	})
+
+	t.Run("should work with strings", func(t *testing.T) {
+		result := RecoverWithValue(func() string {
+			panic("error")
+		}, "default")
+		assert.Equal(t, "default", result)
+	})
+
+	t.Run("should work with structs", func(t *testing.T) {
+		type TestStruct struct {
+			Name string
+		}
+		result := RecoverWithValue(func() TestStruct {
+			panic("error")
+		}, TestStruct{Name: "default"})
+		assert.Equal(t, "default", result.Name)
+	})
+}
