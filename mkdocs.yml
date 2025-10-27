@@ -6,25 +6,21 @@ nav:
   - index.md
   - Slice Utils:
       - sliceutils/chunk.md
-      - sliceutils/copy.md
       - sliceutils/difference.md
       - sliceutils/ensureUniqueAndAppend.md
       - sliceutils/every.md
       - sliceutils/filter.md
       - sliceutils/find.md
       - sliceutils/findIndex.md
-      - sliceutils/findIndexOf.md
       - sliceutils/findIndexes.md
       - sliceutils/findIndexesOf.md
       - sliceutils/findLastIndex.md
       - sliceutils/findLastIndexOf.md
+      - sliceutils/flatMap.md
       - sliceutils/flatten.md
       - sliceutils/forEach.md
-      - sliceutils/includes.md
-      - sliceutils/insert.md
       - sliceutils/intersection.md
       - sliceutils/map.md
-      - sliceutils/merge.md
       - sliceutils/pluck.md
       - sliceutils/reduce.md
       - sliceutils/remove.md
@@ -34,7 +30,7 @@ nav:
       - sliceutils/union.md
       - sliceutils/unique.md
   - Map Utils:
-      - maputils/copy.md
+      - maputils/drop.md
       - maputils/filter.md
       - maputils/forEach.md
       - maputils/keys.md
@@ -57,6 +53,13 @@ nav:
       - dateutils/ceil.md
       - dateutils/floor.md
       - dateutils/overlap.md
+  - Deprecated Functions:
+      - sliceutils/copy.md
+      - sliceutils/includes.md
+      - sliceutils/findIndexOf.md
+      - sliceutils/insert.md
+      - sliceutils/merge.md
+      - maputils/copy.md
   - contributing.md
   - license.md
 theme:

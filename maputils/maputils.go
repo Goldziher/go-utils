@@ -69,6 +69,13 @@ func Drop[K comparable, V any](mapInstance map[K]V, keys []K) map[K]V {
 }
 
 // Copy - takes a map with keys K and values V and returns a copy of the map.
+//
+// Deprecated: Copy is deprecated as of Go 1.21. Use maps.Clone from the standard library instead:
+//
+//	import "maps"
+//	copied := maps.Clone(original)
+//
+// This function will be removed in a future major version.
 func Copy[K comparable, V any](mapInstance map[K]V) map[K]V {
 	mapCopy := make(map[K]V, len(mapInstance))
 

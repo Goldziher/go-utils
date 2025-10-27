@@ -1,8 +1,24 @@
 # Copy
 
+> **⚠️ DEPRECATED:** This function is deprecated as of Go 1.21. Use `maps.Clone` from the standard library instead.
+
 `func Copy[K comparable, V any](mapInstance map[K]V) map[K]V`
 
 Copy takes a map with keys K and values V and returns a copy.
+
+## Migration to stdlib
+
+```go
+import "maps"
+
+// Old
+copied := maputils.Copy(original)
+
+// New
+copied := maps.Clone(original)
+```
+
+## Original Example
 
 ```go
 package main
