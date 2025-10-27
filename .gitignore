@@ -13,3 +13,8 @@ node_modules/
 AGENTS.md
 CLAUDE.md
 GEMINI.md
+
+# MkDocs
+site/
+.cache/
+.venv/
