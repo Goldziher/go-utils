@@ -18,30 +18,6 @@ func TestCeil(t *testing.T) {
 	assert.Equal(t, "23:59:59", dateutils.Ceil(now).Format("15:04:05"))
 }
 
-func TestBeforeOrEqual(t *testing.T) {
-	milestone, _ := time.Parse("2006-01-02", "2023-01-01")
-
-	dBefore, _ := time.Parse("2006-01-02", "2022-12-31")
-	dEqual, _ := time.Parse("2006-01-02", "2023-01-01")
-	dAfter, _ := time.Parse("2006-01-02", "2023-01-31")
-
-	assert.Equal(t, true, dateutils.BeforeOrEqual(milestone, dBefore))
-	assert.Equal(t, true, dateutils.BeforeOrEqual(milestone, dEqual))
-	assert.Equal(t, false, dateutils.BeforeOrEqual(milestone, dAfter))
-}
-
-func TestAfterOrEqual(t *testing.T) {
-	milestone, _ := time.Parse("2006-01-02", "2023-01-01")
-
-	dBefore, _ := time.Parse("2006-01-02", "2022-12-31")
-	dEqual, _ := time.Parse("2006-01-02", "2023-01-01")
-	dAfter, _ := time.Parse("2006-01-02", "2023-01-31")
-
-	assert.Equal(t, false, dateutils.AfterOrEqual(milestone, dBefore))
-	assert.Equal(t, true, dateutils.AfterOrEqual(milestone, dEqual))
-	assert.Equal(t, true, dateutils.AfterOrEqual(milestone, dAfter))
-}
-
 func TestOverlap(t *testing.T) {
 	s1, _ := time.Parse("2006-01-02", "2022-12-28")
 	e1, _ := time.Parse("2006-01-02", "2022-12-31")
@@ -370,13 +346,4 @@ func TestIsSameMonth(t *testing.T) {
 	assert.True(t, dateutils.IsSameMonth(july1, july31))
 	assert.False(t, dateutils.IsSameMonth(july31, august1))
 	assert.False(t, dateutils.IsSameMonth(july1, julyDifferentYear))
-}
-
-func TestIsSameYear(t *testing.T) {
-	jan2023 := time.Date(2023, 1, 1, 0, 0, 0, 0, time.UTC)
-	dec2023 := time.Date(2023, 12, 31, 0, 0, 0, 0, time.UTC)
-	jan2024 := time.Date(2024, 1, 1, 0, 0, 0, 0, time.UTC)
-
-	assert.True(t, dateutils.IsSameYear(jan2023, dec2023))
-	assert.False(t, dateutils.IsSameYear(dec2023, jan2024))
 }

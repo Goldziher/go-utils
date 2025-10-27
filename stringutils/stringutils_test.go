@@ -309,24 +309,11 @@ func TestJoinNonEmpty(t *testing.T) {
 	assert.Equal(t, "", stringutils.JoinNonEmpty([]string{}, ","))
 }
 
-func TestIsEmpty(t *testing.T) {
-	assert.True(t, stringutils.IsEmpty(""))
-	assert.True(t, stringutils.IsEmpty("   "))
-	assert.True(t, stringutils.IsEmpty("\t\n"))
-	assert.False(t, stringutils.IsEmpty("hello"))
-	assert.False(t, stringutils.IsEmpty(" hello "))
-}
-
 func TestDefaultIfEmpty(t *testing.T) {
 	assert.Equal(t, "default", stringutils.DefaultIfEmpty("", "default"))
 	assert.Equal(t, "default", stringutils.DefaultIfEmpty("   ", "default"))
 	assert.Equal(t, "hello", stringutils.DefaultIfEmpty("hello", "default"))
 	assert.Equal(t, "hello", stringutils.DefaultIfEmpty(" hello ", "default"))
-}
-
-func TestToTitle(t *testing.T) {
-	assert.Equal(t, "Hello World", stringutils.ToTitle("hello world"))
-	assert.Equal(t, "HELLO WORLD", stringutils.ToTitle("HELLO WORLD"))
 }
 
 func TestToCamelCase(t *testing.T) {
@@ -358,13 +345,6 @@ func TestToKebabCase(t *testing.T) {
 	assert.Equal(t, "test", stringutils.ToKebabCase("test"))
 	assert.Equal(t, "first-name", stringutils.ToKebabCase("firstName"))
 	assert.Equal(t, "http-response", stringutils.ToKebabCase("HTTPResponse"))
-}
-
-func TestRepeat(t *testing.T) {
-	assert.Equal(t, "aaa", stringutils.Repeat("a", 3))
-	assert.Equal(t, "hihihi", stringutils.Repeat("hi", 3))
-	assert.Equal(t, "", stringutils.Repeat("test", 0))
-	assert.Equal(t, "x", stringutils.Repeat("x", 1))
 }
 
 func TestRemoveWhitespace(t *testing.T) {

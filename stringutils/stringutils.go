@@ -261,11 +261,6 @@ func JoinNonEmpty(strs []string, sep string) string {
 	return strings.Join(nonEmpty, sep)
 }
 
-// IsEmpty checks if string is empty or only whitespace.
-func IsEmpty(str string) bool {
-	return strings.TrimSpace(str) == ""
-}
-
 // DefaultIfEmpty returns default if string is empty or only whitespace.
 // Returns the trimmed string if not empty.
 func DefaultIfEmpty(str, def string) string {
@@ -274,11 +269,6 @@ func DefaultIfEmpty(str, def string) string {
 		return def
 	}
 	return trimmed
-}
-
-// ToTitle converts string to Title Case.
-func ToTitle(str string) string {
-	return strings.Title(str) //nolint:staticcheck // Title is deprecated but simple for basic use
 }
 
 // ToCamelCase converts string to camelCase.
@@ -361,11 +351,6 @@ func ToKebabCase(str string) string {
 	}
 
 	return result.String()
-}
-
-// Repeat repeats a string n times.
-func Repeat(str string, n int) string {
-	return strings.Repeat(str, n)
 }
 
 // RemoveWhitespace removes all whitespace from string.

@@ -15,20 +15,18 @@ func Ceil(t time.Time) time.Time {
 	return Floor(t.Add(time.Hour * 24)).Add(time.Second * -1)
 }
 
-func BeforeOrEqual(milestone time.Time, date time.Time) bool {
-	return date.UTC().Before(milestone) || date.UTC().Equal(milestone)
-}
-
-func AfterOrEqual(milestone time.Time, date time.Time) bool {
-	return date.UTC().After(milestone) || date.UTC().Equal(milestone)
-}
-
 // Overlap - returns true if two date intervals overlap.
 func Overlap(start1 time.Time, end1 time.Time, start2 time.Time, end2 time.Time) bool {
-	return (AfterOrEqual(start2, start1) && BeforeOrEqual(end2, start1)) ||
-		(AfterOrEqual(start2, end1) && BeforeOrEqual(end2, end1)) ||
-		(AfterOrEqual(start1, start2) && BeforeOrEqual(end1, start2)) ||
-		(AfterOrEqual(start1, end2) && BeforeOrEqual(end1, end2))
+	beforeOrEqual := func(milestone, date time.Time) bool {
+		return date.UTC().Before(milestone) || date.UTC().Equal(milestone)
+	}
+	afterOrEqual := func(milestone, date time.Time) bool {
+		return date.UTC().After(milestone) || date.UTC().Equal(milestone)
+	}
+	return (afterOrEqual(start2, start1) && beforeOrEqual(end2, start1)) ||
+		(afterOrEqual(start2, end1) && beforeOrEqual(end2, end1)) ||
+		(afterOrEqual(start1, start2) && beforeOrEqual(end1, start2)) ||
+		(afterOrEqual(start1, end2) && beforeOrEqual(end1, end2))
 }
 
 // GetFirstDayOfMonth returns the first day of the current month at 00:00:00 in the local timezone.
@@ -205,9 +203,4 @@ func IsSameMonth(a, b time.Time) bool {
 	aYear, aMonth, _ := a.Date()
 	bYear, bMonth, _ := b.Date()
 	return aYear == bYear && aMonth == bMonth
-}
-
-// IsSameYear returns true if both times are in the same year.
-func IsSameYear(a, b time.Time) bool {
-	return a.Year() == b.Year()
 }

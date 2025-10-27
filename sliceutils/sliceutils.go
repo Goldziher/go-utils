@@ -4,6 +4,8 @@
 package sliceutils
 
 import (
+	"slices"
+
 	"golang.org/x/exp/constraints"
 )
 
@@ -78,24 +80,6 @@ func FindIndex[T any](slice []T, predicate func(value T, index int, slice []T) b
 	return -1
 }
 
-// FindIndexOf - given a slice of type T and a value of type T, return ths first index of an element equal to value.
-// If no element is found, -1 is returned.
-//
-// Deprecated: FindIndexOf is deprecated as of Go 1.21. Use slices.Index from the standard library instead:
-//
-//	import "slices"
-//	idx := slices.Index(slice, value) // returns -1 if not found
-//
-// This function will be removed in a future major version.
-func FindIndexOf[T comparable](slice []T, value T) int {
-	for i, el := range slice {
-		if el == value {
-			return i
-		}
-	}
-	return -1
-}
-
 // FindLastIndex - given a slice of type T, executes the passed in predicate function for each element in the slice starting from its end.
 // If no element is found, -1 is returned. The function is passed the current element, the current index and the slice itself as function arguments.
 func FindLastIndex[T any](slice []T, predicate func(value T, index int, slice []T) bool) int {
@@ -145,24 +129,6 @@ func FindIndexesOf[T comparable](slice []T, value T) []int {
 	return indexes
 }
 
-// Includes - given a slice of type T and a value of type T, determines whether the value is contained by the slice.
-// Note: T is constrained to comparable types only and comparison is determined using the equality operator.
-//
-// Deprecated: Includes is deprecated as of Go 1.21. Use slices.Contains from the standard library instead:
-//
-//	import "slices"
-//	exists := slices.Contains(slice, value)
-//
-// This function will be removed in a future major version.
-func Includes[T comparable](slice []T, value T) bool {
-	for _, el := range slice {
-		if el == value {
-			return true
-		}
-	}
-	return false
-}
-
 // Some - given a slice of type T, executes the given predicate for each element of the slice.
 // If the predicate returns true for any element, it returns true, otherwise it returns false.
 // The function is passed the current element, the current index and the slice itself as function arguments.
@@ -187,35 +153,6 @@ func Every[T any](slice []T, predicate func(value T, index int, slice []T) bool)
 	return true
 }
 
-// Merge - receives slices of type T and merges them into a single slice of type T.
-// Note: The elements are merged in their order in a slice,
-// i.e. first the elements of the first slice, then that of the second and so forth.
-//
-// Deprecated: Merge is deprecated as of Go 1.21. Use slices.Concat from the standard library instead:
-//
-//	import "slices"
-//	merged := slices.Concat(slice1, slice2, slice3)
-//
-// This function will be removed in a future major version.
-func Merge[T any](slices ...[]T) (mergedSlice []T) {
-	if len(slices) > 0 {
-		mergedSliceCap := 0
-
-		for _, slice := range slices {
-			mergedSliceCap += len(slice)
-		}
-
-		if mergedSliceCap > 0 {
-			mergedSlice = make([]T, 0, mergedSliceCap)
-
-			for _, slice := range slices {
-				mergedSlice = append(mergedSlice, slice...)
-			}
-		}
-	}
-	return mergedSlice
-}
-
 // Sum - receives a slice of type T and returns a value T that is the sum of the numbers.
 // Note: T is constrained to be a number type.
 func Sum[T constraints.Complex | constraints.Integer | constraints.Float](slice []T) (result T) {
@@ -231,7 +168,7 @@ func Remove[T any](slice []T, i int) []T {
 	if len(slice) == 0 || i > len(slice)-1 {
 		return slice
 	}
-	copied := Copy(slice)
+	copied := slices.Clone(slice)
 	if i == 0 {
 		return copied[1:]
 	}
@@ -239,40 +176,6 @@ func Remove[T any](slice []T, i int) []T {
 		return append(copied[:i], copied[i+1:]...)
 	}
 	return copied[:i]
-}
-
-// Insert - receives a slice of type T, an index and a value.
-// The value is inserted at the given index. If there is an existing value at this index, it is shifted to the next index.
-// Note: this function does not modify the input slice.
-//
-// Deprecated: Insert is deprecated as of Go 1.21. Use slices.Insert from the standard library instead:
-//
-//	import "slices"
-//	result := slices.Insert(slice, i, value)
-//
-// Note: slices.Insert accepts variadic values, so you can insert multiple items at once.
-// This function will be removed in a future major version.
-func Insert[T any](slice []T, i int, value T) []T {
-	if len(slice) == i {
-		return append(slice, value)
-	}
-	slice = append(slice[:i+1], slice[i:]...)
-	slice[i] = value
-	return slice
-}
-
-// Copy - receives a slice of type T and copies it.
-//
-// Deprecated: Copy is deprecated as of Go 1.21. Use slices.Clone from the standard library instead:
-//
-//	import "slices"
-//	copied := slices.Clone(original)
-//
-// This function will be removed in a future major version.
-func Copy[T any](slice []T) []T {
-	duplicate := make([]T, len(slice), cap(slice))
-	copy(duplicate, slice)
-	return duplicate
 }
 
 // Intersection - takes a variadic number of slices of type T and returns a slice of type T containing any values that exist in all the slices.
@@ -333,8 +236,8 @@ func Difference[T comparable](slices ...[]T) []T {
 
 // Union - takes a variadic number of slices of type T and returns a slice of type T containing the unique elements in the different slices
 // For example, given []int{1, 2, 3}, []int{2, 3, 4}, []int{3, 4, 5}, the union would be []int{1, 2, 3, 4, 5}.
-func Union[T comparable](slices ...[]T) []T {
-	return Unique(Merge(slices...))
+func Union[T comparable](inputSlices ...[]T) []T {
+	return Unique(slices.Concat(inputSlices...))
 }
 
 // Reverse - takes a slice of type T and returns a slice of type T with a reverse order of elements.
@@ -418,7 +321,7 @@ func Flatten[I any](input [][]I) (output []I) {
 
 // EnsureUniqueAndAppend - Appends an item to a slice if it does not already exist.
 func EnsureUniqueAndAppend[T comparable](slice []T, item T) []T {
-	if Includes(slice, item) {
+	if slices.Contains(slice, item) {
 		return slice
 	}
 
