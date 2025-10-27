@@ -1,111 +1,167 @@
 site_name: Go Utils
+site_description: Functional programming utilities for Go 1.21+ - complementary with stdlib slices, maps, and cmp
 site_url: https://goldziher.github.io/go-utils/
-repo_url: https://github.com/Goldziher/go-utils
+site_author: Na'aman Hirschfeld
 repo_name: Goldziher/go-utils
-nav:
-  - index.md
-  - Slice Utils:
-      - sliceutils/chunk.md
-      - sliceutils/difference.md
-      - sliceutils/ensureUniqueAndAppend.md
-      - sliceutils/every.md
-      - sliceutils/filter.md
-      - sliceutils/find.md
-      - sliceutils/findIndex.md
-      - sliceutils/findIndexes.md
-      - sliceutils/findIndexesOf.md
-      - sliceutils/findLastIndex.md
-      - sliceutils/findLastIndexOf.md
-      - sliceutils/flatMap.md
-      - sliceutils/flatten.md
-      - sliceutils/forEach.md
-      - sliceutils/intersection.md
-      - sliceutils/map.md
-      - sliceutils/pluck.md
-      - sliceutils/reduce.md
-      - sliceutils/remove.md
-      - sliceutils/reverse.md
-      - sliceutils/some.md
-      - sliceutils/sum.md
-      - sliceutils/union.md
-      - sliceutils/unique.md
-  - Map Utils:
-      - maputils/drop.md
-      - maputils/filter.md
-      - maputils/forEach.md
-      - maputils/keys.md
-      - maputils/merge.md
-      - maputils/values.md
-  - String Utils:
-      - stringutils/capitalize.md
-      - stringutils/padLeft.md
-      - stringutils/padRight.md
-      - stringutils/stringify.md
-  - Struct Utils:
-      - structutils/forEach.md
-      - structutils/toMap.md
-  - URL Utils:
-      - urlutils/queryStringifyMap.md
-      - urlutils/queryStringifyStruct.md
-  - Date Utils:
-      - dateutils/afterorequal.md
-      - dateutils/beforeorequal.md
-      - dateutils/ceil.md
-      - dateutils/floor.md
-      - dateutils/overlap.md
-  - Deprecated Functions:
-      - sliceutils/copy.md
-      - sliceutils/includes.md
-      - sliceutils/findIndexOf.md
-      - sliceutils/insert.md
-      - sliceutils/merge.md
-      - maputils/copy.md
-  - contributing.md
-  - license.md
+repo_url: https://github.com/Goldziher/go-utils
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; 2023-2025 Na'aman Hirschfeld
+
 theme:
   name: material
+  logo: assets/logo.png
+  favicon: assets/favicon.png
   palette:
-    - media: "(prefers-color-scheme: dark)"
-      scheme: mirage
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
-      scheme: mirage-light
+      scheme: default
+      primary: indigo
+      accent: lime
       toggle:
-        icon: material/toggle-switch-off-outline
+        icon: material/weather-night
         name: Switch to dark mode
-  icon:
-    repo: fontawesome/brands/github
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: lime
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
   features:
+    - content.code.copy
+    - content.code.annotate
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.tracking
-    - navigation.expand
     - navigation.top
-    - search.suggest
+    - navigation.footer
     - search.highlight
     - search.share
-  plugins:
-    - search:
-        lang: en
-    - social:
-        cards_color:
-          fill: "#1d2433"
-          text: "#d6dbe1"
-        cards_font: Tahoma
-extra_css:
-  - css/typo.css
-  - css/color.css
-  - css/theme.css
+    - search.suggest
+    - toc.follow
+    - announce.dismiss
+  icon:
+    repo: fontawesome/brands/github
+  language: en
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      linenums: true
+      use_pygments: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+plugins:
+  - search
+  - social
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/Goldziher/go-utils
-markdown_extensions:
-  - admonition
-  - attr_list
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.details
-  - pymdownx.superfences
+    - icon: fontawesome/brands/golang
+      link: https://pkg.go.dev/github.com/Goldziher/go-utils
+
+extra_css:
+  - css/extra.css
+
+nav:
+  - Home: index.md
+  - Packages:
+      - sliceutils:
+          - Overview: sliceutils/index.md
+          - Functional Operations:
+              - Filter: sliceutils/filter.md
+              - Map: sliceutils/map.md
+              - Reduce: sliceutils/reduce.md
+              - ForEach: sliceutils/forEach.md
+          - Search Operations:
+              - Find: sliceutils/find.md
+              - FindIndex: sliceutils/findIndex.md
+              - FindIndexes: sliceutils/findIndexes.md
+              - FindIndexesOf: sliceutils/findIndexesOf.md
+              - FindLastIndex: sliceutils/findLastIndex.md
+              - FindLastIndexOf: sliceutils/findLastIndexOf.md
+          - Predicates:
+              - Some: sliceutils/some.md
+              - Every: sliceutils/every.md
+          - Set Operations:
+              - Union: sliceutils/union.md
+              - Intersection: sliceutils/intersection.md
+              - Difference: sliceutils/difference.md
+              - Unique: sliceutils/unique.md
+          - Transformations:
+              - Reverse: sliceutils/reverse.md
+              - Flatten: sliceutils/flatten.md
+              - FlatMap: sliceutils/flatMap.md
+              - Chunk: sliceutils/chunk.md
+              - Pluck: sliceutils/pluck.md
+          - Utilities:
+              - Remove: sliceutils/remove.md
+              - EnsureUniqueAndAppend: sliceutils/ensureUniqueAndAppend.md
+              - Sum: sliceutils/sum.md
+      - maputils:
+          - Overview: maputils/index.md
+          - Keys: maputils/keys.md
+          - Values: maputils/values.md
+          - Filter: maputils/filter.md
+          - ForEach: maputils/forEach.md
+          - Merge: maputils/merge.md
+          - Drop: maputils/drop.md
+      - stringutils:
+          - Overview: stringutils/index.md
+          - Stringify: stringutils/stringify.md
+          - Capitalize: stringutils/capitalize.md
+          - PadLeft: stringutils/padLeft.md
+          - PadRight: stringutils/padRight.md
+      - structutils:
+          - Overview: structutils/index.md
+          - ToMap: structutils/toMap.md
+          - ForEach: structutils/forEach.md
+      - dateutils:
+          - Overview: dateutils/index.md
+          - Floor: dateutils/floor.md
+          - Ceil: dateutils/ceil.md
+          - Overlap: dateutils/overlap.md
+      - urlutils:
+          - Overview: urlutils/index.md
+          - QueryStringifyMap: urlutils/queryStringifyMap.md
+          - QueryStringifyStruct: urlutils/queryStringifyStruct.md
+  - Contributing: contributing.md
