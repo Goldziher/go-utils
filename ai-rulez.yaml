@@ -1,0 +1,345 @@
+$schema: https://github.com/Goldziher/ai-rulez/schema/ai-rules-v2.schema.json
+agents: []
+commands: []
+mcp_servers:
+    - args:
+        - -y
+        - ai-rulez@latest
+        - mcp
+      command: npx
+      description: AI-Rulez MCP server for configuration management
+      name: ai-rulez
+metadata:
+    description: A comprehensive Go utility library providing collection manipulation functions inspired by JavaScript and Python, leveraging Go 1.18+ generics for type-safe operations on slices, maps, structs, dates, strings, and URLs with utilities like filter, map, reduce, merge, flatten, and query string builders.
+    name: go-utils
+    version: 1.0.0
+presets:
+    - popular
+rules:
+    - content: Organize code into focused utility packages (dateutils, sliceutils, maputils, stringutils, structutils, urlutils). Each package should contain a single Go file with implementation and a corresponding _test.go file. Keep packages flat - no nested subpackages.
+      name: Package Organization
+      priority: high
+    - content: Leverage Go 1.18+ generics extensively for type-safe utility functions. Use constraint types (comparable, any) appropriately. All slice and map utilities must use generic type parameters to maintain API simplicity across different types.
+      name: Generics Usage
+      priority: critical
+    - content: Write comprehensive table-driven tests in *_test.go files for every exported function. Maintain high code coverage as monitored by SonarCloud. Run tests with 'go test ./...' and ensure all tests pass before committing.
+      name: Testing Standards
+      priority: critical
+    - content: Provide godoc comments for all exported functions, types, and constants. Maintain corresponding markdown documentation in docs/ directory organized by package. Documentation is published via MkDocs (mkdocs.yml) to GitHub Pages.
+      name: Documentation
+      priority: high
+    - content: All code must pass golangci-lint checks using the configuration in .golangci.yml. Pre-commit hooks (.pre-commit-config.yaml) enforce linting standards. Address all linter warnings before committing.
+      name: Code Quality
+      priority: high
+    - content: Ensure code passes all GitHub Actions workflows (ci.yaml, docs.yaml). CI runs tests, linting, and SonarCloud quality gates. Maintain quality gate status, zero vulnerabilities, and address bugs flagged by SonarCloud.
+      name: CI/CD Compliance
+      priority: medium
+    - content: Minimize external dependencies to maintain utility library simplicity. Use Go standard library whenever possible. Dependencies are managed via go.mod and monitored by Dependabot. Justify any new dependency additions.
+      name: Dependencies
+      priority: medium
+    - content: All utility functions must use appropriate generic type constraints (comparable, any, or custom interfaces). Follow existing patterns in sliceutils, maputils, and structutils packages. Always ensure type safety at compile time rather than runtime reflection where possible.
+      name: Generic Type Constraints
+      priority: critical
+    - content: Every exported function must have corresponding test cases in *_test.go files. Follow the table-driven test pattern used throughout the codebase. Run 'go test ./...' to verify all tests pass before committing. Maintain high coverage as monitored by SonarCloud.
+      name: Testing Coverage
+      priority: critical
+    - content: All exported functions, types, and constants must have godoc comments. Documentation should include usage examples and edge case behavior. Each package utility function should have a corresponding markdown file in the docs/ directory matching the existing structure (e.g., docs/sliceutils/functionname.md).
+      name: Package Documentation
+      priority: high
+    - content: Utility functions should not panic except for truly unrecoverable errors. Prefer returning error values or boolean success indicators. Document panic conditions explicitly in godoc comments if unavoidable (e.g., reflection-based operations in structutils).
+      name: Error Handling and Panics
+      priority: high
+    - content: Follow functional programming patterns used in sliceutils and maputils. Functions should not mutate input parameters unless explicitly named (e.g., 'Copy' creates new instances, 'ForEach' is readonly). When mutation is necessary, document it clearly in function comments.
+      name: Immutability and Side Effects
+      priority: medium
+    - content: All code must pass golangci-lint checks defined in .golangci.yml before committing. Run 'golangci-lint run' locally. Address all issues or add justified nolint directives with explanations. Pre-commit hooks enforce this automatically.
+      name: Linting Compliance
+      priority: medium
+    - content: Maintain naming and behavior consistency across utility packages. Similar operations should use similar names (e.g., Filter, Map, ForEach exist in both sliceutils and maputils). Function signatures should follow established patterns for predicates, mappers, and reducers.
+      name: Cross-Package Consistency
+      priority: medium
+    - content: Write comprehensive unit tests for all utility functions in parallel test files (*_test.go). Maintain high coverage standards as monitored by SonarCloud. Each utility package (sliceutils, maputils, dateutils, stringutils, structutils, urlutils) must have corresponding test coverage with table-driven tests for multiple input scenarios.
+      name: Testing and Coverage
+      priority: critical
+    - content: Document all exported functions with godoc comments following Go conventions. Maintain corresponding markdown documentation in docs/ directory organized by package. Each function should have a dedicated .md file with usage examples for the MkDocs-generated documentation site.
+      name: Documentation Standards
+      priority: medium
+    - content: All code must pass golangci-lint checks as configured in .golangci.yml before commits. Use pre-commit hooks (.pre-commit-config.yaml) to enforce quality gates. Maintain Go Report Card A+ rating and address all SonarCloud quality gate issues including maintainability, reliability, and security ratings.
+      name: Code Quality and Linting
+      priority: high
+    - content: All changes must pass GitHub Actions CI pipeline (.github/workflows/ci.yaml) including tests, linting, and security checks. Keep dependencies minimal and up-to-date using Dependabot. Verify compatibility with the latest stable Go version and document any version-specific requirements in go.mod.
+      name: CI/CD and Dependencies
+      priority: medium
+sections:
+    - content: |-
+        ## Development Workflow
+
+        ### Prerequisites
+        - Go 1.18+ (required for generics support)
+        - pre-commit (for git hooks)
+        - golangci-lint (for linting)
+
+        ### Initial Setup
+
+        ```bash
+        # Clone and navigate to the repository
+        cd /Users/naamanhirschfeld/workspace/go-utils
+
+        # Install dependencies
+        go mod download
+
+        # Install pre-commit hooks
+        pre-commit install && \
+          pre-commit install --hook-type commit-msg && \
+          pre-commit install-hooks
+        ```
+
+        ### Running Tests
+
+        ```bash
+        # Run all tests with coverage
+        go test ./... -v -cover
+
+        # Run tests for specific package
+        go test ./sliceutils -v
+        go test ./maputils -v
+        go test ./dateutils -v
+        go test ./stringutils -v
+        go test ./structutils -v
+        go test ./urlutils -v
+        ```
+
+        **Important**: 100% test coverage is mandatory for all contributions. Each utility package has a corresponding `_test.go` file that must be updated when adding new functions.
+
+        ### Linting
+
+        ```bash
+        # Run golangci-lint (configuration in .golangci.yml)
+        golangci-lint run
+
+        # Auto-fix issues where possible
+        golangci-lint run --fix
+        ```
+
+        ### Commit Convention
+
+        This project enforces [Conventional Commits](https://www.conventionalcommits.org/) via pre-commit hooks:
+
+        ```bash
+        # Valid commit message examples
+        git commit -m "feat: add new Map function to sliceutils"
+        git commit -m "fix: correct edge case in dateutils.Overlap"
+        git commit -m "docs: update contributing guide"
+        git commit -m "test: add coverage for stringutils.Capitalize"
+        ```
+
+        ### CI Pipeline
+
+        The project uses GitHub Actions (`.github/workflows/ci.yaml` and `.github/workflows/docs.yaml`) to:
+        - Run tests across multiple Go versions
+        - Check code coverage
+        - Run linters
+        - Build and deploy documentation to GitHub Pages
+        - Analyze code quality with SonarCloud
+      name: Development Workflow
+      priority: high
+    - content: |-
+        ## Project Architecture
+
+        ### Package Structure
+
+        go-utils is organized into specialized utility packages, each focused on a specific data type:
+
+        ```
+        go-utils/
+        ├── dateutils/      # Time and date manipulation utilities
+        ├── maputils/       # Generic map operations
+        ├── sliceutils/     # Generic slice operations (inspired by JS Array methods)
+        ├── stringutils/    # String manipulation and formatting
+        ├── structutils/    # Struct reflection and conversion utilities
+        └── urlutils/       # URL and query string utilities
+        ```
+
+        ### Design Principles
+
+        **1. Generics-First Approach**
+
+        All functions leverage Go 1.18+ generics for type safety:
+
+        ```go
+        // Example: sliceutils.Filter signature
+        func Filter[T any](slice []T, predicate func(value T, index int, slice []T) bool) []T
+
+        // Example: maputils.Keys signature
+        func Keys[K comparable, V any](mapInstance map[K]V) []K
+        ```
+
+        **2. Functional Programming Style**
+
+        Many functions accept callback functions with consistent signatures:
+
+        ```go
+        // Slice callbacks receive: value, index, slice
+        sliceutils.Map(items, func(value T, index int, slice []T) R { ... })
+
+        // Map callbacks receive: key, value
+        maputils.ForEach(m, func(key K, value V) { ... })
+        ```
+
+        **3. Zero-Cost Abstractions**
+
+        Functions are designed for performance with minimal overhead:
+        - Pre-allocated slices where sizes are known
+        - In-place operations where appropriate
+        - Efficient iteration patterns
+
+        ### Adding New Utilities
+
+        When contributing a new utility function:
+
+        1. **Choose the correct package** based on the primary data type
+        2. **Add the function** to `<package>/<package>.go`
+        3. **Add comprehensive tests** to `<package>/<package>_test.go`
+        4. **Create documentation** at `docs/<package>/<function>.md` following existing patterns
+        5. **Update mkdocs.yml** to include the new documentation page
+
+        ### Documentation Generation
+
+        Documentation is built with MkDocs and deployed automatically:
+
+        ```bash
+        # Install MkDocs (if not already installed)
+        pip install mkdocs mkdocs-material
+
+        # Serve documentation locally
+        mkdocs serve
+        # Visit http://127.0.0.1:8000
+
+        # Build static documentation
+        mkdocs build
+        ```
+
+        Documentation structure in `mkdocs.yml` mirrors the package structure for easy navigation.
+      name: Project Architecture
+      priority: medium
+    - content: |-
+        ## Usage Patterns and Examples
+
+        ### Installation in Your Project
+
+        ```bash
+        go get -u github.com/Goldziher/go-utils
+        ```
+
+        ### Common Usage Patterns
+
+        #### Working with Slices (JavaScript-style)
+
+        The `sliceutils` package provides familiar operations for developers coming from JavaScript:
+
+        ```go
+        import "github.com/Goldziher/go-utils/sliceutils"
+
+        // Filter and Map (chainable pattern)
+        numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+        filtered := sliceutils.Filter(numbers, func(val int, idx int, slice []int) bool {
+            return val%2 == 0
+        }) // [2, 4, 6, 8, 10]
+
+        doubled := sliceutils.Map(filtered, func(val int, idx int, slice []int) int {
+            return val * 2
+        }) // [4, 8, 12, 16, 20]
+
+        // Reduce for aggregation
+        sum := sliceutils.Reduce(numbers, func(acc int, cur int, idx int, slice []int) int {
+            return acc + cur
+        }, 0) // 55
+
+        // Set operations
+        a := []int{1, 2, 3, 4}
+        b := []int{3, 4, 5, 6}
+
+        union := sliceutils.Union(a, b)              // [1, 2, 3, 4, 5, 6]
+        intersection := sliceutils.Intersection(a, b) // [3, 4]
+        difference := sliceutils.Difference(a, b)     // [1, 2, 5, 6]
+        ```
+
+        #### Working with Maps
+
+        ```go
+        import "github.com/Goldziher/go-utils/maputils"
+
+        data := map[string]int{"a": 1, "b": 2, "c": 3}
+
+        // Extract keys and values
+        keys := maputils.Keys(data)     // ["a", "b", "c"]
+        values := maputils.Values(data) // [1, 2, 3]
+
+        // Filter map entries
+        filtered := maputils.Filter(data, func(key string, value int) bool {
+            return value > 1
+        }) // {"b": 2, "c": 3}
+
+        // Merge maps (right-to-left precedence)
+        m1 := map[string]int{"a": 1, "b": 2}
+        m2 := map[string]int{"b": 3, "c": 4}
+        merged := maputils.Merge(m1, m2) // {"a": 1, "b": 3, "c": 4}
+        ```
+
+        #### Working with Structs
+
+        ```go
+        import "github.com/Goldziher/go-utils/structutils"
+
+        type User struct {
+            Name  string `json:"name"`
+            Age   int    `json:"age"`
+            Email string `json:"email"`
+        }
+
+        user := User{Name: "Alice", Age: 30, Email: "alice@example.com"}
+
+        // Convert struct to map (respects struct tags)
+        userMap := structutils.ToMap(user, "json")
+        // {"name": "Alice", "age": 30, "email": "alice@example.com"}
+        ```
+
+        #### URL Query String Building
+
+        ```go
+        import "github.com/Goldziher/go-utils/urlutils"
+
+        // From map
+        params := map[string]any{
+            "search": "golang",
+            "page":   1,
+            "tags":   []string{"generics", "utils"},
+        }
+        query := urlutils.QueryStringifyMap(params)
+        // "page=1&search=golang&tags=generics&tags=utils"
+
+        // From struct
+        type QueryParams struct {
+            Search string   `qs:"q"`
+            Page   int      `qs:"page"`
+            Tags   []string `qs:"tag"`
+        }
+        params := QueryParams{Search: "golang", Page: 1, Tags: []string{"generics", "utils"}}
+        query := urlutils.QueryStringifyStruct(params, "qs")
+        // "page=1&q=golang&tag=generics&tag=utils"
+        ```
+
+        ### Type Safety with Generics
+
+        All functions provide compile-time type safety:
+
+        ```go
+        // Compile error: type mismatch
+        numbers := []int{1, 2, 3}
+        result := sliceutils.Map(numbers, func(val int, idx int, slice []int) string {
+            return strconv.Itoa(val) // Returns []string, not []int
+        })
+        ```
+      name: Usage Patterns and Examples
+      priority: high
