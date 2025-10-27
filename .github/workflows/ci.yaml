@@ -25,9 +25,10 @@ jobs:
         uses: actions/setup-go@v6
         with:
           go-version: "1.25"
-      - name: Install prek
+      - name: Install prek and ai-rulez
         run: |
           uv tool install prek
+          uv tool install ai-rulez
           echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Load Cached Prek Dependencies
         id: cached-prek-dependencies
