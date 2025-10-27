@@ -432,3 +432,56 @@ func EnsureUniqueAndAppend[T comparable](slice []T, item T) []T {
 func FlatMap[T any, R any](slice []T, mapper func(value T, index int, slice []T) []R) []R {
 	return Flatten(Map(slice, mapper))
 }
+
+// GroupBy groups elements of a slice by a key extracted using the keySelector function.
+// Returns a map where keys are the grouping keys and values are slices of elements that share that key.
+// This is a LINQ-style operation useful for categorizing or organizing data.
+func GroupBy[T any, K comparable](slice []T, keySelector func(T) K) map[K][]T {
+	result := make(map[K][]T)
+	for _, item := range slice {
+		key := keySelector(item)
+		result[key] = append(result[key], item)
+	}
+	return result
+}
+
+// Partition splits a slice into two slices based on a predicate function.
+// The first slice contains elements for which the predicate returns true,
+// the second contains elements for which it returns false.
+func Partition[T any](slice []T, predicate func(T) bool) (truthy []T, falsy []T) {
+	for _, item := range slice {
+		if predicate(item) {
+			truthy = append(truthy, item)
+		} else {
+			falsy = append(falsy, item)
+		}
+	}
+	return truthy, falsy
+}
+
+// DistinctBy returns a slice containing only the first occurrence of each element,
+// where uniqueness is determined by the key returned from the keySelector function.
+func DistinctBy[T any, K comparable](slice []T, keySelector func(T) K) []T {
+	seen := make(map[K]bool)
+	result := make([]T, 0)
+
+	for _, item := range slice {
+		key := keySelector(item)
+		if !seen[key] {
+			seen[key] = true
+			result = append(result, item)
+		}
+	}
+	return result
+}
+
+// CountBy counts the occurrences of each key extracted using the keySelector function.
+// Returns a map where keys are the extracted keys and values are the counts.
+func CountBy[T any, K comparable](slice []T, keySelector func(T) K) map[K]int {
+	result := make(map[K]int)
+	for _, item := range slice {
+		key := keySelector(item)
+		result[key]++
+	}
+	return result
+}

@@ -353,3 +353,192 @@ func TestFlatMap(t *testing.T) {
 
 	assert.Equal(t, []int{1, 2, 2, 4, 3, 6, 4, 8}, flatMapped)
 }
+
+func TestGroupBy(t *testing.T) {
+	type Person struct {
+		Name string
+		Age  int
+		City string
+	}
+
+	t.Run("should group by simple key", func(t *testing.T) {
+		items := []int{1, 2, 3, 4, 5, 6}
+		grouped := sliceutils.GroupBy(items, func(n int) string {
+			if n%2 == 0 {
+				return "even"
+			}
+			return "odd"
+		})
+
+		assert.Len(t, grouped, 2)
+		assert.ElementsMatch(t, []int{2, 4, 6}, grouped["even"])
+		assert.ElementsMatch(t, []int{1, 3, 5}, grouped["odd"])
+	})
+
+	t.Run("should group structs by field", func(t *testing.T) {
+		people := []Person{
+			{Name: "Alice", Age: 30, City: "NYC"},
+			{Name: "Bob", Age: 25, City: "LA"},
+			{Name: "Charlie", Age: 30, City: "NYC"},
+			{Name: "David", Age: 25, City: "SF"},
+		}
+
+		byAge := sliceutils.GroupBy(people, func(p Person) int {
+			return p.Age
+		})
+
+		assert.Len(t, byAge, 2)
+		assert.Len(t, byAge[30], 2)
+		assert.Len(t, byAge[25], 2)
+	})
+
+	t.Run("should handle empty slice", func(t *testing.T) {
+		var items []int
+		grouped := sliceutils.GroupBy(items, func(n int) string {
+			return "key"
+		})
+
+		assert.Empty(t, grouped)
+	})
+}
+
+func TestPartition(t *testing.T) {
+	t.Run("should partition by predicate", func(t *testing.T) {
+		items := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+		evens, odds := sliceutils.Partition(items, func(n int) bool {
+			return n%2 == 0
+		})
+
+		assert.ElementsMatch(t, []int{2, 4, 6, 8, 10}, evens)
+		assert.ElementsMatch(t, []int{1, 3, 5, 7, 9}, odds)
+	})
+
+	t.Run("should handle all true", func(t *testing.T) {
+		items := []int{2, 4, 6, 8}
+		evens, odds := sliceutils.Partition(items, func(n int) bool {
+			return n%2 == 0
+		})
+
+		assert.ElementsMatch(t, []int{2, 4, 6, 8}, evens)
+		assert.Empty(t, odds)
+	})
+
+	t.Run("should handle all false", func(t *testing.T) {
+		items := []int{1, 3, 5, 7}
+		evens, odds := sliceutils.Partition(items, func(n int) bool {
+			return n%2 == 0
+		})
+
+		assert.Empty(t, evens)
+		assert.ElementsMatch(t, []int{1, 3, 5, 7}, odds)
+	})
+
+	t.Run("should handle empty slice", func(t *testing.T) {
+		var items []int
+		evens, odds := sliceutils.Partition(items, func(n int) bool {
+			return n%2 == 0
+		})
+
+		assert.Empty(t, evens)
+		assert.Empty(t, odds)
+	})
+}
+
+func TestDistinctBy(t *testing.T) {
+	type Person struct {
+		ID   int
+		Name string
+	}
+
+	t.Run("should get distinct by key", func(t *testing.T) {
+		items := []int{1, 2, 3, 2, 4, 3, 5}
+		distinct := sliceutils.DistinctBy(items, func(n int) int {
+			return n
+		})
+
+		assert.Equal(t, []int{1, 2, 3, 4, 5}, distinct)
+	})
+
+	t.Run("should get distinct structs by field", func(t *testing.T) {
+		people := []Person{
+			{ID: 1, Name: "Alice"},
+			{ID: 2, Name: "Bob"},
+			{ID: 1, Name: "Alice Duplicate"},
+			{ID: 3, Name: "Charlie"},
+			{ID: 2, Name: "Bob Duplicate"},
+		}
+
+		distinct := sliceutils.DistinctBy(people, func(p Person) int {
+			return p.ID
+		})
+
+		assert.Len(t, distinct, 3)
+		assert.Equal(t, 1, distinct[0].ID)
+		assert.Equal(t, 2, distinct[1].ID)
+		assert.Equal(t, 3, distinct[2].ID)
+	})
+
+	t.Run("should handle empty slice", func(t *testing.T) {
+		var items []int
+		distinct := sliceutils.DistinctBy(items, func(n int) int {
+			return n
+		})
+
+		assert.Empty(t, distinct)
+	})
+
+	t.Run("should preserve order of first occurrence", func(t *testing.T) {
+		items := []string{"a", "b", "c", "a", "d", "b"}
+		distinct := sliceutils.DistinctBy(items, func(s string) string {
+			return s
+		})
+
+		assert.Equal(t, []string{"a", "b", "c", "d"}, distinct)
+	})
+}
+
+func TestCountBy(t *testing.T) {
+	type Person struct {
+		Name string
+		Age  int
+	}
+
+	t.Run("should count by key", func(t *testing.T) {
+		items := []int{1, 2, 3, 2, 4, 3, 5, 3}
+		counts := sliceutils.CountBy(items, func(n int) int {
+			return n
+		})
+
+		assert.Equal(t, 1, counts[1])
+		assert.Equal(t, 2, counts[2])
+		assert.Equal(t, 3, counts[3])
+		assert.Equal(t, 1, counts[4])
+		assert.Equal(t, 1, counts[5])
+	})
+
+	t.Run("should count structs by field", func(t *testing.T) {
+		people := []Person{
+			{Name: "Alice", Age: 30},
+			{Name: "Bob", Age: 25},
+			{Name: "Charlie", Age: 30},
+			{Name: "David", Age: 25},
+			{Name: "Eve", Age: 30},
+		}
+
+		counts := sliceutils.CountBy(people, func(p Person) int {
+			return p.Age
+		})
+
+		assert.Equal(t, 3, counts[30])
+		assert.Equal(t, 2, counts[25])
+	})
+
+	t.Run("should handle empty slice", func(t *testing.T) {
+		var items []int
+		counts := sliceutils.CountBy(items, func(n int) int {
+			return n
+		})
+
+		assert.Empty(t, counts)
+	})
+}
