@@ -25,6 +25,12 @@ func TestMustResult(t *testing.T) {
 		})
 	})
 
+	t.Run("should panic with multiple messages including empty", func(t *testing.T) {
+		assert.PanicsWithError(t, "first message third message: test error", func() {
+			MustResult(0, errors.New("test error"), "first message", "", "third message")
+		})
+	})
+
 	t.Run("should work with different types", func(t *testing.T) {
 		result := MustResult("hello", nil)
 		assert.Equal(t, "hello", result)
