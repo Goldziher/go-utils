@@ -1,5 +1,6 @@
 // This package includes utility functions for error handling and exceptions.
-// It provides helpers for common error handling patterns including panic-on-error and safe error checking.
+// It provides helpers for common error handling patterns including panic-on-error,
+// error recovery, and safe error checking.
 
 package exc
 

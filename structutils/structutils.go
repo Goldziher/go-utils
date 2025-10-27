@@ -1,3 +1,6 @@
+// This package includes utility functions for working with structs using reflection.
+// It provides helpers for iterating over struct fields and converting structs to maps.
+
 package structutils
 
 import "reflect"

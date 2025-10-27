@@ -1,3 +1,6 @@
+// This package includes utility functions for URL and query string manipulation.
+// It provides helpers for building query strings from maps and structs.
+
 package urlutils
 
 import (

@@ -1,3 +1,6 @@
+// This package includes utility functions for string manipulation and formatting.
+// It provides helpers for padding, capitalization, and type-safe string conversion.
+
 package stringutils
 
 import (
@@ -197,6 +200,8 @@ func getPaddingString(padWith string, padLength int) string {
 	return builder.String()[:padLength]
 }
 
+// Capitalize capitalizes the first letter of the given string.
+// Returns the string unchanged if empty.
 func Capitalize(str string) string {
 	if str == "" {
 		return str
