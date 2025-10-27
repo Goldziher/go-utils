@@ -1,4 +1,4 @@
-# PadLeft
+# Capitalize
 
 `func Capitalize(str string) string`
 
