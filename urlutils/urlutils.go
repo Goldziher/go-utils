@@ -74,3 +74,99 @@ func QueryStringifyStruct[T any](values T, structTags ...string) string {
 
 	return query.Encode()
 }
+
+// Parse parses a raw URL and returns a URL struct or an error.
+// This is a convenience wrapper around url.Parse.
+func Parse(rawURL string) (*url.URL, error) {
+	return url.Parse(rawURL)
+}
+
+// MustParse parses a raw URL and panics if parsing fails.
+// Use this when you're certain the URL is valid.
+func MustParse(rawURL string) *url.URL {
+	u, err := url.Parse(rawURL)
+	if err != nil {
+		panic(err)
+	}
+	return u
+}
+
+// IsAbsolute returns true if the URL is absolute (has a scheme).
+func IsAbsolute(rawURL string) bool {
+	u, err := url.Parse(rawURL)
+	if err != nil {
+		return false
+	}
+	return u.IsAbs()
+}
+
+// GetDomain extracts the domain (host) from a URL string.
+// Returns empty string if parsing fails or no host is present.
+func GetDomain(rawURL string) string {
+	u, err := url.Parse(rawURL)
+	if err != nil {
+		return ""
+	}
+	return u.Host
+}
+
+// GetScheme extracts the scheme from a URL string.
+// Returns empty string if parsing fails or no scheme is present.
+func GetScheme(rawURL string) string {
+	u, err := url.Parse(rawURL)
+	if err != nil {
+		return ""
+	}
+	return u.Scheme
+}
+
+// GetPath extracts the path from a URL string.
+// Returns empty string if parsing fails.
+func GetPath(rawURL string) string {
+	u, err := url.Parse(rawURL)
+	if err != nil {
+		return ""
+	}
+	return u.Path
+}
+
+// AddQuery adds a query parameter to a URL.
+// Returns a new URL with the query parameter added.
+func AddQuery(u *url.URL, key, value string) *url.URL {
+	q := u.Query()
+	q.Add(key, value)
+	newURL := *u
+	newURL.RawQuery = q.Encode()
+	return &newURL
+}
+
+// SetQuery sets a query parameter in a URL, replacing any existing values.
+// Returns a new URL with the query parameter set.
+func SetQuery(u *url.URL, key, value string) *url.URL {
+	q := u.Query()
+	q.Set(key, value)
+	newURL := *u
+	newURL.RawQuery = q.Encode()
+	return &newURL
+}
+
+// RemoveQuery removes a query parameter from a URL.
+// Returns a new URL with the query parameter removed.
+func RemoveQuery(u *url.URL, key string) *url.URL {
+	q := u.Query()
+	q.Del(key)
+	newURL := *u
+	newURL.RawQuery = q.Encode()
+	return &newURL
+}
+
+// GetQuery retrieves the value of a query parameter from a URL.
+// Returns empty string if the parameter doesn't exist.
+func GetQuery(u *url.URL, key string) string {
+	return u.Query().Get(key)
+}
+
+// HasQuery checks if a URL has a specific query parameter.
+func HasQuery(u *url.URL, key string) bool {
+	return u.Query().Has(key)
+}
