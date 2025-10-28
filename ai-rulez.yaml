@@ -12,7 +12,7 @@ mcp_servers:
 metadata:
     description: A comprehensive Go utility library providing collection manipulation functions inspired by JavaScript and Python, leveraging Go 1.18+ generics for type-safe operations on slices, maps, structs, dates, strings, and URLs with utilities like filter, map, reduce, merge, flatten, and query string builders.
     name: go-utils
-    version: 1.0.0
+    version: 1.9.0
 presets:
     - popular
 rules:
