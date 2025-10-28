@@ -2,438 +2,438 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://goldziher.github.io/go-utils/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/contributing/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/dateutils/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/dateutils/ceil/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/dateutils/floor/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/dateutils/overlap/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/allErr/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/catch/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/firstErr/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/ignoreErr/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/must/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/mustNotNil/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/mustResult/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/recoverWithValue/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/retry/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/retryWithResult/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/returnAnyErr/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/returnNotNil/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/excutils/try/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/drop/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/filter/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/forEach/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/fromEntries/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/get/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/groupBy/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/has/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/invert/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/keys/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/map/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/mapKeys/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/merge/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/omit/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/pick/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/toEntries/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/maputils/values/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/mathutils/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/mathutils/abs/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/mathutils/average/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/mathutils/clamp/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/mathutils/gcd/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/mathutils/inRange/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/mathutils/isPrime/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/mathutils/lcm/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/ptrutils/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/ptrutils/coalesce/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/ptrutils/deref/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/ptrutils/derefSlice/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/ptrutils/equal/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/ptrutils/isNil/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/ptrutils/nonNilSlice/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/ptrutils/to/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/ptrutils/toPointerSlice/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/ptrutils/toSlice/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/chunk/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/compact/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/countBy/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/difference/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/distinctBy/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/ensureUniqueAndAppend/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/every/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/filter/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/find/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/findIndex/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/findIndexes/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/findIndexesOf/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/findLastIndex/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/findLastIndexOf/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/flatMap/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/flatten/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/forEach/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/groupBy/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/head/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/initial/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/intersection/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/last/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/map/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/maxBy/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/minBy/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/partition/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/pluck/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/reduce/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/remove/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/reverse/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/skip/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/skipLast/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/skipWhile/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/some/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/sum/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/tail/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/take/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/takeLast/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/takeWhile/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/union/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/unique/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/sliceutils/windows/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/stringutils/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/stringutils/capitalize/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/stringutils/padLeft/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/stringutils/padRight/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/stringutils/stringify/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/structutils/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/structutils/forEach/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/structutils/toMap/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/urlutils/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/urlutils/queryStringifyMap/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
     <url>
          <loc>https://goldziher.github.io/go-utils/urlutils/queryStringifyStruct/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-10-28</lastmod>
     </url>
 </urlset>
