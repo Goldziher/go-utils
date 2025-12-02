@@ -92,6 +92,13 @@ func TestFindIndex(t *testing.T) {
 	)
 }
 
+func TestFindIndexOf(t *testing.T) {
+	expectedResult := 3
+	actualResult := sliceutils.FindIndexOf(days, "Wednesday")
+	assert.Equal(t, expectedResult, actualResult)
+	assert.Equal(t, -1, sliceutils.FindIndexOf(days, "Rishon"))
+}
+
 func TestFindLastIndex(t *testing.T) {
 	expectedResult := 2
 	actualResult := sliceutils.FindLastIndex(
@@ -149,6 +156,11 @@ func TestFindIndexesOf(t *testing.T) {
 	assert.Nil(t, sliceutils.FindIndexesOf(lastNames, "Hamudi"))
 }
 
+func TestIncludes(t *testing.T) {
+	assert.True(t, sliceutils.Includes(numerals, 1))
+	assert.False(t, sliceutils.Includes(numerals, 11))
+}
+
 func TestAny(t *testing.T) {
 	assert.True(t, sliceutils.Some(numerals, func(value int, _ int, _ []int) bool {
 		return value%5 == 0
@@ -165,6 +177,14 @@ func TestAll(t *testing.T) {
 	assert.False(t, sliceutils.Every([]int{1, 1, 1, 2}, func(value int, _ int, _ []int) bool {
 		return value == 1
 	}))
+}
+
+func TestMerge(t *testing.T) {
+	result := sliceutils.Merge(numerals[:5], numerals[5:])
+	assert.Equal(t, numerals, result)
+
+	assert.Nil(t, sliceutils.Merge([]int(nil), []int(nil)))
+	assert.Nil(t, sliceutils.Merge([]int{}, []int{}))
 }
 
 func TestSum(t *testing.T) {
@@ -190,6 +210,22 @@ func TestRemove(t *testing.T) {
 	assert.Equal(t, []int{}, result)
 	result = sliceutils.Remove(result, 1)
 	assert.Equal(t, []int{}, result)
+}
+
+func TestCopy(t *testing.T) {
+	testSlice := []int{1, 2, 3}
+	copiedSlice := sliceutils.Copy(testSlice)
+	copiedSlice[0] = 2
+	assert.NotEqual(t, testSlice, copiedSlice)
+}
+
+func TestInsert(t *testing.T) {
+	testSlice := []int{1, 2}
+	result := sliceutils.Insert(testSlice, 0, 3)
+	assert.Equal(t, []int{3, 1, 2}, result)
+	assert.NotEqual(t, testSlice, result)
+	assert.Equal(t, []int{1, 3, 2}, sliceutils.Insert(testSlice, 1, 3))
+	assert.Equal(t, []int{1, 2, 3}, sliceutils.Insert(testSlice, 2, 3))
 }
 
 func TestIntersection(t *testing.T) {

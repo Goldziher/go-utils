@@ -115,14 +115,17 @@ nav:
           - Search Operations:
               - Find: sliceutils/find.md
               - FindIndex: sliceutils/findIndex.md
+              - FindIndexOf: sliceutils/findIndexOf.md
               - FindIndexes: sliceutils/findIndexes.md
               - FindIndexesOf: sliceutils/findIndexesOf.md
               - FindLastIndex: sliceutils/findLastIndex.md
               - FindLastIndexOf: sliceutils/findLastIndexOf.md
+              - Includes: sliceutils/includes.md
           - Predicates:
               - Some: sliceutils/some.md
               - Every: sliceutils/every.md
           - Set Operations:
+              - Merge: sliceutils/merge.md
               - Union: sliceutils/union.md
               - Intersection: sliceutils/intersection.md
               - Difference: sliceutils/difference.md
@@ -133,6 +136,7 @@ nav:
               - DistinctBy: sliceutils/distinctBy.md
               - CountBy: sliceutils/countBy.md
           - Selection:
+              - Insert: sliceutils/insert.md
               - Take: sliceutils/take.md
               - Skip: sliceutils/skip.md
               - TakeLast: sliceutils/takeLast.md
@@ -154,6 +158,7 @@ nav:
               - Chunk: sliceutils/chunk.md
               - Pluck: sliceutils/pluck.md
           - Utilities:
+              - Copy: sliceutils/copy.md
               - Remove: sliceutils/remove.md
               - EnsureUniqueAndAppend: sliceutils/ensureUniqueAndAppend.md
               - Sum: sliceutils/sum.md
@@ -168,6 +173,7 @@ nav:
               - ForEach: maputils/forEach.md
               - Merge: maputils/merge.md
               - Drop: maputils/drop.md
+              - Copy: maputils/copy.md
           - Transformations:
               - Map: maputils/map.md
               - MapKeys: maputils/mapKeys.md
@@ -241,6 +247,8 @@ nav:
           - Overview: dateutils/index.md
           - Floor: dateutils/floor.md
           - Ceil: dateutils/ceil.md
+          - BeforeOrEqual: dateutils/beforeorequal.md
+          - AfterOrEqual: dateutils/afterorequal.md
           - Overlap: dateutils/overlap.md
       - urlutils:
           - Overview: urlutils/index.md

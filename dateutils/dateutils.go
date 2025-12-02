@@ -15,6 +15,24 @@ func Ceil(t time.Time) time.Time {
 	return Floor(t.Add(time.Hour * 24)).Add(time.Second * -1)
 }
 
+// BeforeOrEqual returns true if date is before or equal to milestone.
+//
+// Deprecated: Use the standard library comparison helpers directly:
+//
+//	!date.After(milestone)
+func BeforeOrEqual(milestone time.Time, date time.Time) bool {
+	return !date.After(milestone)
+}
+
+// AfterOrEqual returns true if date is after or equal to milestone.
+//
+// Deprecated: Use the standard library comparison helpers directly:
+//
+//	!date.Before(milestone)
+func AfterOrEqual(milestone time.Time, date time.Time) bool {
+	return !date.Before(milestone)
+}
+
 // Overlap - returns true if two date intervals overlap.
 func Overlap(start1 time.Time, end1 time.Time, start2 time.Time, end2 time.Time) bool {
 	beforeOrEqual := func(milestone, date time.Time) bool {

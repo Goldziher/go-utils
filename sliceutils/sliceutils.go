@@ -81,6 +81,16 @@ func FindIndex[T any](slice []T, predicate func(value T, index int, slice []T) b
 	return -1
 }
 
+// FindIndexOf - given a slice of type T and a value of type T, return ths first index of an element equal to value.
+// If no element is found, -1 is returned.
+//
+// Deprecated: Use slices.Index from the standard library instead:
+//
+//	index := slices.Index(slice, value)
+func FindIndexOf[T comparable](slice []T, value T) int {
+	return slices.Index(slice, value)
+}
+
 // FindLastIndex - given a slice of type T, executes the passed in predicate function for each element in the slice starting from its end.
 // If no element is found, -1 is returned. The function is passed the current element, the current index and the slice itself as function arguments.
 func FindLastIndex[T any](slice []T, predicate func(value T, index int, slice []T) bool) int {
@@ -130,6 +140,16 @@ func FindIndexesOf[T comparable](slice []T, value T) []int {
 	return indexes
 }
 
+// Includes - given a slice of type T and a value of type T, determines whether the value is contained by the slice.
+// Note: T is constrained to comparable types only and comparison is determined using the equality operator.
+//
+// Deprecated: Use slices.Contains from the standard library instead:
+//
+//	found := slices.Contains(slice, value)
+func Includes[T comparable](slice []T, value T) bool {
+	return slices.Contains(slice, value)
+}
+
 // Some - given a slice of type T, executes the given predicate for each element of the slice.
 // If the predicate returns true for any element, it returns true, otherwise it returns false.
 // The function is passed the current element, the current index and the slice itself as function arguments.
@@ -154,6 +174,17 @@ func Every[T any](slice []T, predicate func(value T, index int, slice []T) bool)
 	return true
 }
 
+// Merge - receives slices of type T and merges them into a single slice of type T.
+// Note: The elements are merged in their order in a slice,
+// i.e. first the elements of the first slice, then that of the second and so forth.
+//
+// Deprecated: Use slices.Concat from the standard library instead:
+//
+//	merged := slices.Concat(slice1, slice2)
+func Merge[T any](inputSlices ...[]T) (mergedSlice []T) {
+	return slices.Concat(inputSlices...)
+}
+
 // Sum - receives a slice of type T and returns a value T that is the sum of the numbers.
 // Note: T is constrained to be a number type.
 func Sum[T constraints.Complex | constraints.Integer | constraints.Float](slice []T) (result T) {
@@ -161,6 +192,26 @@ func Sum[T constraints.Complex | constraints.Integer | constraints.Float](slice 
 		result += el
 	}
 	return result
+}
+
+// Insert - receives a slice of type T, an index and a value.
+// The value is inserted at the given index. If there is an existing value at this index, it is shifted to the next index.
+// Note: this function does not modify the input slice.
+//
+// Deprecated: Use slices.Insert from the standard library instead:
+//
+//	inserted := slices.Insert(slice, index, value)
+func Insert[T any](slice []T, i int, value T) []T {
+	return slices.Insert(slice, i, value)
+}
+
+// Copy - receives a slice of type T and copies it.
+//
+// Deprecated: Use slices.Clone from the standard library instead:
+//
+//	cloned := slices.Clone(slice)
+func Copy[T any](slice []T) []T {
+	return slices.Clone(slice)
 }
 
 // Remove - receives a slice of type T and an index, removing the element at the given index.
