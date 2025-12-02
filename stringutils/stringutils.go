@@ -86,59 +86,82 @@ func parseOptions(opts ...Options) Options {
 func Stringify(value any, opts ...Options) string {
 	options := parseOptions(opts...)
 
-	// first use a type switch, because its more performant
-	switch assigned := value.(type) {
-	case string:
-		return assigned
-	case bool:
-		return strconv.FormatBool(assigned)
-	case nil:
+	if value == nil {
 		return options.NilFormat
-	case []byte:
-		return string(assigned)
-	case int:
-		return strconv.FormatInt(int64(assigned), options.Base)
-	case int8:
-		return strconv.FormatInt(int64(assigned), options.Base)
-	case int16:
-		return strconv.FormatInt(int64(assigned), options.Base)
-	case int32:
-		return strconv.FormatInt(int64(assigned), options.Base)
-	case int64:
-		return strconv.FormatInt(assigned, options.Base)
-	case uint:
-		return strconv.FormatUint(uint64(assigned), options.Base)
-	case uint8:
-		return strconv.FormatUint(uint64(assigned), options.Base)
-	case uint16:
-		return strconv.FormatUint(uint64(assigned), options.Base)
-	case uint32:
-		return strconv.FormatUint(uint64(assigned), options.Base)
-	case uint64:
-		return strconv.FormatUint(assigned, options.Base)
-	case float32:
-		return strconv.FormatFloat(float64(assigned), options.Format, options.Precision, 32)
-	case float64:
-		return strconv.FormatFloat(assigned, options.Format, options.Precision, 64)
-	case complex64:
-		return strconv.FormatComplex(complex128(assigned), options.Format, options.Precision, 64)
-	case complex128:
-		return strconv.FormatComplex(assigned, options.Format, options.Precision, 128)
-	case fmt.Stringer:
-		return assigned.String()
-	case fmt.GoStringer:
-		return assigned.GoString()
 	}
 
-	// fallback now to using reflection
-	switch reflect.TypeOf(value).Kind() {
+	if primitive, ok := stringifyPrimitive(value, options); ok {
+		return primitive
+	}
+
+	return stringifyReflect(value, options)
+}
+
+func stringifyPrimitive(value any, options Options) (string, bool) {
+	switch assigned := value.(type) {
+	case string:
+		return assigned, true
+	case bool:
+		return strconv.FormatBool(assigned), true
+	case []byte:
+		return string(assigned), true
+	case int:
+		return strconv.FormatInt(int64(assigned), options.Base), true
+	case int8:
+		return strconv.FormatInt(int64(assigned), options.Base), true
+	case int16:
+		return strconv.FormatInt(int64(assigned), options.Base), true
+	case int32:
+		return strconv.FormatInt(int64(assigned), options.Base), true
+	case int64:
+		return strconv.FormatInt(assigned, options.Base), true
+	case uint:
+		return strconv.FormatUint(uint64(assigned), options.Base), true
+	case uint8:
+		return strconv.FormatUint(uint64(assigned), options.Base), true
+	case uint16:
+		return strconv.FormatUint(uint64(assigned), options.Base), true
+	case uint32:
+		return strconv.FormatUint(uint64(assigned), options.Base), true
+	case uint64:
+		return strconv.FormatUint(assigned, options.Base), true
+	case float32:
+		return strconv.FormatFloat(float64(assigned), options.Format, options.Precision, 32), true
+	case float64:
+		return strconv.FormatFloat(assigned, options.Format, options.Precision, 64), true
+	case complex64:
+		return strconv.FormatComplex(complex128(assigned), options.Format, options.Precision, 64), true
+	case complex128:
+		return strconv.FormatComplex(assigned, options.Format, options.Precision, 128), true
+	case fmt.Stringer:
+		return assigned.String(), true
+	case fmt.GoStringer:
+		return assigned.GoString(), true
+	default:
+		return "", false
+	}
+}
+
+func stringifyReflect(value any, options Options) string {
+	typeOf := reflect.TypeOf(value)
+	if typeOf == nil {
+		return fmt.Sprintf("%v", value)
+	}
+
+	switch typeOf.Kind() {
+	case reflect.Ptr:
+		v := reflect.ValueOf(value)
+		if v.IsNil() {
+			return options.NilFormat
+		}
+		return Stringify(v.Elem().Interface(), options)
 	case reflect.Map:
 		v := reflect.ValueOf(value)
 		if v.IsNil() {
 			return options.NilMapFormat
 		}
 
-		elements := make([]string, 0)
+		elements := make([]string, 0, v.Len())
 		for _, mapKey := range v.MapKeys() {
 			mapValue := v.MapIndex(mapKey)
 			elements = append(
@@ -160,16 +183,19 @@ func Stringify(value any, opts ...Options) string {
 		if s.IsNil() {
 			return options.NilSliceFormat
 		}
+		if s.Len() == 0 {
+			return "[]"
+		}
 
 		elements := make([]string, s.Len())
 		for i := 0; i < s.Len(); i++ {
 			elements[i] = Stringify(s.Index(i).Interface(), options)
 		}
 		return "[" + strings.Join(elements, ", ") + "]"
+	default:
+		// fallback to fmt when no specialized handling is available
+		return fmt.Sprintf("%v", value)
 	}
-
-	// finally, we use the least performant solution, which is to fmt.Sprintf the value
-	return fmt.Sprintf("%v", value)
 }
 
 // PadLeft - Pad a string to a certain length (in bytes) with another string on the left side.
