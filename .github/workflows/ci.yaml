@@ -32,7 +32,7 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Load Cached Prek Dependencies
         id: cached-prek-dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/prek/
           key: prek|${{ env.pythonLocation }}|${{ hashFiles('.pre-commit-config.yaml') }}
@@ -47,7 +47,7 @@ jobs:
           go-version: "1.25"
       - name: Load cached dependencies
         id: cached-go-dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.cache/go-build
