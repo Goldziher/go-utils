@@ -3,7 +3,7 @@
 `func PadLeft(str string, padWith string, padTo int) string`
 
 PadLeft - Pad a string to a certain length with another string on the left side.
-If padding string is more than one char, it might be trucated to fit padTo size.
+If padding string is more than one char, it might be truncated to fit padTo size.
 
 ```go
 package main
