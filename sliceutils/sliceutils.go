@@ -81,7 +81,7 @@ func FindIndex[T any](slice []T, predicate func(value T, index int, slice []T) b
 	return -1
 }
 
-// FindIndexOf - given a slice of type T and a value of type T, return ths first index of an element equal to value.
+// FindIndexOf - given a slice of type T and a value of type T, return the first index of an element equal to value.
 // If no element is found, -1 is returned.
 //
 // Deprecated: Use slices.Index from the standard library instead:
