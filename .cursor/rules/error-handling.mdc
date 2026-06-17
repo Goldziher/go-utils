@@ -1,0 +1,7 @@
+# error-handling
+# Content-Hash: blake3:ab6a33cda633294e19dc1de49d09f3b7953c83ed160ad1f0bd9195f25addb2bd
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** high
+
+Always wrap errors with context describing what operation failed. Never swallow errors silently — either handle, propagate, or log them. Use language-idiomatic patterns: `Result<T, E>` in Rust, `if err != nil` with `fmt.Errorf("doing X: %w", err)` in Go, typed exceptions in Python/Java. Fail fast on unrecoverable errors.

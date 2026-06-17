@@ -1,0 +1,9 @@
+# code-quality
+# Content-Hash: blake3:cbab6eee2502e4a876b6d98cbe0087884543fe1aabecda8be2f64a26f406c036
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** high
+
+# Code Quality
+
+All code must pass golangci-lint checks using the configuration in .golangci.yml. Pre-commit hooks (.pre-commit-config.yaml) enforce linting standards. Address all linter warnings before committing.

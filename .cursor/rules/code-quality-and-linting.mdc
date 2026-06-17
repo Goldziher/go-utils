@@ -1,0 +1,9 @@
+# code-quality-and-linting
+# Content-Hash: blake3:393192718e2cdbf4c2c50dd41f8da08600567a88ddc39b448c931c7f982cc59c
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** high
+
+# Code Quality and Linting
+
+All code must pass golangci-lint checks as configured in .golangci.yml before commits. Use pre-commit hooks (.pre-commit-config.yaml) to enforce quality gates. Maintain Go Report Card A+ rating and address all SonarCloud quality gate issues including maintainability, reliability, and security ratings.

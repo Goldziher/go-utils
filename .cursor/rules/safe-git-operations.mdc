@@ -1,0 +1,9 @@
+# safe-git-operations
+# Content-Hash: blake3:b933f8556950f5c35a2ceaedd4a7957897d1d7b5d669e1591a9dd3cfe5281aa9
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** critical
+
+# Safe Git Operations
+
+Never force-push to shared branches. Always pull before pushing. Use `--force-with-lease` instead of `--force` when necessary. Confirm destructive operations with the user.

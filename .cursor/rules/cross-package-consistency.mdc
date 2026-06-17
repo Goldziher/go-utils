@@ -1,0 +1,9 @@
+# cross-package-consistency
+# Content-Hash: blake3:912623f310f046dfa171d3d6bbbd6125c555192ae42d549e47e397a801218f19
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** medium
+
+# Cross-Package Consistency
+
+Maintain naming and behavior consistency across utility packages. Similar operations should use similar names (e.g., Filter, Map, ForEach exist in both sliceutils and maputils). Function signatures should follow established patterns for predicates, mappers, and reducers.

@@ -1,0 +1,9 @@
+# error-handling-and-panics
+# Content-Hash: blake3:4ab81307f1e90f0967d387c320d45c6eb941605f89fbdf4726ff7f8564b07866
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** high
+
+# Error Handling and Panics
+
+Utility functions should not panic except for truly unrecoverable errors. Prefer returning error values or boolean success indicators. Document panic conditions explicitly in godoc comments if unavoidable (e.g., reflection-based operations in structutils).

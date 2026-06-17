@@ -7,3 +7,14 @@ description = 'A comprehensive Go utility library providing collection manipulat
 gitignore = true
 presets = ['claude', 'cursor', 'gemini', 'windsurf', 'copilot', 'amp']
 builtins = ['go', 'default-commands']
+
+[[marketplaces]]
+name = "basemind"
+source = "Goldziher/basemind"
+type = "github"
+
+[[plugins]]
+marketplace = "basemind"
+name = "basemind"
+scope = "project"
+enabled = true

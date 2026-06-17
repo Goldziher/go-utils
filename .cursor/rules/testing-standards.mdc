@@ -1,0 +1,9 @@
+# testing-standards
+# Content-Hash: blake3:c43b003d87dcc519cdfc9ea771ab7abc3ca32ee9fb45759d05d576c81023d4bd
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** critical
+
+# Testing Standards
+
+Write comprehensive table-driven tests in *_test.go files for every exported function. Maintain high code coverage as monitored by SonarCloud. Run tests with 'go test ./...' and ensure all tests pass before committing.

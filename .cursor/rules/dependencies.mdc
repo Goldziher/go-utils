@@ -1,0 +1,9 @@
+# dependencies
+# Content-Hash: blake3:d061036b14fb0a6decdd374fc60b9ff067de25c41d77e79e3215c3530b658d42
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** medium
+
+# Dependencies
+
+Minimize external dependencies to maintain utility library simplicity. Use Go standard library whenever possible. Dependencies are managed via go.mod and monitored by Dependabot. Justify any new dependency additions.

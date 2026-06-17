@@ -1,0 +1,9 @@
+# package-organization
+# Content-Hash: blake3:074ce7e5583b2d132a5323285a47f9a06c88540797155dc62f7bd76fbb6a6ec2
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** high
+
+# Package Organization
+
+Organize code into focused utility packages (dateutils, sliceutils, maputils, stringutils, structutils, urlutils). Each package should contain a single Go file with implementation and a corresponding _test.go file. Keep packages flat - no nested subpackages.

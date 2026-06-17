@@ -1,0 +1,9 @@
+# cicd-and-dependencies
+# Content-Hash: blake3:cd23e13883d66eaa3d7e44e41d23751b470af01ad6b77f943ee4a8c891ce3fd0
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** medium
+
+# CI/CD and Dependencies
+
+All changes must pass GitHub Actions CI pipeline (.github/workflows/ci.yaml) including tests, linting, and security checks. Keep dependencies minimal and up-to-date using Dependabot. Verify compatibility with the latest stable Go version and document any version-specific requirements in go.mod.

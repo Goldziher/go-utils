@@ -1,0 +1,9 @@
+# least-privilege
+# Content-Hash: blake3:1f10c89a72efc527e26c1fdac2b16d623fbe1f97816fc5ee707304dbabc6806c
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** medium
+
+# Least Privilege
+
+Request only necessary permissions. Minimize file system access, network access, and API scopes. Run processes with minimal required privileges.

@@ -1,0 +1,7 @@
+# commit-messages
+# Content-Hash: blake3:afd2cef5b607c5a38f65c8010b03698dae09ad8b2e709ab0b7c28c1b2286c5a2
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** high
+
+Use conventional commits: `feat: add user auth`, `fix: handle null input`, `chore: update deps`, `refactor: extract parser`, `docs: add API guide`, `test: cover edge case`. First line under 72 chars, imperative mood. Body explains *why*, not *what*. Add scope when useful: `feat(api): add pagination`.

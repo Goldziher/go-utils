@@ -1,0 +1,9 @@
+# generics-usage
+# Content-Hash: blake3:7e21dc9371b13638841f7a36f04a91a13062deaa955a982af64b12110a902884
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** critical
+
+# Generics Usage
+
+Leverage Go 1.18+ generics extensively for type-safe utility functions. Use constraint types (comparable, any) appropriately. All slice and map utilities must use generic type parameters to maintain API simplicity across different types.

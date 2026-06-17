@@ -1,0 +1,9 @@
+# linting-compliance
+# Content-Hash: blake3:9724e4d0da50d528d224aa6cfdf6368c7f88799d834dc5d30983aa10ec3b4710
+# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+
+**Priority:** medium
+
+# Linting Compliance
+
+All code must pass golangci-lint checks defined in .golangci.yml before committing. Run 'golangci-lint run' locally. Address all issues or add justified nolint directives with explanations. Pre-commit hooks enforce this automatically.
