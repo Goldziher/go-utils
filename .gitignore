@@ -8,13 +8,10 @@ site/
 .cache/
 .venv/
 
-# AI Rules generated files
-.claude/
-.cursor/
-.gemini/
-.windsurf/
-.github/copilot-instructions.md
-.mcp.json
-AGENTS.md
-CLAUDE.md
-GEMINI.md
+# BEGIN ai-rulez (DO NOT EDIT - managed by ai-rulez)
+.agents/
+.ai-rulez/.generated-manifest.json
+.github/agents/
+.github/commands/
+.github/skills/
+# END ai-rulez
