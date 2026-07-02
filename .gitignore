@@ -15,3 +15,5 @@ site/
 .github/commands/
 .github/skills/
 # END ai-rulez
+
+.polylint/

@@ -19,6 +19,7 @@ The `sliceutils` package provides type-safe generic functions for slice manipula
 ## When to use stdlib vs sliceutils
 
 **Use stdlib `slices` for**:
+
 - `slices.Index(slice, value)` - find index of value
 - `slices.Contains(slice, value)` - check if slice contains value
 - `slices.Clone(slice)` - copy a slice
@@ -26,6 +27,7 @@ The `sliceutils` package provides type-safe generic functions for slice manipula
 - `slices.Sort(slice)` - sort a slice
 
 **Use sliceutils for**:
+
 - Functional patterns with callbacks (Map, Filter, Reduce)
 - LINQ-style operations (GroupBy, Partition, DistinctBy)
 - Complex search operations (FindIndex with predicate)

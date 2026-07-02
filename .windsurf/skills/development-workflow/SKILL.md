@@ -10,6 +10,7 @@ description: "development-workflow"
 ## Development Workflow
 
 ### Prerequisites
+
 - Go 1.18+ (required for generics support)
 - pre-commit (for git hooks)
 - golangci-lint (for linting)
@@ -71,6 +72,7 @@ git commit -m "test: add coverage for stringutils.Capitalize"
 ### CI Pipeline
 
 The project uses GitHub Actions (`.github/workflows/ci.yaml` and `.github/workflows/docs.yaml`) to:
+
 - Run tests across multiple Go versions
 - Check code coverage
 - Run linters

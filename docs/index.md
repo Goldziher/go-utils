@@ -21,6 +21,7 @@ go get -u github.com/Goldziher/go-utils
 ## Packages
 
 ### sliceutils
+
 Functional operations and LINQ-style utilities for slices.
 
 ```go
@@ -40,6 +41,7 @@ adults, minors := sliceutils.Partition(users, func(u User) bool { return u.Age >
 ```
 
 ### maputils
+
 Map transformations and utilities.
 
 ```go
@@ -52,6 +54,7 @@ filtered := maputils.Filter(m, func(k string, v int) bool { return v > 1 })
 ```
 
 ### stringutils
+
 String manipulation with type-safe conversion.
 
 ```go
@@ -66,6 +69,7 @@ capitalized := stringutils.Capitalize("hello")  // "Hello"
 ```
 
 ### structutils
+
 Reflection-based struct utilities with tag support.
 
 ```go
@@ -81,6 +85,7 @@ m := structutils.ToMap(cfg, "json")  // map[string]any{"host": "localhost", "por
 ```
 
 ### dateutils
+
 Time and date utilities for business logic.
 
 ```go
@@ -97,6 +102,7 @@ age := dateutils.Age(birthdate)
 ```
 
 ### urlutils
+
 URL parsing and query string builders.
 
 ```go
@@ -116,6 +122,7 @@ query := urlutils.QueryStringifyStruct(q, "qs")
 ```
 
 ### mathutils
+
 Generic math operations with type constraints.
 
 ```go

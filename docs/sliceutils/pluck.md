@@ -1,6 +1,6 @@
 # Pluck
 
-`func Pluck[I any, O any](input []I, getter func(I) *O) []O `
+`func Pluck[I any, O any](input []I, getter func(I) *O) []O`
 
 Pluck receives a slice of type I and a getter func to a field and returns an array containing requested field from each slice's item.
 

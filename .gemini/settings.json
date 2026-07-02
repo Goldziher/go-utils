@@ -1,11 +1,7 @@
 {
   "mcpServers": {
     "ai-rulez": {
-      "args": [
-        "-y",
-        "ai-rulez@latest",
-        "mcp"
-      ],
+      "args": ["-y", "ai-rulez@latest", "mcp"],
       "command": "npx"
     }
   }

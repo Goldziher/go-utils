@@ -13,7 +13,7 @@ description: "project-architecture"
 
 go-utils is organized into specialized utility packages, each focused on a specific data type:
 
-```
+```text
 go-utils/
 ├── dateutils/      # Time and date manipulation utilities
 ├── maputils/       # Generic map operations
@@ -52,6 +52,7 @@ maputils.ForEach(m, func(key K, value V) { ... })
 **3. Zero-Cost Abstractions**
 
 Functions are designed for performance with minimal overhead:
+
 - Pre-allocated slices where sizes are known
 - In-place operations where appropriate
 - Efficient iteration patterns

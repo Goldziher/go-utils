@@ -1,6 +1,6 @@
 # Chunk
 
-`func Chunk[T any](input []T, size int) [][]T `
+`func Chunk[T any](input []T, size int) [][]T`
 
 Unique takes a slice of type T and size N and returns a slice of slices T of size N.
 
