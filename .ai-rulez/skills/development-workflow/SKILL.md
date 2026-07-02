@@ -9,7 +9,7 @@ description: "development-workflow"
 
 ### Prerequisites
 - Go 1.18+ (required for generics support)
-- pre-commit (for git hooks)
+- poly (for linting and formatting)
 - golangci-lint (for linting)
 
 ### Initial Setup
@@ -21,10 +21,9 @@ cd /Users/naamanhirschfeld/workspace/go-utils
 # Install dependencies
 go mod download
 
-# Install pre-commit hooks
-pre-commit install && \
-  pre-commit install --hook-type commit-msg && \
-  pre-commit install-hooks
+# poly runs in CI via the shared reusable validate workflow.
+# Verify locally before committing:
+poly fmt --check . && poly lint .
 ```
 
 ### Running Tests
@@ -56,7 +55,7 @@ golangci-lint run --fix
 
 ### Commit Convention
 
-This project enforces [Conventional Commits](https://www.conventionalcommits.org/) via pre-commit hooks:
+This project enforces [Conventional Commits](https://www.conventionalcommits.org/) via poly:
 
 ```bash
 # Valid commit message examples

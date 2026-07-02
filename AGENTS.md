@@ -1,7 +1,7 @@
 <!--
 🤖 AI-RULEZ :: GENERATED FILE — DO NOT EDIT DIRECTLY
 Project: go-utils
-Generated: 2026-06-17 20:42:33
+Generated: 2026-07-02 13:43:15
 Source: .ai-rulez/config.toml
 Target: AGENTS.md
 Content: rules=53, sections=0, agents=4
@@ -46,8 +46,8 @@ INSTRUCTIONS FOR AI AGENTS
    c. Commit both .ai-rulez/ and generated files
 
 Documentation: https://github.com/Goldziher/ai-rulez
-Content-Hash: blake3:b85a3145191821034cbebb4e2a3dad579073c69fc0cdb805d741b4788809a230
-Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+Content-Hash: blake3:46b835f035bc332094088937e37c7540742517c95574b91b3b80f4f6e5b2db74
+Source-Hash: blake3:eaa42de7df861e1ff8ea78c6a8c011f4d885ae53d1f873595de7f20694258d5c
 -->
 
 # go-utils
@@ -108,13 +108,13 @@ Ensure code passes all GitHub Actions workflows (ci.yaml, docs.yaml). CI runs te
 
 **Priority:** high
 
-All code must pass golangci-lint checks using the configuration in .golangci.yml. Pre-commit hooks (.pre-commit-config.yaml) enforce linting standards. Address all linter warnings before committing.
+All code must pass golangci-lint checks using the configuration in .golangci.yml. poly (poly.toml) enforces linting standards; run `poly lint .` and `poly fmt --check .`. Address all linter warnings before committing.
 
 ### code-quality-and-linting
 
 **Priority:** high
 
-All code must pass golangci-lint checks as configured in .golangci.yml before commits. Use pre-commit hooks (.pre-commit-config.yaml) to enforce quality gates. Maintain Go Report Card A+ rating and address all SonarCloud quality gate issues including maintainability, reliability, and security ratings.
+All code must pass golangci-lint checks as configured in .golangci.yml before commits. Use poly (poly.toml) to enforce quality gates; run `poly lint .` and `poly fmt --check .`. Maintain Go Report Card A+ rating and address all SonarCloud quality gate issues including maintainability, reliability, and security ratings.
 
 ### commit-messages
 
@@ -263,7 +263,7 @@ Request only necessary permissions. Minimize file system access, network access,
 
 **Priority:** medium
 
-All code must pass golangci-lint checks defined in .golangci.yml before committing. Run 'golangci-lint run' locally. Address all issues or add justified nolint directives with explanations. Pre-commit hooks enforce this automatically.
+All code must pass golangci-lint checks defined in .golangci.yml before committing. Run 'golangci-lint run' locally. Address all issues or add justified nolint directives with explanations. poly enforces this automatically via the shared reusable validate workflow in CI.
 
 ### meaningful-assertions
 
@@ -411,6 +411,27 @@ Verify assumptions before taking action. Check current state (branch, working di
 8. **Data Integrity Failures** — verify software updates, use signed artifacts and checksums.
 9. **Logging Failures** — log all security events with context, protect log data from tampering.
 10. **SSRF** — validate and allowlist URLs, restrict outbound network requests.
+
+### poly
+
+poly (polylint) is a single-binary, multi-language linter and formatter. It bundles engines (ruff, oxc, taplo, rumdl) and delegates to native tools (cargo fmt/clippy, golangci-lint, actionlint, shellcheck, shfmt) when present.
+
+## Commands
+- Lint: `poly lint .`
+- Check formatting (dry-run): `poly fmt --check .`
+- Apply formatting: `poly fmt --fix .`
+- Apply lint autofixes: `poly lint --fix .`
+
+## Configuration
+Per-repo `poly.toml`. Cache dir `.polylint/` (gitignored).
+
+## Severity
+`poly lint` exits non-zero only on error-severity findings; warnings don't fail CI.
+
+## CI
+Validation runs via `uses: xberg-io/actions/.github/workflows/reusable-validate.yml@v1`.
+
+Run `poly fmt --check .` and `poly lint .` after changes to verify compliance.
 
 ## Agents
 
