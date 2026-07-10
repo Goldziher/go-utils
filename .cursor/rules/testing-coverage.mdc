@@ -1,9 +1,0 @@
-# testing-coverage
-# Content-Hash: blake3:044d8dd49f8cb0aecf4b16e6e5b2c39249172b7234334e302276ed677e9dbe35
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** critical
-
-# Testing Coverage
-
-Every exported function must have corresponding test cases in *_test.go files. Follow the table-driven test pattern used throughout the codebase. Run 'go test ./...' to verify all tests pass before committing. Maintain high coverage as monitored by SonarCloud.

@@ -272,7 +272,6 @@ func TestReverse(t *testing.T) {
 	assert.Equal(t, "!dlrow", stringutils.Reverse("world!"))
 	assert.Equal(t, "", stringutils.Reverse(""))
 	assert.Equal(t, "a", stringutils.Reverse("a"))
-	// UTF-8 test
 	assert.Equal(t, "👋🌍", stringutils.Reverse("🌍👋"))
 }
 

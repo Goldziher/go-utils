@@ -1,7 +1,0 @@
-# systematic-debugging
-# Content-Hash: blake3:7e6da46a4eaa780451a00a5417050d6bb69d92bdb739ab7c5b7e195e10ddf943
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** high
-
-Never guess at bugs. Trace the root cause backward through the call stack to find the original trigger. Analyze patterns — is this a one-off or systemic? Form a hypothesis and verify it before implementing a fix. No shotgun debugging, no random changes hoping something works.

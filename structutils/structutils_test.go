@@ -123,19 +123,17 @@ func TestFieldNames(t *testing.T) {
 		true,
 	}
 
-	// Without tags
 	names := structutils.FieldNames(instance)
 	assert.Len(t, names, 3)
 	assert.Contains(t, names, "First")
 	assert.Contains(t, names, "Second")
 	assert.Contains(t, names, "Third")
 
-	// With tags
 	names = structutils.FieldNames(instance, "struct")
 	assert.Len(t, names, 3)
 	assert.Contains(t, names, "First")
 	assert.Contains(t, names, "Second")
-	assert.Contains(t, names, "third") // Uses tag value
+	assert.Contains(t, names, "third")
 }
 
 func TestFieldNamesWithOmit(t *testing.T) {

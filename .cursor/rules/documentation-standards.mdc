@@ -1,9 +1,0 @@
-# documentation-standards
-# Content-Hash: blake3:c0a401bbaec002f315568fc2f6720fe5a1f15dcc372b47b1a893b7e321be25c3
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** medium
-
-# Documentation Standards
-
-Document all exported functions with godoc comments following Go conventions. Maintain corresponding markdown documentation in docs/ directory organized by package. Each function should have a dedicated .md file with usage examples for the MkDocs-generated documentation site.

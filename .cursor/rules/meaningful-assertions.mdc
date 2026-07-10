@@ -1,7 +1,0 @@
-# meaningful-assertions
-# Content-Hash: blake3:79c2de7369eb1d03b63e730ec16f3e961cc995dd332fa0166fd53198de534087
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** medium
-
-Assert exact expected values, not just truthiness (`assert result == 42`, not `assert result`). Use snapshot testing for complex structured output. Consider property-based testing for functions with wide input ranges. Include descriptive failure messages. Always test error paths and edge cases, not just the happy path.

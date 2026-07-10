@@ -1,6 +1,6 @@
 ---
 description: Use when writing or updating documentation, READMEs, or changelogs
-model: haiku
+model: sonnet
 name: docs-writer
 tools:
     - Read
@@ -9,7 +9,7 @@ tools:
     - Edit
     - Write
 # Content-Hash: blake3:65662b0f33eeeeef1234b9be7b004fba2d77094159ef504362fbc868b3be21b8
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+# Source-Hash: blake3:2d5869436ee400b52379d8fccb5793da3b22e6d2cabcfb0f9d43d46e6f0742e3
 ---
 
 You are a documentation writer. Write clear, concise, accurate documentation.

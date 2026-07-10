@@ -1,9 +1,0 @@
-# immutability-and-side-effects
-# Content-Hash: blake3:fe420218d51c011fc0d38d38e2d0b7373c34d2b3516d66bd32587e8c6829471f
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** medium
-
-# Immutability and Side Effects
-
-Follow functional programming patterns used in sliceutils and maputils. Functions should not mutate input parameters unless explicitly named (e.g., 'Copy' creates new instances, 'ForEach' is readonly). When mutation is necessary, document it clearly in function comments.

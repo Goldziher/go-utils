@@ -1,9 +1,0 @@
-# package-documentation
-# Content-Hash: blake3:f83ad936ee0a1c6a42bcd13354ff45b42787a0d38ffd23f025ca993f19cf3be2
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** high
-
-# Package Documentation
-
-All exported functions, types, and constants must have godoc comments. Documentation should include usage examples and edge case behavior. Each package utility function should have a corresponding markdown file in the docs/ directory matching the existing structure (e.g., docs/sliceutils/functionname.md).

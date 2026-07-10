@@ -1,9 +1,0 @@
-# generic-type-constraints
-# Content-Hash: blake3:ddfe6beb3325886929b0349a7809bfabef0be4c330b78402c599670a49ec7ac8
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** critical
-
-# Generic Type Constraints
-
-All utility functions must use appropriate generic type constraints (comparable, any, or custom interfaces). Follow existing patterns in sliceutils, maputils, and structutils packages. Always ensure type safety at compile time rather than runtime reflection where possible.

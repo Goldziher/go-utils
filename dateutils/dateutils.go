@@ -9,9 +9,6 @@ func Floor(t time.Time) time.Time {
 
 // Ceil - takes a datetime and return a datetime from the same day at 23:59:59 (UTC).
 func Ceil(t time.Time) time.Time {
-	// add 24 hours so that we are dealing with tomorrow's datetime
-	// Floor
-	// Subtract one second and we have today at 23:59:59
 	return Floor(t.Add(time.Hour * 24)).Add(time.Second * -1)
 }
 
@@ -67,14 +64,12 @@ func GetFirstDayOfMonthFor(date time.Time) time.Time {
 // GetLastDayOfMonth returns the last day of the current month at 23:59:59 in the local timezone.
 func GetLastDayOfMonth() time.Time {
 	firstDay := GetFirstDayOfMonth()
-	// Add one month and subtract one second
 	return firstDay.AddDate(0, 1, 0).Add(-time.Second)
 }
 
 // GetLastDayOfMonthFor returns the last day of the month for the given date at 23:59:59 in the date's timezone.
 func GetLastDayOfMonthFor(date time.Time) time.Time {
 	firstDay := GetFirstDayOfMonthFor(date)
-	// Add one month and subtract one second
 	return firstDay.AddDate(0, 1, 0).Add(-time.Second)
 }
 
@@ -202,7 +197,6 @@ func AgeAt(birthdate, at time.Time) int {
 
 // DaysInMonth returns the number of days in the month of the given time.
 func DaysInMonth(t time.Time) int {
-	// Get the first day of next month, then subtract one day
 	year, month, _ := t.Date()
 	firstOfNextMonth := time.Date(year, month+1, 1, 0, 0, 0, 0, t.Location())
 	lastOfThisMonth := firstOfNextMonth.AddDate(0, 0, -1)

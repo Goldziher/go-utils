@@ -92,7 +92,6 @@ func TestGetFirstDayOfMonthFor(t *testing.T) {
 }
 
 func TestGetLastDayOfMonth(t *testing.T) {
-	// This test depends on the current date, so we test the general behavior
 	result := dateutils.GetLastDayOfMonth()
 
 	now := time.Now()
@@ -100,7 +99,6 @@ func TestGetLastDayOfMonth(t *testing.T) {
 
 	assert.Equal(t, year, result.Year())
 	assert.Equal(t, month, result.Month())
-	// Last day should be >= 28 for any month
 	assert.GreaterOrEqual(t, result.Day(), 28)
 	assert.Equal(t, 23, result.Hour())
 	assert.Equal(t, 59, result.Minute())
@@ -118,12 +116,10 @@ func TestGetLastDayOfMonthFor(t *testing.T) {
 	assert.Equal(t, 59, result.Minute())
 	assert.Equal(t, 59, result.Second())
 
-	// Test February in non-leap year
 	febDate := time.Date(2023, 2, 15, 12, 0, 0, 0, time.UTC)
 	febResult := dateutils.GetLastDayOfMonthFor(febDate)
 	assert.Equal(t, 28, febResult.Day())
 
-	// Test February in leap year
 	febLeapDate := time.Date(2024, 2, 15, 12, 0, 0, 0, time.UTC)
 	febLeapResult := dateutils.GetLastDayOfMonthFor(febLeapDate)
 	assert.Equal(t, 29, febLeapResult.Day())
@@ -226,20 +222,16 @@ func TestEndOfDay(t *testing.T) {
 }
 
 func TestStartOfWeek(t *testing.T) {
-	// Wednesday, July 19, 2023
 	wednesday := time.Date(2023, 7, 19, 14, 30, 45, 0, time.UTC)
 	result := dateutils.StartOfWeek(wednesday)
-	// Should be Sunday, July 16, 2023 at 00:00:00
 	assert.Equal(t, time.Sunday, result.Weekday())
 	assert.Equal(t, 16, result.Day())
 	assert.Equal(t, 0, result.Hour())
 }
 
 func TestEndOfWeek(t *testing.T) {
-	// Wednesday, July 19, 2023
 	wednesday := time.Date(2023, 7, 19, 14, 30, 45, 0, time.UTC)
 	result := dateutils.EndOfWeek(wednesday)
-	// Should be Saturday, July 22, 2023 at 23:59:59
 	assert.Equal(t, time.Saturday, result.Weekday())
 	assert.Equal(t, 22, result.Day())
 	assert.Equal(t, 23, result.Hour())
@@ -252,17 +244,15 @@ func TestDaysBetween(t *testing.T) {
 	end := time.Date(2023, 1, 10, 0, 0, 0, 0, time.UTC)
 	assert.Equal(t, 9, dateutils.DaysBetween(start, end))
 
-	// Negative result when end is before start
 	assert.Equal(t, -9, dateutils.DaysBetween(end, start))
 
-	// Same day
 	assert.Equal(t, 0, dateutils.DaysBetween(start, start))
 }
 
 func TestIsWeekend(t *testing.T) {
-	saturday := time.Date(2023, 7, 15, 12, 0, 0, 0, time.UTC) // Saturday
-	sunday := time.Date(2023, 7, 16, 12, 0, 0, 0, time.UTC)   // Sunday
-	monday := time.Date(2023, 7, 17, 12, 0, 0, 0, time.UTC)   // Monday
+	saturday := time.Date(2023, 7, 15, 12, 0, 0, 0, time.UTC)
+	sunday := time.Date(2023, 7, 16, 12, 0, 0, 0, time.UTC)
+	monday := time.Date(2023, 7, 17, 12, 0, 0, 0, time.UTC)
 
 	assert.True(t, dateutils.IsWeekend(saturday))
 	assert.True(t, dateutils.IsWeekend(sunday))
@@ -270,9 +260,9 @@ func TestIsWeekend(t *testing.T) {
 }
 
 func TestIsWeekday(t *testing.T) {
-	saturday := time.Date(2023, 7, 15, 12, 0, 0, 0, time.UTC) // Saturday
-	monday := time.Date(2023, 7, 17, 12, 0, 0, 0, time.UTC)   // Monday
-	friday := time.Date(2023, 7, 21, 12, 0, 0, 0, time.UTC)   // Friday
+	saturday := time.Date(2023, 7, 15, 12, 0, 0, 0, time.UTC)
+	monday := time.Date(2023, 7, 17, 12, 0, 0, 0, time.UTC)
+	friday := time.Date(2023, 7, 21, 12, 0, 0, 0, time.UTC)
 
 	assert.False(t, dateutils.IsWeekday(saturday))
 	assert.True(t, dateutils.IsWeekday(monday))
@@ -280,24 +270,19 @@ func TestIsWeekday(t *testing.T) {
 }
 
 func TestAddBusinessDays(t *testing.T) {
-	// Starting on Friday, July 14, 2023
 	friday := time.Date(2023, 7, 14, 12, 0, 0, 0, time.UTC)
 
-	// Add 1 business day -> Monday, July 17
 	result := dateutils.AddBusinessDays(friday, 1)
 	assert.Equal(t, time.Monday, result.Weekday())
 	assert.Equal(t, 17, result.Day())
 
-	// Add 5 business days -> Friday, July 21
 	result = dateutils.AddBusinessDays(friday, 5)
 	assert.Equal(t, time.Friday, result.Weekday())
 	assert.Equal(t, 21, result.Day())
 
-	// Add 0 business days
 	result = dateutils.AddBusinessDays(friday, 0)
 	assert.Equal(t, friday, result)
 
-	// Subtract business days
 	monday := time.Date(2023, 7, 17, 12, 0, 0, 0, time.UTC)
 	result = dateutils.AddBusinessDays(monday, -1)
 	assert.Equal(t, time.Friday, result.Weekday())
@@ -305,11 +290,9 @@ func TestAddBusinessDays(t *testing.T) {
 }
 
 func TestAge(t *testing.T) {
-	// Test that Age returns a reasonable value
 	birthdate := time.Date(2000, 1, 1, 0, 0, 0, 0, time.UTC)
 	age := dateutils.Age(birthdate)
 
-	// Age should be at least 24 (as of 2024) and less than 100 (reasonable upper bound)
 	assert.GreaterOrEqual(t, age, 24)
 	assert.Less(t, age, 100)
 }
@@ -317,37 +300,29 @@ func TestAge(t *testing.T) {
 func TestAgeAt(t *testing.T) {
 	birthdate := time.Date(1990, 5, 15, 0, 0, 0, 0, time.UTC)
 
-	// Age on exact birthday
 	exactBirthday := time.Date(2023, 5, 15, 0, 0, 0, 0, time.UTC)
 	assert.Equal(t, 33, dateutils.AgeAt(birthdate, exactBirthday))
 
-	// Age before birthday this year
 	beforeBirthday := time.Date(2023, 3, 15, 0, 0, 0, 0, time.UTC)
 	assert.Equal(t, 32, dateutils.AgeAt(birthdate, beforeBirthday))
 
-	// Age after birthday this year
 	afterBirthday := time.Date(2023, 7, 15, 0, 0, 0, 0, time.UTC)
 	assert.Equal(t, 33, dateutils.AgeAt(birthdate, afterBirthday))
 
-	// Edge case: same month, day before birthday
 	dayBefore := time.Date(2023, 5, 14, 0, 0, 0, 0, time.UTC)
 	assert.Equal(t, 32, dateutils.AgeAt(birthdate, dayBefore))
 }
 
 func TestDaysInMonth(t *testing.T) {
-	// January has 31 days
 	january := time.Date(2023, 1, 15, 0, 0, 0, 0, time.UTC)
 	assert.Equal(t, 31, dateutils.DaysInMonth(january))
 
-	// February has 28 days (non-leap year)
 	february := time.Date(2023, 2, 15, 0, 0, 0, 0, time.UTC)
 	assert.Equal(t, 28, dateutils.DaysInMonth(february))
 
-	// February has 29 days (leap year)
 	februaryLeap := time.Date(2024, 2, 15, 0, 0, 0, 0, time.UTC)
 	assert.Equal(t, 29, dateutils.DaysInMonth(februaryLeap))
 
-	// April has 30 days
 	april := time.Date(2023, 4, 15, 0, 0, 0, 0, time.UTC)
 	assert.Equal(t, 30, dateutils.DaysInMonth(april))
 }

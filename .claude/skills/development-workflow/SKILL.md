@@ -2,8 +2,8 @@
 description: development-workflow
 name: development-workflow
 user_invocable: false
-# Content-Hash: blake3:6384902bd0d343eec66eeb2bad1b942d19daad1426371b8a813872e3ac08ca4f
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
+# Content-Hash: blake3:55677e22ccede26d3daf3a9fb2b42d39476ab31382118f9ba2531aa703da29e9
+# Source-Hash: blake3:2d5869436ee400b52379d8fccb5793da3b22e6d2cabcfb0f9d43d46e6f0742e3
 ---
 
 # Development Workflow
@@ -13,7 +13,7 @@ user_invocable: false
 ### Prerequisites
 
 - Go 1.18+ (required for generics support)
-- pre-commit (for git hooks)
+- poly (for linting and formatting)
 - golangci-lint (for linting)
 
 ### Initial Setup
@@ -25,10 +25,9 @@ cd /Users/naamanhirschfeld/workspace/go-utils
 # Install dependencies
 go mod download
 
-# Install pre-commit hooks
-pre-commit install && \
-  pre-commit install --hook-type commit-msg && \
-  pre-commit install-hooks
+# poly runs in CI via the shared reusable validate workflow.
+# Verify locally before committing:
+poly fmt --check . && poly lint .
 ```
 
 ### Running Tests
@@ -60,7 +59,7 @@ golangci-lint run --fix
 
 ### Commit Convention
 
-This project enforces [Conventional Commits](https://www.conventionalcommits.org/) via pre-commit hooks:
+This project enforces [Conventional Commits](https://www.conventionalcommits.org/) via poly:
 
 ```bash
 # Valid commit message examples

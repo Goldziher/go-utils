@@ -1,7 +1,0 @@
-# atomic-commits
-# Content-Hash: blake3:421854e62a7ae7ea9385df6fcb5c8fa7deb9cf0e5f73896d6b4ae13ffba5daff
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** high
-
-Each commit represents one logical change. Don't mix unrelated changes. Use conventional commits format (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, `test:`). Keep commits small and focused for easier review and bisection.

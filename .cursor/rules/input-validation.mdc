@@ -1,9 +1,0 @@
-# input-validation
-# Content-Hash: blake3:42c27e57678f9059e2dc5e62f2d280d8da54669f0f6d381239896a4dca4722f7
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** high
-
-# Input Validation
-
-Validate and sanitize all external input at system boundaries. Use allowlists over denylists. Validate types, ranges, and formats. Never trust user input.

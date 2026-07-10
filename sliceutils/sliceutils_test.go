@@ -261,10 +261,8 @@ func TestUnion(t *testing.T) {
 func TestReverse(t *testing.T) {
 	expectedResult := []int{9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
 	assert.Equal(t, expectedResult, sliceutils.Reverse(numerals))
-	// ensure does not modify the original
 	assert.Equal(t, expectedResult, sliceutils.Reverse(numerals))
 
-	// test basic odd length case
 	expectedResult = []int{9, 8, 7, 6, 5, 4, 3, 2, 1}
 	assert.Equal(t, expectedResult, sliceutils.Reverse(numerals[1:]))
 }
@@ -273,7 +271,6 @@ func TestUnique(t *testing.T) {
 	duplicates := []int{6, 6, 6, 9, 0, 0, 0}
 	expectedResult := []int{6, 9, 0}
 	assert.Equal(t, expectedResult, sliceutils.Unique(duplicates))
-	// Ensure original is unaltered
 	assert.NotEqual(t, expectedResult, duplicates)
 }
 

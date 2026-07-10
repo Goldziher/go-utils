@@ -175,7 +175,6 @@ func stringifyReflect(value any, options Options) string {
 				),
 			)
 		}
-		// we sort to ensure deterministic results, given that map keys are arbitrarily ordered
 		sort.Strings(elements)
 		return "{" + strings.Join(elements, ", ") + "}"
 	case reflect.Slice:
@@ -193,7 +192,6 @@ func stringifyReflect(value any, options Options) string {
 		}
 		return "[" + strings.Join(elements, ", ") + "]"
 	default:
-		// fallback to fmt when no specialized handling is available
 		return fmt.Sprintf("%v", value)
 	}
 }
@@ -305,7 +303,6 @@ func ToCamelCase(str string) string {
 		return ""
 	}
 
-	// Split on space, hyphen, underscore
 	words := strings.FieldsFunc(str, func(r rune) bool {
 		return r == ' ' || r == '-' || r == '_'
 	})
@@ -314,7 +311,6 @@ func ToCamelCase(str string) string {
 		return ""
 	}
 
-	// First word lowercase, rest capitalized
 	result := strings.ToLower(words[0])
 	for i := 1; i < len(words); i++ {
 		result += Capitalize(strings.ToLower(words[i]))
@@ -332,9 +328,6 @@ func ToSnakeCase(str string) string {
 	for i, r := range runes {
 		if unicode.IsUpper(r) && i > 0 {
 			prevChar := runes[i-1]
-			// Add underscore if:
-			// 1. Previous char is not uppercase/separator, OR
-			// 2. Next char exists and is lowercase (handles acronyms like HTTPResponse)
 			if (!unicode.IsUpper(prevChar) && prevChar != '_' && prevChar != ' ' && prevChar != '-') ||
 				(i+1 < len(runes) && unicode.IsLower(runes[i+1])) {
 				result.WriteRune('_')
@@ -360,9 +353,6 @@ func ToKebabCase(str string) string {
 	for i, r := range runes {
 		if unicode.IsUpper(r) && i > 0 {
 			prevChar := runes[i-1]
-			// Add hyphen if:
-			// 1. Previous char is not uppercase/separator, OR
-			// 2. Next char exists and is lowercase (handles acronyms like HTTPResponse)
 			if (!unicode.IsUpper(prevChar) && prevChar != '-' && prevChar != ' ' && prevChar != '_') ||
 				(i+1 < len(runes) && unicode.IsLower(runes[i+1])) {
 				result.WriteRune('-')

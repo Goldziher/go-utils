@@ -1,7 +1,0 @@
-# anti-patterns
-# Content-Hash: blake3:5663ae503d53a2ff2c95b3a9b0f71d0d68ac0cc294da97d81ea30c3911937106
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** high
-
-No magic numbers — use named constants. No global state — use dependency injection. No inheritance for code reuse — prefer composition. No bare exception handlers — catch specific types. No mocking internal services — use real objects for integration tests. No blocking I/O in async code paths — keep async paths fully async.

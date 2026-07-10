@@ -1,9 +1,0 @@
-# cicd-compliance
-# Content-Hash: blake3:e5589924e5174d055c658ce870a946a4c650e52cc9eb3c08ed53b25ac97f7064
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** medium
-
-# CI/CD Compliance
-
-Ensure code passes all GitHub Actions workflows (ci.yaml, docs.yaml). CI runs tests, linting, and SonarCloud quality gates. Maintain quality gate status, zero vulnerabilities, and address bugs flagged by SonarCloud.

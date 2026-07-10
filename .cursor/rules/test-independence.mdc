@@ -1,7 +1,0 @@
-# test-independence
-# Content-Hash: blake3:c01d9a4455df359e2d7b7ee42d6f61746050882d9e9eedc8a47ac9569e1fdb2d
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** high
-
-Tests must be independent and idempotent — runnable in any order, in parallel. No shared mutable state between tests. Use factories or fixtures for setup. Clean up created resources (files, DB rows, env vars) after each test. Never rely on test execution order.

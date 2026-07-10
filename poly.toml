@@ -15,41 +15,62 @@ exclude = [
     "**/package-lock.json",
     "**/pnpm-lock.yaml",
     "**/uv.lock",
+    "crates/*-ffi/include/*.h",
+    "packages/go/include/*.h",
 ]
 
 [lint.markdown.rumdl]
 disable = ["MD012", "MD013", "MD024", "MD033", "MD036", "MD041", "MD046", "MD051", "MD076"]
 
+
+[lint.uncomment]
+enabled = true
+remove_todos = false
+remove_fixme = false
+remove_docs = false
+use_default_ignores = true
+preserve_patterns = [
+    "SAFETY",
+    "HACK",
+    "WORKAROUND",
+    "NOTE",
+    "Copyright",
+    "Licensed",
+    "License",
+    "SPDX",
+    "Apache",
+    "MIT",
+    "WITHOUT WARRANTIES",
+    "limitations under the License",
+    "copyright",
+    "licensed",
+    "license",
+    "apache",
+    "you may not use this file except in compliance",
+    "You may obtain a copy of the License",
+    "you may obtain a copy of the license",
+    "http://www.apache.org/licenses/LICENSE-2.0",
+    "http://www.apache.org/licenses/license-2.0",
+    "Unless required by applicable law",
+    "unless required by applicable law",
+    "distributed under the License",
+    "distributed under the license",
+    "AS IS",
+    "as is",
+    "without warranties",
+    "specific language governing permissions",
+    "limitations under the license",
+]
 [fmt.markdown.rumdl]
 disable = ["MD012", "MD013", "MD024", "MD033", "MD036", "MD041", "MD046", "MD051", "MD076"]
 
 [lint.typos]
-# `hel` is the ellipsis-truncated fragment of "hello world" in EllipsisMiddle
-# test fixtures (do NOT let it autofix to "help"/"heal").
 extend_words = { hel = "hel" }
 
 [hooks]
 stages = ["pre-commit"]
 
 [hooks.builtin]
-polylint = { exclude = [
-    "**/*.lock",
-    "**/*.svg",
-    "**/Cargo.lock",
-    "**/go.sum",
-    "**/package-lock.json",
-    "**/pnpm-lock.yaml",
-    "**/uv.lock",
-] }
-polyfmt = { exclude = [
-    "**/*.lock",
-    "**/*.svg",
-    "**/Cargo.lock",
-    "**/go.sum",
-    "**/package-lock.json",
-    "**/pnpm-lock.yaml",
-    "**/uv.lock",
-] }
 file_safety = { exclude = [
     "**/*.lock",
     "**/*.svg",
@@ -58,14 +79,48 @@ file_safety = { exclude = [
     "**/package-lock.json",
     "**/pnpm-lock.yaml",
     "**/uv.lock",
+    "crates/*-ffi/include/*.h",
+    "packages/go/include/*.h",
 ] }
 commit = { stages = ["commit-msg"] }
 
-# --- catalog tools (standalone binaries, PATH-probed) ---
+lint = { exclude = [
+    "**/*.lock",
+    "**/*.svg",
+    "**/Cargo.lock",
+    "**/go.sum",
+    "**/package-lock.json",
+    "**/pnpm-lock.yaml",
+    "**/uv.lock",
+    "crates/*-ffi/include/*.h",
+    "packages/go/include/*.h",
+] }
+fmt = { exclude = [
+    "**/*.lock",
+    "**/*.svg",
+    "**/Cargo.lock",
+    "**/go.sum",
+    "**/package-lock.json",
+    "**/pnpm-lock.yaml",
+    "**/uv.lock",
+    "crates/*-ffi/include/*.h",
+    "packages/go/include/*.h",
+] }
 [tools.golangci-lint]
 enabled = true
 # NOTE: env + per-module cwd (e.g. packages/go) not yet supported by [tools.*].
 
-# --- dropped / unmapped hooks (for the record) ---
-# commitlint -> replaced by the poly `commit` builtin (conventional commits)
-# UNMAPPED: golines (line-shortening; poly relies on line_length + gofmt)
+
+[per-file-ignores]
+"e2e/**" = ["comment", "doc-comment"]
+"**/e2e/**" = ["comment", "doc-comment"]
+"test_apps/**" = ["comment", "doc-comment"]
+"**/test_apps/**" = ["comment", "doc-comment"]
+"docs/assets/**" = ["comment", "doc-comment"]
+"**/generated/**" = ["comment", "doc-comment"]
+"**/*.generated.*" = ["comment", "doc-comment"]
+"**/*.g.*" = ["comment", "doc-comment"]
+"**/*.freezed.*" = ["comment", "doc-comment"]
+"crates/*-ffi/include/*.h" = ["comment", "doc-comment"]
+"packages/go/include/*.h" = ["comment", "doc-comment"]
+"Package.swift" = ["comment", "doc-comment"]

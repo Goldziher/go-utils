@@ -99,7 +99,6 @@ func TestDrop(t *testing.T) {
 		expectedResult,
 		maputils.Drop(daysMap, []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"}),
 	)
-	// ensure we do not modify the original value
 	assert.Equal(t, expectedResult, daysMap)
 }
 
@@ -226,7 +225,6 @@ func TestToEntries(t *testing.T) {
 
 	assert.Len(t, result, 2)
 
-	// Check that entries exist (order is non-deterministic)
 	hasA := false
 	hasB := false
 	for _, entry := range result {

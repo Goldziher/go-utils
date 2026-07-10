@@ -1,7 +1,7 @@
 <!--
 🤖 AI-RULEZ :: GENERATED FILE — DO NOT EDIT DIRECTLY
 Project: go-utils
-Generated: 2026-07-02 13:43:15
+Generated: 2026-07-08 15:53:27
 Source: .ai-rulez/config.toml
 Target: AGENTS.md
 Content: rules=53, sections=0, agents=4
@@ -46,8 +46,8 @@ INSTRUCTIONS FOR AI AGENTS
    c. Commit both .ai-rulez/ and generated files
 
 Documentation: https://github.com/Goldziher/ai-rulez
-Content-Hash: blake3:46b835f035bc332094088937e37c7540742517c95574b91b3b80f4f6e5b2db74
-Source-Hash: blake3:eaa42de7df861e1ff8ea78c6a8c011f4d885ae53d1f873595de7f20694258d5c
+Content-Hash: blake3:59d58f5c0f8af87bb9f684d30360e044472cc51357cd724b19f8bf49e64ccc3a
+Source-Hash: blake3:2d5869436ee400b52379d8fccb5793da3b22e6d2cabcfb0f9d43d46e6f0742e3
 -->
 
 # go-utils

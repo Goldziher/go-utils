@@ -1,7 +1,0 @@
-# testing-anti-patterns
-# Content-Hash: blake3:aadde8b09407868b6857b5fe57777299732538045e9edbeba1cfb92192f62979
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** high
-
-Do not test mock behavior instead of real behavior. Do not add test-only methods to production code. Do not mock what you don't own — wrap it and test the wrapper. Do not test implementation details — test observable behavior. Do not write tests that pass when the code is broken. If a test never fails, it's not testing anything.

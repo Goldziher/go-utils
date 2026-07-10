@@ -1,11 +1,9 @@
-# AI-Rulez Configuration (migrated to V4 TOML format)
-# Documentation: https://github.com/Goldziher/ai-rulez
 
 version = '4.0'
 name = 'go-utils'
 description = 'A comprehensive Go utility library providing collection manipulation functions inspired by JavaScript and Python, leveraging Go 1.18+ generics for type-safe operations on slices, maps, structs, dates, strings, and URLs with utilities like filter, map, reduce, merge, flatten, and query string builders.'
 gitignore = true
-presets = ['claude', 'cursor', 'gemini', 'windsurf', 'copilot', 'amp']
+presets = ["claude", "codex"]
 builtins = ['go', 'default-commands']
 
 [[marketplaces]]

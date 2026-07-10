@@ -377,7 +377,6 @@ func EnsureUniqueAndAppend[T comparable](slice []T, item T) []T {
 		return slice
 	}
 
-	// Item doesn't exist, append it
 	return append(slice, item)
 }
 

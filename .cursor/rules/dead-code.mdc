@@ -1,7 +1,0 @@
-# dead-code
-# Content-Hash: blake3:1733de7456e71345371190a8699ae3ce788ef6266c4e4ffd34324211e66e11fb
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** low
-
-Remove dead code instead of commenting it out. Version control preserves history. Commented-out code creates confusion and maintenance burden.

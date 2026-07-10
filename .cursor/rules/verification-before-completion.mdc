@@ -1,7 +1,0 @@
-# verification-before-completion
-# Content-Hash: blake3:853ec1c2a4e561844cd1939712699c270371289d0b9132ad337e5fd67569baa2
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** critical
-
-Never claim success without fresh verification. Run the test and see it pass. Check the file exists. Verify the build succeeds. Evidence before assertions — always. If you can't verify, say so explicitly rather than claiming success.

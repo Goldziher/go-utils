@@ -1,9 +1,0 @@
-# documentation
-# Content-Hash: blake3:c97374654fef063348aa528ce3f3bd43c2fe7a798cff2c9ac7e9ceb3c1350e44
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** high
-
-# Documentation
-
-Provide godoc comments for all exported functions, types, and constants. Maintain corresponding markdown documentation in docs/ directory organized by package. Documentation is published via MkDocs (mkdocs.yml) to GitHub Pages.

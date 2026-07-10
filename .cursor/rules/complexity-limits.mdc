@@ -1,7 +1,0 @@
-# complexity-limits
-# Content-Hash: blake3:d1d4861938bf9a977c0f72db5a583fedde5c54d3678ca5de36fc4d3bbec147bc
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** medium
-
-Enforce concrete limits: max 20 cyclomatic complexity per function, max 4 levels of nesting depth, max 50 lines per function. Use early returns to flatten conditionals. Break complex functions into well-named helpers that each do one thing.

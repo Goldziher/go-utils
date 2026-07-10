@@ -1,7 +1,0 @@
-# test-alongside-code
-# Content-Hash: blake3:87ee3bb343e0c1f3369eb1a2ee70aa0cf990fe213627309a6ead39fbbac8b0b2
-# Source-Hash: blake3:42ec88d9fbc953ee4be083da31cedbaf02a3b623edff8de5828cb9d7c5768f3e
-
-**Priority:** high
-
-Write tests when writing code, update tests when modifying behavior. When fixing bugs, write a failing test first (TDD). Use integration tests for the public API surface and unit tests for complex internal logic. Run the full test suite before committing.
