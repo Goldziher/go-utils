@@ -3,7 +3,7 @@ version = '4.0'
 name = 'go-utils'
 description = 'A comprehensive Go utility library providing collection manipulation functions inspired by JavaScript and Python, leveraging Go 1.18+ generics for type-safe operations on slices, maps, structs, dates, strings, and URLs with utilities like filter, map, reduce, merge, flatten, and query string builders.'
 gitignore = true
-presets = ["claude", "codex"]
+presets = ["claude", "codex", "opencode"]
 builtins = ['go', 'default-commands']
 
 [[marketplaces]]
