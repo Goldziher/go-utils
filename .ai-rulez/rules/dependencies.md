@@ -1,5 +1,11 @@
 ---
-priority: medium
+type: Decision
+title: Dependencies
+x-ai-rulez:
+  kind: rule
+  id: dependencies
+  metadata:
+    priority: medium
 ---
 
 # Dependencies

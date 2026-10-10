@@ -1,5 +1,11 @@
 ---
-priority: medium
+type: Decision
+title: Cicd And Dependencies
+x-ai-rulez:
+  kind: rule
+  id: cicd-and-dependencies
+  metadata:
+    priority: medium
 ---
 
 # CI/CD and Dependencies

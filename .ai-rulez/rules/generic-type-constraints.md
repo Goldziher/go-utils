@@ -1,5 +1,11 @@
 ---
-priority: critical
+type: Decision
+title: Generic Type Constraints
+x-ai-rulez:
+  kind: rule
+  id: generic-type-constraints
+  metadata:
+    priority: critical
 ---
 
 # Generic Type Constraints

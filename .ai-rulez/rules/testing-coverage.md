@@ -1,5 +1,11 @@
 ---
-priority: critical
+type: Decision
+title: Testing Coverage
+x-ai-rulez:
+  kind: rule
+  id: testing-coverage
+  metadata:
+    priority: critical
 ---
 
 # Testing Coverage

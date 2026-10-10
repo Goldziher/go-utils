@@ -1,5 +1,11 @@
 ---
-priority: medium
+type: Decision
+title: Cross Package Consistency
+x-ai-rulez:
+  kind: rule
+  id: cross-package-consistency
+  metadata:
+    priority: medium
 ---
 
 # Cross-Package Consistency

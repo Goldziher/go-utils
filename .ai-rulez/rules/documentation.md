@@ -1,5 +1,11 @@
 ---
-priority: high
+type: Decision
+title: Documentation
+x-ai-rulez:
+  kind: rule
+  id: documentation
+  metadata:
+    priority: high
 ---
 
 # Documentation

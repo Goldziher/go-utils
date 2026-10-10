@@ -1,5 +1,11 @@
 ---
-priority: medium
+type: Decision
+title: Linting Compliance
+x-ai-rulez:
+  kind: rule
+  id: linting-compliance
+  metadata:
+    priority: medium
 ---
 
 # Linting Compliance

@@ -1,9 +1,8 @@
 ---
 description: usage-patterns-and-examples
 name: usage-patterns-and-examples
-user_invocable: false
 # Content-Hash: blake3:2d5920fda64d6ab8a9ee4d0448a9a48a6199368b3a34f8c607a1a8d4026c0d94
-# Source-Hash: blake3:2d5869436ee400b52379d8fccb5793da3b22e6d2cabcfb0f9d43d46e6f0742e3
+# Source-Hash: blake3:4f57144f37f1a0ea56ab4543f76b77ab4ba3a3d951031e28351bfd62d833ffd1
 ---
 
 # Usage Patterns and Examples

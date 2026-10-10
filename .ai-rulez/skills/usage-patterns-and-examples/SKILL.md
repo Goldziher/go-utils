@@ -1,6 +1,12 @@
 ---
-priority: high
-description: "usage-patterns-and-examples"
+type: Playbook
+title: Usage Patterns And Examples
+description: usage-patterns-and-examples
+x-ai-rulez:
+  kind: skill
+  id: usage-patterns-and-examples
+  metadata:
+    priority: high
 ---
 
 # Usage Patterns and Examples

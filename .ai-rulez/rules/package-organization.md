@@ -1,5 +1,11 @@
 ---
-priority: high
+type: Decision
+title: Package Organization
+x-ai-rulez:
+  kind: rule
+  id: package-organization
+  metadata:
+    priority: high
 ---
 
 # Package Organization

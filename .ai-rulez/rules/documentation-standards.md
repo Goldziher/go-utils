@@ -1,5 +1,11 @@
 ---
-priority: medium
+type: Decision
+title: Documentation Standards
+x-ai-rulez:
+  kind: rule
+  id: documentation-standards
+  metadata:
+    priority: medium
 ---
 
 # Documentation Standards

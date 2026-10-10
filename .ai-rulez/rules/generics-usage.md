@@ -1,5 +1,11 @@
 ---
-priority: critical
+type: Decision
+title: Generics Usage
+x-ai-rulez:
+  kind: rule
+  id: generics-usage
+  metadata:
+    priority: critical
 ---
 
 # Generics Usage

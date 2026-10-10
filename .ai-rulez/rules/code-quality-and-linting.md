@@ -1,5 +1,11 @@
 ---
-priority: high
+type: Decision
+title: Code Quality And Linting
+x-ai-rulez:
+  kind: rule
+  id: code-quality-and-linting
+  metadata:
+    priority: high
 ---
 
 # Code Quality and Linting

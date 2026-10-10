@@ -1,5 +1,11 @@
 ---
-priority: medium
+type: Decision
+title: Cicd Compliance
+x-ai-rulez:
+  kind: rule
+  id: cicd-compliance
+  metadata:
+    priority: medium
 ---
 
 # CI/CD Compliance

@@ -1,5 +1,11 @@
 ---
-priority: high
+type: Decision
+title: Package Documentation
+x-ai-rulez:
+  kind: rule
+  id: package-documentation
+  metadata:
+    priority: high
 ---
 
 # Package Documentation

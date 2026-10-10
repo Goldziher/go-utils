@@ -1,5 +1,11 @@
 ---
-priority: high
+type: Decision
+title: Code Quality
+x-ai-rulez:
+  kind: rule
+  id: code-quality
+  metadata:
+    priority: high
 ---
 
 # Code Quality

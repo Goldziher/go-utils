@@ -1,6 +1,12 @@
 ---
-priority: medium
-description: "project-architecture"
+type: Playbook
+title: Project Architecture
+description: project-architecture
+x-ai-rulez:
+  kind: skill
+  id: project-architecture
+  metadata:
+    priority: medium
 ---
 
 # Project Architecture

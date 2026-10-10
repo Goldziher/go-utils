@@ -1,5 +1,11 @@
 ---
-priority: critical
+type: Decision
+title: Testing Standards
+x-ai-rulez:
+  kind: rule
+  id: testing-standards
+  metadata:
+    priority: critical
 ---
 
 # Testing Standards

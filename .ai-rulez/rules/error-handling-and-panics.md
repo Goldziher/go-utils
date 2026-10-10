@@ -1,5 +1,11 @@
 ---
-priority: high
+type: Decision
+title: Error Handling And Panics
+x-ai-rulez:
+  kind: rule
+  id: error-handling-and-panics
+  metadata:
+    priority: high
 ---
 
 # Error Handling and Panics

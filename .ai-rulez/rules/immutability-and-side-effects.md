@@ -1,5 +1,11 @@
 ---
-priority: medium
+type: Decision
+title: Immutability And Side Effects
+x-ai-rulez:
+  kind: rule
+  id: immutability-and-side-effects
+  metadata:
+    priority: medium
 ---
 
 # Immutability and Side Effects

@@ -1,6 +1,12 @@
 ---
-priority: high
-description: "development-workflow"
+type: Playbook
+title: Development Workflow
+description: development-workflow
+x-ai-rulez:
+  kind: skill
+  id: development-workflow
+  metadata:
+    priority: high
 ---
 
 # Development Workflow

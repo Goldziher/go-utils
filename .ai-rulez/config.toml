@@ -1,9 +1,9 @@
 
-version = '4.0'
+version = "5.0"
 name = 'go-utils'
 description = 'A comprehensive Go utility library providing collection manipulation functions inspired by JavaScript and Python, leveraging Go 1.18+ generics for type-safe operations on slices, maps, structs, dates, strings, and URLs with utilities like filter, map, reduce, merge, flatten, and query string builders.'
 gitignore = true
-presets = ["claude", "codex", "opencode"]
+presets = ["claude", "codex", "opencode", "pi"]
 builtins = ['go', 'default-commands']
 
 [[marketplaces]]
@@ -16,3 +16,7 @@ marketplace = "basemind"
 name = "basemind"
 scope = "project"
 enabled = true
+
+# Pinned by `ai-rulez migrate v5`: the 4.x default. Remove this line to take the v5 default.
+[header]
+hashes = "full"
