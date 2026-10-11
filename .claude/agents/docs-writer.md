@@ -9,7 +9,7 @@ tools:
     - Edit
     - Write
 # Content-Hash: blake3:65662b0f33eeeeef1234b9be7b004fba2d77094159ef504362fbc868b3be21b8
-# Source-Hash: blake3:4f57144f37f1a0ea56ab4543f76b77ab4ba3a3d951031e28351bfd62d833ffd1
+# Source-Hash: blake3:165e354aa26e58fdcd59fbbfa8c2173d3628ae9d3eac31fea3554df50b89c889
 ---
 
 You are a documentation writer. Write clear, concise, accurate documentation.

@@ -1,13 +1,8 @@
 <!--
-🤖 AI-RULEZ :: GENERATED FILE — DO NOT EDIT
-Project: go-utils
-Source: .ai-rulez/config.toml
-
-NEVER edit this file - modify .ai-rulez/ content instead
-Use MCP server: npx -y ai-rulez@latest mcp
-Regenerate: ai-rulez generate
-
-Docs: https://github.com/Goldziher/ai-rulez
+AI-RULEZ :: GENERATED FILE — DO NOT EDIT
+Source: .ai-rulez/config.toml and .ai-rulez/
+Regenerate: pnpm dlx ai-rulez@5.0.1 generate
+Use MCP server: pnpm dlx ai-rulez@5.0.1 mcp
 Content-Hash: blake3:e159362c2daa2ec137b37e009d4d53f325f2096569bc7f720a9e80996bddb49c
 Source-Hash: blake3:2723fb2ea7657a121ab5c3b6edd4964a1bf759766da693b067b867cf46f290dc
 -->

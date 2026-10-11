@@ -3,10 +3,10 @@ agents: []
 commands: []
 mcp_servers:
   - args:
-      - -y
+      - dlx
       - ai-rulez@latest
       - mcp
-    command: npx
+    command: pnpm
     description: AI-Rulez MCP server for configuration management
     name: ai-rulez
 metadata:

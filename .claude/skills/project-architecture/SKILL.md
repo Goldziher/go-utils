@@ -2,7 +2,7 @@
 description: project-architecture
 name: project-architecture
 # Content-Hash: blake3:a6875d5a6479914f54dd6e0273e749ebca13c58054395a42518735bbbd91b475
-# Source-Hash: blake3:4f57144f37f1a0ea56ab4543f76b77ab4ba3a3d951031e28351bfd62d833ffd1
+# Source-Hash: blake3:165e354aa26e58fdcd59fbbfa8c2173d3628ae9d3eac31fea3554df50b89c889
 ---
 
 # Project Architecture
