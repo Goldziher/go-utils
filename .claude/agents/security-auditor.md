@@ -7,7 +7,6 @@ tools:
     - Grep
     - Bash
 # Content-Hash: blake3:f117c5a6fcc56bd30aaed695985e7cda15e2e06571379e2f735b862ec6c1b0e7
-# Source-Hash: blake3:165e354aa26e58fdcd59fbbfa8c2173d3628ae9d3eac31fea3554df50b89c889
 ---
 
 You are a security auditor. Review code and dependencies for vulnerabilities.

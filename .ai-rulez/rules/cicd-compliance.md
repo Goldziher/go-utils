@@ -10,4 +10,4 @@ x-ai-rulez:
 
 # CI/CD Compliance
 
-Ensure code passes all GitHub Actions workflows (ci.yaml, docs.yaml). CI runs tests, linting, and SonarCloud quality gates. Maintain quality gate status, zero vulnerabilities, and address bugs flagged by SonarCloud.
+Ensure code passes all GitHub Actions workflows (ci.yaml). CI runs tests, linting, and SonarCloud quality gates. Maintain quality gate status, zero vulnerabilities, and address bugs flagged by SonarCloud.

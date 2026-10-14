@@ -1,0 +1,253 @@
+# ai-rulez.lock: pins remote includes, installed skills and authored content. Commit this file.
+# Refresh it with `ai-rulez lock`; `ai-rulez generate --locked` fails when it is stale.
+
+version = 1
+ai_rulez_version = '5.3.0'
+scope = 'all'
+tree = 'sha256:61540b992e7538f30caf5b4b64b538c4ea91bc35e1450dfa5b9ac0c5d83560f3'
+
+[[served]]
+name = 'code-quality-standards'
+source = 'builtin://universal/code-quality/skills/code-quality-standards/SKILL.md'
+commit = ''
+digest = 'sha256:0126cc7c038b3e343ee56866949865dd799bde0de4884ba0bdfeb28655fa8134'
+
+[[served]]
+name = 'dependency-awareness'
+source = 'builtin://universal/security/skills/dependency-awareness/SKILL.md'
+commit = ''
+digest = 'sha256:e108ed344fe20948fcbda61b96266026bb9b2318df089964c088c0455294f8d3'
+
+[[served]]
+name = 'development-workflow'
+source = '.ai-rulez/skills/development-workflow/SKILL.md'
+commit = ''
+digest = 'sha256:590d9eb4af838fdafd8c32e38dd6abb3171eaa30cb4239b83ca919728253797e'
+
+[[served]]
+name = 'error-handling'
+source = 'builtin://universal/code-quality/skills/error-handling/SKILL.md'
+commit = ''
+digest = 'sha256:fddb5f980e8d98c91b459be578cdea7e0fc765d8219f66088892e936f0d1e349'
+
+[[served]]
+name = 'go-conventions'
+source = 'builtin://languages/go/skills/go-conventions/SKILL.md'
+commit = ''
+digest = 'sha256:d4476ba547378d20d11369f89ae4348b2de3ee9fbbc0a59c6a882fffeda351ce'
+
+[[served]]
+name = 'incremental-approach'
+source = 'builtin://universal/token-efficiency/skills/incremental-approach/SKILL.md'
+commit = ''
+digest = 'sha256:ff56cbdc4813ee427a3b6f7d23f6b41b82b7c3cc8dc2b64ccd256a90e75e02f8'
+
+[[served]]
+name = 'iterate'
+source = ''
+commit = ''
+digest = 'sha256:5cb87728d1449fadda6d8557501fcc0823509c60a37058ce4d2dda123296f67c'
+
+[[served]]
+name = 'owasp-quick-reference'
+source = 'builtin://universal/security/skills/owasp-quick-reference/SKILL.md'
+commit = ''
+digest = 'sha256:de4f3b595b88e88d7bff0c342b5253637d08d79b3baebe888bd465f133ff512c'
+
+[[served]]
+name = 'parallelize'
+source = ''
+commit = ''
+digest = 'sha256:2700d984ba10baa2e16ed19b48cc8fd5f7351776f2ce03f6712394d3912f91cb'
+
+[[served]]
+name = 'project-architecture'
+source = '.ai-rulez/skills/project-architecture/SKILL.md'
+commit = ''
+digest = 'sha256:eef6d515285880bcd2180156ac6865697624efecb0516253530434176d59ca1b'
+
+[[served]]
+name = 'task-runner'
+source = 'builtin://universal/token-efficiency/skills/task-runner/SKILL.md'
+commit = ''
+digest = 'sha256:9f3cadda648798b049869c463d7a69f6f7b5953bcad2a43ea02e645d1ec3e19b'
+
+[[served]]
+name = 'tdd-workflow'
+source = 'builtin://universal/testing/skills/tdd-workflow/SKILL.md'
+commit = ''
+digest = 'sha256:90ddeb170606792596979de6444904f88b5fbcdc52ea2462109401865d17f6ec'
+
+[[served]]
+name = 'testing-conventions'
+source = 'builtin://universal/testing/skills/testing-conventions/SKILL.md'
+commit = ''
+digest = 'sha256:562385aa3c563ffbf327d6776932b43175052b00ec4418695ed6c50c335f1686'
+
+[[served]]
+name = 'usage-patterns-and-examples'
+source = '.ai-rulez/skills/usage-patterns-and-examples/SKILL.md'
+commit = ''
+digest = 'sha256:14724ae76c1530a828ecf1e32df161136719d9307fc70d4ffc1b9b0ae4940267'
+
+[[item]]
+kind = 'context'
+id = 'legacy-development-workflow'
+path = 'context/legacy-development-workflow.md'
+digest = 'sha256:f963ecefa5fcae214736c964219b92539d1d3481f9b000eda31ef7913095af4a'
+
+[[item]]
+kind = 'context'
+id = 'legacy-project-architecture'
+path = 'context/legacy-project-architecture.md'
+digest = 'sha256:af989e30f092b097ed6671337e97d35b2d54e13ecf1532ca5bbb97332d7a94f7'
+
+[[item]]
+kind = 'context'
+id = 'poly'
+path = 'context/poly.md'
+digest = 'sha256:da4c74a626f369da986d69839df18999d003f1be02b2239cc07764cd8496b1e0'
+
+[[item]]
+kind = 'rule'
+id = 'cicd-and-dependencies'
+path = 'rules/cicd-and-dependencies.md'
+digest = 'sha256:cc2243e4644680387e23d0f7aabc047e5f6edfb7635040802bab02e6d6e38948'
+
+[[item]]
+kind = 'rule'
+id = 'cicd-compliance'
+path = 'rules/cicd-compliance.md'
+digest = 'sha256:0b189af6a78c3b02e4b757221e0615292eddf238118a93ba591a83fa59c7aeaf'
+
+[[item]]
+kind = 'rule'
+id = 'code-quality'
+path = 'rules/code-quality.md'
+digest = 'sha256:1b0cef748efc3463d49deded321d10011fc0550ef388c9bd26ec99865424a7ab'
+
+[[item]]
+kind = 'rule'
+id = 'code-quality-and-linting'
+path = 'rules/code-quality-and-linting.md'
+digest = 'sha256:81fa1454a60100d246a55b696a726c7cc51189f608fda7b46d77bdc9dca8d292'
+
+[[item]]
+kind = 'rule'
+id = 'cross-package-consistency'
+path = 'rules/cross-package-consistency.md'
+digest = 'sha256:05da3ea06e230a1b6f80614f4980a49fac78770275538ecdb2ec5a69f99c5280'
+
+[[item]]
+kind = 'rule'
+id = 'dependencies'
+path = 'rules/dependencies.md'
+digest = 'sha256:6c4ec1123cd43524d3c28dd95c3357de33f37f8164ef253a3170c733990ed1b2'
+
+[[item]]
+kind = 'rule'
+id = 'documentation'
+path = 'rules/documentation.md'
+digest = 'sha256:5c49f56f9fc9b6f0b2f23a646562e8dfda2929a1b1febe19feea484c947b0c27'
+
+[[item]]
+kind = 'rule'
+id = 'documentation-standards'
+path = 'rules/documentation-standards.md'
+digest = 'sha256:d5b472ab3469797efde85460fa800f6c1c28e34481d33bb41f4285b457ae741c'
+
+[[item]]
+kind = 'rule'
+id = 'error-handling-and-panics'
+path = 'rules/error-handling-and-panics.md'
+digest = 'sha256:9ea4e4df6e51c3f33937c0570703856654f509465688511d3613fa4dd1c2dacc'
+
+[[item]]
+kind = 'rule'
+id = 'generic-type-constraints'
+path = 'rules/generic-type-constraints.md'
+digest = 'sha256:21b7b66c6987df2c53fd69fdefcd4854782462d0ab079ddae96a73459ea251ef'
+
+[[item]]
+kind = 'rule'
+id = 'generics-usage'
+path = 'rules/generics-usage.md'
+digest = 'sha256:96c0a881421b7ef8d84bc398a72a1b350783c3a98a8548f53dcfc62e6bbe6ec6'
+
+[[item]]
+kind = 'rule'
+id = 'immutability-and-side-effects'
+path = 'rules/immutability-and-side-effects.md'
+digest = 'sha256:8ea5208434afff4874514a1865345240958957fc402277007b8a611e6a3a98c9'
+
+[[item]]
+kind = 'rule'
+id = 'legacy-code-quality'
+path = 'rules/legacy-code-quality.md'
+digest = 'sha256:f971e5545b09319c423b6f1771907b5743fd4d83b38956d2e6ea4cf348466c52'
+
+[[item]]
+kind = 'rule'
+id = 'legacy-code-quality-and-linting'
+path = 'rules/legacy-code-quality-and-linting.md'
+digest = 'sha256:25345574970b1837cd02c4687ad002f3c38d0754f60799ef7c2e32cdbdf11de3'
+
+[[item]]
+kind = 'rule'
+id = 'legacy-linting-compliance'
+path = 'rules/legacy-linting-compliance.md'
+digest = 'sha256:ec69ad0a37712ab4e2979f83d8486403063bce72f50f26ad0701e5a1c949ed8f'
+
+[[item]]
+kind = 'rule'
+id = 'linting-compliance'
+path = 'rules/linting-compliance.md'
+digest = 'sha256:74b9f0a42e840e40737e2d9058bf3fb9357bbcefe3a0358bae0073721c29125a'
+
+[[item]]
+kind = 'rule'
+id = 'package-documentation'
+path = 'rules/package-documentation.md'
+digest = 'sha256:728ff4b67e63d51392082ed22ad5e4c87c363b696a1fc8d2457435ef8983b2f1'
+
+[[item]]
+kind = 'rule'
+id = 'package-organization'
+path = 'rules/package-organization.md'
+digest = 'sha256:60648bf75cf44ccb3cae705ed15180810d2f75c361a6895c1f319c68757fed9b'
+
+[[item]]
+kind = 'rule'
+id = 'testing-and-coverage'
+path = 'rules/testing-and-coverage.md'
+digest = 'sha256:7034a72f865ed81aae436c6e784ff3d2c32818a2069df582c7dc2519b8e76f54'
+
+[[item]]
+kind = 'rule'
+id = 'testing-coverage'
+path = 'rules/testing-coverage.md'
+digest = 'sha256:f1d4471e7c3327975d4fd9d91da70fc5c95abf6eb2682f91f3b9d21ce01eeecd'
+
+[[item]]
+kind = 'rule'
+id = 'testing-standards'
+path = 'rules/testing-standards.md'
+digest = 'sha256:32cc3d99146e3f813814dfd660ac714825ba43213fa8ea8eb3d29b61d53fc4b9'
+
+[[item]]
+kind = 'skill'
+id = 'development-workflow'
+path = 'skills/development-workflow'
+digest = 'sha256:96ac216db156f3f39d5de2bf9dfc45decffc3837a3a9971828b7be605e509a98'
+
+[[item]]
+kind = 'skill'
+id = 'project-architecture'
+path = 'skills/project-architecture'
+digest = 'sha256:41ca28bebd035715d4acd88bf0cf7000f05abaa32ebbe0ce34f201a5d6d72e0b'
+
+[[item]]
+kind = 'skill'
+id = 'usage-patterns-and-examples'
+path = 'skills/usage-patterns-and-examples'
+digest = 'sha256:b0c3d4269078549756293432d2f2bfb8a8d82b2bbadfbd79026b4620277a493d'

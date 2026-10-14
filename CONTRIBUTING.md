@@ -32,3 +32,11 @@ Note:
 
 - if you add new code or modify existing code - 100% test coverage is mandatory and tests should be well written.
 - we follow [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) and this is enforced using commitlint via a pre-commit hook.
+
+## AI governance
+
+Install ai-rulez 5.3.0 and run `task governance:generate` after editing `.ai-rulez/`.
+Run `task governance:check` to validate native OKF sources, the lock, and generated output.
+
+Installing governance hooks requires Python 3.11 or newer.
+Use `poly hooks update` and `poly hooks install` to provision the pinned native validation hook.

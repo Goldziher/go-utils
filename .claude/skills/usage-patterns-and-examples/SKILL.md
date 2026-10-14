@@ -2,7 +2,6 @@
 description: usage-patterns-and-examples
 name: usage-patterns-and-examples
 # Content-Hash: blake3:2d5920fda64d6ab8a9ee4d0448a9a48a6199368b3a34f8c607a1a8d4026c0d94
-# Source-Hash: blake3:165e354aa26e58fdcd59fbbfa8c2173d3628ae9d3eac31fea3554df50b89c889
 ---
 
 # Usage Patterns and Examples

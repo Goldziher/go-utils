@@ -74,7 +74,7 @@ git commit -m "test: add coverage for stringutils.Capitalize"
 
 ### CI Pipeline
 
-The project uses GitHub Actions (`.github/workflows/ci.yaml` and `.github/workflows/docs.yaml`) to:
+The project uses GitHub Actions (`.github/workflows/ci.yaml`) to:
 
 - Run tests across multiple Go versions
 - Check code coverage

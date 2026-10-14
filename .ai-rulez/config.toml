@@ -3,29 +3,25 @@ version = "5.0"
 name = 'go-utils'
 description = 'A comprehensive Go utility library providing collection manipulation functions inspired by JavaScript and Python, leveraging Go 1.18+ generics for type-safe operations on slices, maps, structs, dates, strings, and URLs with utilities like filter, map, reduce, merge, flatten, and query string builders.'
 gitignore = true
+gitignore_exclude = [
+  ".claude/agents/code-reviewer.md",
+  ".claude/agents/docs-writer.md",
+  ".claude/agents/security-auditor.md",
+  ".claude/agents/test-writer.md",
+  ".claude/skills/development-workflow/SKILL.md",
+  ".claude/skills/iterate/SKILL.md",
+  ".claude/skills/parallelize/SKILL.md",
+  ".claude/skills/project-architecture/SKILL.md",
+  ".claude/skills/usage-patterns-and-examples/SKILL.md",
+  "AGENTS.md",
+  "CLAUDE.md",
+]
+default_layers = ["plugins"]
 presets = ["claude", "codex", "opencode", "pi"]
 builtins = ['go', 'default-commands']
 
-[[marketplaces]]
-name = "basemind"
-source = "Goldziher/basemind"
-type = "github"
-
-[[plugins]]
-marketplace = "basemind"
-name = "basemind"
-scope = "project"
-enabled = true
-
-# Pinned by `ai-rulez migrate v5`: the 4.x default. Remove this line to take the v5 default.
-[header]
-text = """
-AI-RULEZ :: GENERATED FILE — DO NOT EDIT
-Source: .ai-rulez/config.toml and .ai-rulez/
-Regenerate: pnpm dlx ai-rulez@5.0.1 generate
-Use MCP server: pnpm dlx ai-rulez@5.0.1 mcp
-"""
-hashes = "full"
-
 [mcp]
-self_server_command = ["pnpm", "dlx", "ai-rulez@5.0.1", "mcp"]
+self_server_command = ["ai-rulez", "mcp"]
+
+[lock]
+include_outputs = false

@@ -1,10 +1,14 @@
 <!--
-AI-RULEZ :: GENERATED FILE — DO NOT EDIT
-Source: .ai-rulez/config.toml and .ai-rulez/
-Regenerate: pnpm dlx ai-rulez@5.0.1 generate
-Use MCP server: pnpm dlx ai-rulez@5.0.1 mcp
-Content-Hash: blake3:e159362c2daa2ec137b37e009d4d53f325f2096569bc7f720a9e80996bddb49c
-Source-Hash: blake3:2723fb2ea7657a121ab5c3b6edd4964a1bf759766da693b067b867cf46f290dc
+🤖 AI-RULEZ :: GENERATED FILE — DO NOT EDIT
+Project: go-utils
+Source: .ai-rulez/config.toml
+
+NEVER edit this file - modify .ai-rulez/ content instead
+Use MCP server: ai-rulez mcp
+Regenerate: ai-rulez generate
+
+Docs: https://github.com/Goldziher/ai-rulez
+Content-Hash: blake3:150932802fdd0dfe98d0ff41f7cc6edd7349e4e1192f65ffe1175857b2a76fa7
 -->
 
 # go-utils
@@ -127,6 +131,18 @@ Utility functions should not panic except for truly unrecoverable errors. Prefer
 
 Validate and sanitize external input at the system boundary — types, ranges, formats — and allowlist rather than denylist.
 
+### legacy-code-quality
+
+**Priority:** high
+
+All code must pass golangci-lint checks using the configuration in .golangci.yml. Pre-commit hooks (.pre-commit-config.yaml) enforce linting standards. Address all linter warnings before committing.
+
+### legacy-code-quality-and-linting
+
+**Priority:** high
+
+All code must pass golangci-lint checks as configured in .golangci.yml before commits. Use Poly hooks (.pre-commit-config.yaml) to enforce quality gates. Maintain Go Report Card A+ rating and address all SonarCloud quality gate issues including maintainability, reliability, and security ratings.
+
 ### minimal-changes
 
 **Priority:** high
@@ -173,7 +189,7 @@ All changes must pass GitHub Actions CI pipeline (.github/workflows/ci.yaml) inc
 
 **Priority:** medium
 
-Ensure code passes all GitHub Actions workflows (ci.yaml, docs.yaml). CI runs tests, linting, and SonarCloud quality gates. Maintain quality gate status, zero vulnerabilities, and address bugs flagged by SonarCloud.
+Ensure code passes all GitHub Actions workflows (ci.yaml). CI runs tests, linting, and SonarCloud quality gates. Maintain quality gate status, zero vulnerabilities, and address bugs flagged by SonarCloud.
 
 ### context-preservation
 
@@ -217,6 +233,12 @@ Follow functional programming patterns used in sliceutils and maputils. Function
 
 Request only the permissions the task needs — narrowest file, network and API scopes — and run processes unprivileged.
 
+### legacy-linting-compliance
+
+**Priority:** medium
+
+All code must pass golangci-lint checks defined in .golangci.yml before committing. Run 'golangci-lint run' locally. Address all issues or add justified nolint directives with explanations. Pre-commit hooks enforce this automatically.
+
 ### linting-compliance
 
 **Priority:** medium
@@ -230,6 +252,79 @@ All code must pass golangci-lint checks defined in .golangci.yml before committi
 Show only what changed: elide unchanged code in a diff with `// ... existing code ...`, and never repeat what is already visible in context. Code goes in code blocks, not prose.
 
 ## Context
+
+### legacy-development-workflow
+
+## Development Workflow
+
+### Prerequisites
+
+- Go 1.18+ (required for generics support)
+- poly (for git hooks)
+- golangci-lint (for linting)
+
+### Initial Setup
+
+```bash
+# Clone and navigate to the repository
+cd /Users/naamanhirschfeld/workspace/go-utils
+
+# Install dependencies
+go mod download
+
+# Install Poly hooks
+poly hooks update
+poly hooks install
+```
+
+### Running Tests
+
+```bash
+# Run all tests with coverage
+go test ./... -v -cover
+
+# Run tests for specific package
+go test ./sliceutils -v
+go test ./maputils -v
+go test ./dateutils -v
+go test ./stringutils -v
+go test ./structutils -v
+go test ./urlutils -v
+```
+
+**Important**: 100% test coverage is mandatory for all contributions. Each utility package has a corresponding `_test.go` file that must be updated when adding new functions.
+
+### Linting
+
+```bash
+# Run golangci-lint (configuration in .golangci.yml)
+golangci-lint run
+
+# Auto-fix issues where possible
+golangci-lint run --fix
+```
+
+### Commit Convention
+
+This project enforces [Conventional Commits](https://www.conventionalcommits.org/) via Poly hooks:
+
+```bash
+# Valid commit message examples
+git commit -m "feat: add new Map function to sliceutils"
+git commit -m "fix: correct edge case in dateutils.Overlap"
+git commit -m "docs: update contributing guide"
+git commit -m "test: add coverage for stringutils.Capitalize"
+```
+
+### CI Pipeline
+
+The project uses GitHub Actions (`.github/workflows/ci.yaml`) to:
+
+- Run tests across multiple Go versions
+- Check code coverage
+- Run linters
+- Build and deploy documentation to GitHub Pages
+- Analyze code quality with SonarCloud
 
 ### poly
 
@@ -255,6 +350,86 @@ Per-repo `poly.toml`. Cache dir `.polylint/` (gitignored).
 Validation runs via `uses: xberg-io/actions/.github/workflows/reusable-validate.yml@v1`.
 
 Run `poly fmt --check .` and `poly lint .` after changes to verify compliance.
+
+### legacy-project-architecture
+
+## Project Architecture
+
+### Package Structure
+
+go-utils is organized into specialized utility packages, each focused on a specific data type:
+
+```text
+go-utils/
+├── dateutils/      # Time and date manipulation utilities
+├── maputils/       # Generic map operations
+├── sliceutils/     # Generic slice operations (inspired by JS Array methods)
+├── stringutils/    # String manipulation and formatting
+├── structutils/    # Struct reflection and conversion utilities
+└── urlutils/       # URL and query string utilities
+```
+
+### Design Principles
+
+**1. Generics-First Approach**
+
+All functions leverage Go 1.18+ generics for type safety:
+
+```go
+// Example: sliceutils.Filter signature
+func Filter[T any](slice []T, predicate func(value T, index int, slice []T) bool) []T
+
+// Example: maputils.Keys signature
+func Keys[K comparable, V any](mapInstance map[K]V) []K
+```
+
+**2. Functional Programming Style**
+
+Many functions accept callback functions with consistent signatures:
+
+```go
+// Slice callbacks receive: value, index, slice
+sliceutils.Map(items, func(value T, index int, slice []T) R { ... })
+
+// Map callbacks receive: key, value
+maputils.ForEach(m, func(key K, value V) { ... })
+```
+
+**3. Zero-Cost Abstractions**
+
+Functions are designed for performance with minimal overhead:
+
+- Pre-allocated slices where sizes are known
+- In-place operations where appropriate
+- Efficient iteration patterns
+
+### Adding New Utilities
+
+When contributing a new utility function:
+
+1. **Choose the correct package** based on the primary data type
+2. **Add the function** to `<package>/<package>.go`
+3. **Add comprehensive tests** to `<package>/<package>_test.go`
+4. **Create documentation** at `docs/<package>/<function>.md` following existing patterns
+5. **Update mkdocs.yml** to include the new documentation page
+
+### Documentation Generation
+
+Documentation is built with MkDocs and deployed automatically:
+
+```bash
+# Install MkDocs (if not already installed)
+pip install mkdocs mkdocs-material
+
+# Serve documentation locally
+mkdocs serve
+# Visit http://127.0.0.1:8000
+
+# Build static documentation
+mkdocs build
+```
+
+Documentation structure in `mkdocs.yml` mirrors the package structure for easy navigation.
 
 ## Agents
 

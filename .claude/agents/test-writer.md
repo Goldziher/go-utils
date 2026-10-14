@@ -10,7 +10,6 @@ tools:
     - Write
     - Bash
 # Content-Hash: blake3:7262eba79d1dbf51908d3549bfd0f5ec4ae988bf15e6e6d0f1d42b5bc3ddf5a2
-# Source-Hash: blake3:165e354aa26e58fdcd59fbbfa8c2173d3628ae9d3eac31fea3554df50b89c889
 ---
 
 You are a test writer following strict TDD discipline.

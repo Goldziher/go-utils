@@ -1,0 +1,13 @@
+version: "3"
+tasks:
+  governance:generate:
+    desc: Generate native AI governance outputs
+    cmds:
+      - ai-rulez generate --no-local --strict-config
+  governance:check:
+    desc: Validate native AI governance and freshness
+    cmds:
+      - ai-rulez migrate okf --check
+      - ai-rulez validate --strict --no-local
+      - ai-rulez lock --check
+      - ai-rulez generate --check --no-local --strict-config

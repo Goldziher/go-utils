@@ -1,8 +1,7 @@
 ---
 description: development-workflow
 name: development-workflow
-# Content-Hash: blake3:55677e22ccede26d3daf3a9fb2b42d39476ab31382118f9ba2531aa703da29e9
-# Source-Hash: blake3:165e354aa26e58fdcd59fbbfa8c2173d3628ae9d3eac31fea3554df50b89c889
+# Content-Hash: blake3:bdeee15c755bc4f500ae7721fd2163b1a5f6ca3bb6506af8687fcaefe70cc0ca
 ---
 
 # Development Workflow
@@ -70,7 +69,7 @@ git commit -m "test: add coverage for stringutils.Capitalize"
 
 ### CI Pipeline
 
-The project uses GitHub Actions (`.github/workflows/ci.yaml` and `.github/workflows/docs.yaml`) to:
+The project uses GitHub Actions (`.github/workflows/ci.yaml`) to:
 
 - Run tests across multiple Go versions
 - Check code coverage
