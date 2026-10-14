@@ -11,3 +11,13 @@ tasks:
       - ai-rulez validate --strict --no-local
       - ai-rulez lock --check
       - ai-rulez generate --check --no-local --strict-config
+
+  governance:hooks:
+    desc: Provision pinned native governance hooks
+    cmds:
+      - >-
+        python3 -c 'from pathlib import Path;
+        p = Path("poly.local.toml");
+        p.exists() or p.write_text("[hook_preferences]\nchannels = [\"system\"]\n")'
+      - poly hooks update
+      - poly hooks install
