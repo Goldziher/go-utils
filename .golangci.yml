@@ -108,6 +108,63 @@ linters:
           - errcheck
         path: _test\.go
         text: "Error return value.*is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `\\(\\*github\\.com/goccy/go-json\\.Encoder\\)\\.Encode` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `w\\.Write` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `resp\\.Body\\.Close` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `res\\.Body\\.Close` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `r\\.Body\\.Read` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `os\\.Setenv` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `os\\.Unsetenv` is not checked"
+      - linters:
+          - govet
+        text: 'shadow: declaration of "err" shadows declaration'
+      - linters:
+          - govet
+        text: "unusedwrite: unused write to field"
+      - linters:
+          - errcheck
+        text: "Error return value of `c\\.provider\\.Delete` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `provider\\.Close` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `natsClient\\.Close` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `cacheProvider\\.Close` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `processor\\.Close` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `sub\\.Unsubscribe` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `json\\.Marshal` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value of `strconv\\."
+      - linters:
+          - errcheck
+        text: "Error return value of `fmt\\.Sscanf` is not checked"
+      - linters:
+          - errcheck
+        text: "Error return value is not checked"
     paths:
       - vendor
       - build
@@ -121,26 +178,6 @@ issues:
   max-same-issues: 0
   uniq-by-line: true
   new: false
-  exclude:
-    - "Error return value of `\\(\\*github\\.com/goccy/go-json\\.Encoder\\)\\.Encode` is not checked"
-    - "Error return value of `w\\.Write` is not checked"
-    - "Error return value of `resp\\.Body\\.Close` is not checked"
-    - "Error return value of `res\\.Body\\.Close` is not checked"
-    - "Error return value of `r\\.Body\\.Read` is not checked"
-    - "Error return value of `os\\.Setenv` is not checked"
-    - "Error return value of `os\\.Unsetenv` is not checked"
-    - 'shadow: declaration of "err" shadows declaration'
-    - "unusedwrite: unused write to field"
-    - "Error return value of `c\\.provider\\.Delete` is not checked"
-    - "Error return value of `provider\\.Close` is not checked"
-    - "Error return value of `natsClient\\.Close` is not checked"
-    - "Error return value of `cacheProvider\\.Close` is not checked"
-    - "Error return value of `processor\\.Close` is not checked"
-    - "Error return value of `sub\\.Unsubscribe` is not checked"
-    - "Error return value of `json\\.Marshal` is not checked"
-    - "Error return value of `strconv\\."
-    - "Error return value of `fmt\\.Sscanf` is not checked"
-    - "Error return value is not checked"
 
 formatters:
   exclusions:
