@@ -8,7 +8,7 @@ Use MCP server: ai-rulez mcp
 Regenerate: ai-rulez generate
 
 Docs: https://github.com/Goldziher/ai-rulez
-Content-Hash: blake3:150932802fdd0dfe98d0ff41f7cc6edd7349e4e1192f65ffe1175857b2a76fa7
+Content-Hash: blake3:8b6612d82cff033e8b757bd6b733033d7bd8b8c259f1068d6e0299417622d118
 -->
 
 # go-utils
@@ -22,6 +22,12 @@ A comprehensive Go utility library providing collection manipulation functions i
 **Priority:** critical
 
 Be concise and precise — no fluff, no emojis, no unnecessary checklists. PR descriptions: what changed and why in 1-3 sentences, not a bullet-point essay. Issue comments: answer the question directly. Code review: state the problem and suggest the fix, skip praise and filler. Never pad output to appear thorough.
+
+### customer-data-boundary
+
+**Priority:** critical
+
+Customer data and anything derived from it stays in controlled systems: never a public or secret Gist, paste site, file-sharing service, image host, third-party dashboard or LLM playground. Write local debugging output to /tmp or another untracked location, never a tracked directory.
 
 ### generic-type-constraints
 
@@ -57,7 +63,7 @@ Never force-push a shared branch. Pull before pushing. Use `--force-with-lease`,
 
 **Priority:** critical
 
-Never hardcode a secret, API key, token or password — read it from the environment or a secret manager. Never log or echo a sensitive value. Refuse to commit a file containing one.
+Never hardcode a secret, API key, token or password — read it from the environment or a secret manager. Never log or echo a sensitive value. Refuse to commit a file containing one. Never give a missing secret a default value; fail with a clear error instead.
 
 ### testing-and-coverage
 
@@ -81,13 +87,13 @@ Write comprehensive table-driven tests in *_test.go files for every exported fun
 
 **Priority:** critical
 
-Verify before acting and before claiming done. Check current state (branch, working directory, running processes) before changing it. Run the test and see it pass, check the file exists, watch the build succeed. Evidence before assertions — if you cannot verify, say so instead of claiming success.
+Verify before acting and before claiming done. Check current state (branch, working directory, running processes) before changing it. Run the test and see it pass, check the file exists, watch the build succeed. Evidence before assertions — if you cannot verify, say so instead of claiming success. A green result may test nothing: confirm the fixture is valid input and the test was collected before trusting it.
 
 ### agent-workflow
 
 **Priority:** high
 
-Delegate non-trivial implementation, research and file exploration to subagents, launching independent ones in a single message. Never trust a subagent summary — it describes intent, not what happened; read the actual file changes and fix what is wrong before reporting done. Iterate: delegate → review → fix → verify.
+Delegate non-trivial implementation, research and file exploration to subagents, launching independent ones in a single message. Never trust a subagent summary — it describes intent, not what happened; read the actual file changes and fix what is wrong before reporting done. Iterate: delegate → review → fix → verify. Give each subagent a self-contained brief (goal, files, constraints, what to verify and what to return). Run risky or long-lived parallel work in its own git worktree, and check you are in the right one before edits. When a finished subagent has a large context, start a fresh one with a short brief of what changed and what to check instead of resuming it, because resuming re-writes its whole history to the cache.
 
 ### atomic-commits
 
@@ -124,6 +130,12 @@ Provide godoc comments for all exported functions, types, and constants. Maintai
 **Priority:** high
 
 Utility functions should not panic except for truly unrecoverable errors. Prefer returning error values or boolean success indicators. Document panic conditions explicitly in godoc comments if unavoidable (e.g., reflection-based operations in structutils).
+
+### generated-files
+
+**Priority:** high
+
+Never hand-edit a generated file (lock files, generated specs, rendered config). Edit the source and rerun the generator, also to resolve a merge conflict.
 
 ### input-validation
 
