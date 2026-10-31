@@ -149,7 +149,7 @@ func stringifyReflect(value any, options Options) string {
 	}
 
 	switch typeOf.Kind() {
-	case reflect.Ptr:
+	case reflect.Pointer:
 		v := reflect.ValueOf(value)
 		if v.IsNil() {
 			return options.NilFormat
