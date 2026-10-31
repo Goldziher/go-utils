@@ -7,3 +7,23 @@ lockfile_platforms = ["linux-x64", "linux-arm64", "macos-arm64", "windows-x64"]
 go = "1.27.3"
 node = "26.12.1"
 "github:Goldziher/poly" = "0.31.2"
+
+[tasks.test]
+description = "Run the Go tests with a coverage profile"
+run = "go test -coverprofile=coverage.out ./..."
+
+[tasks."governance:generate"]
+description = "Generate native AI governance outputs"
+run = "npx -y ai-rulez@latest generate --no-local --strict-config"
+
+[tasks."governance:check"]
+description = "Validate native AI governance and freshness"
+run = [
+  "npx -y ai-rulez@latest migrate okf --check",
+  "npx -y ai-rulez@latest validate --strict --no-local",
+  "npx -y ai-rulez@latest lock --check",
+  "npx -y ai-rulez@latest generate --check --no-local --strict-config",
+]
+
+[task_config]
+includes = ["mise-tasks", "mise-tasks/shared.toml"]
