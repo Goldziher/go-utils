@@ -1,3 +1,3 @@
 # Concepts
 
-* [Development Workflow](SKILL.md) - development-workflow
+- [Development Workflow](SKILL.md) - development-workflow

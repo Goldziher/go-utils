@@ -1,3 +1,3 @@
 # Concepts
 
-* [Project Architecture](SKILL.md) - project-architecture
+- [Project Architecture](SKILL.md) - project-architecture

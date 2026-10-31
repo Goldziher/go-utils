@@ -1,3 +1,3 @@
 # Concepts
 
-* [Usage Patterns And Examples](SKILL.md) - usage-patterns-and-examples
+- [Usage Patterns And Examples](SKILL.md) - usage-patterns-and-examples
