@@ -7,6 +7,13 @@ on:
     branches:
       - main
 jobs:
+  toolchain:
+    name: Toolchain baseline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: xberg-io/actions/check-toolchain@v1
+
   validate:
     uses: xberg-io/actions/.github/workflows/reusable-validate.yml@v1
 
@@ -16,9 +23,9 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-go@v6
+      - uses: xberg-io/actions/setup-mise@v1
         with:
-          go-version: "1.25"
+          install-args: go
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@v7
         with:
@@ -28,9 +35,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-go@v6
+      - uses: xberg-io/actions/setup-mise@v1
         with:
-          go-version: "1.25"
+          install-args: go
       - name: Load cached dependencies
         id: cached-go-dependencies
         uses: actions/cache@v5
@@ -38,13 +45,13 @@ jobs:
           path: |
             ~/.cache/go-build
             ~/go/pkg/mod
-          key: go-${{ inputs.go_version }}-v1.0-${{ hashFiles('**/go.sum') }}
+          key: go-${{ runner.os }}-${{ hashFiles('mise.lock', '**/go.sum') }}
       - name: Install dependencies
         if: steps.cached-go-dependencies.outputs.cache-hit != 'true'
         shell: bash
         run: go get -v -t ./...
       - name: Run Tests
-        run: go test -coverprofile=coverage.out ./...
+        run: mise run test
       - name: Archive code coverage results
         uses: actions/upload-artifact@v7
         with:
