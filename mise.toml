@@ -5,8 +5,8 @@ lockfile_platforms = ["linux-x64", "linux-arm64", "macos-arm64", "windows-x64"]
 
 [tools]
 go = "1.27.3"
-node = "26.12.1"
-"github:Goldziher/poly" = "0.31.2"
+node = "26.13.0"
+"github:Goldziher/poly" = "0.32.1"
 
 [tasks.test]
 description = "Run the Go tests with a coverage profile"
