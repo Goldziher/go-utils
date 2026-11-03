@@ -1,6 +1,6 @@
 # Go Utils
 
-Functional programming utilities for Go 1.21+ designed to complement the standard library's `slices`, `maps`, and `cmp` packages.
+Functional programming utilities for Go 1.27+ designed to complement the standard library's `slices`, `maps`, and `cmp` packages.
 
 ## Installation
 

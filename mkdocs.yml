@@ -1,5 +1,5 @@
 site_name: Go Utils
-site_description: Functional programming utilities for Go 1.21+ - complementary with stdlib slices, maps, and cmp
+site_description: Functional programming utilities for Go 1.27+ - complementary with stdlib slices, maps, and cmp
 site_url: https://goldziher.github.io/go-utils/
 site_author: Na'aman Hirschfeld
 repo_name: Goldziher/go-utils
